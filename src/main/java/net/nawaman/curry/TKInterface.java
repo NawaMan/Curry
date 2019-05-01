@@ -37,7 +37,7 @@ import net.nawaman.util.UClass;
 /**
  * TypeKind for interface
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TKInterface extends TypeKind {
 
@@ -617,7 +617,7 @@ public class TKInterface extends TypeKind {
 	 * 
 	 * In curry, interface can can have Target (type that is indented to use)
 	 * 
-	 * @author Nawapunth Manusitthipol
+	 * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
 	 */
 	static public class TSInterface extends TypeSpec {
 
@@ -864,7 +864,7 @@ public class TKInterface extends TypeKind {
 	/**
 	 * Type of Interface
 	 * 
-	 * @author Nawapunth Manusitthipol
+	 * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
 	 */
 	static public class TInterface extends Type {
 

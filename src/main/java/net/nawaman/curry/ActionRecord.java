@@ -6,7 +6,7 @@ import net.nawaman.util.*;
 /**
  * A record of an action - encomposing actor (StackOwner) and the location in which the action occurs.
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  **/
 public class ActionRecord implements Objectable {
 		

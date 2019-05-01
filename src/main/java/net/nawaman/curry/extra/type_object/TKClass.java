@@ -48,7 +48,7 @@ import net.nawaman.curry.util.MoreData;
 /**
  * Type Kind for classed-Object type
  *
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TKClass extends TKObject {
 

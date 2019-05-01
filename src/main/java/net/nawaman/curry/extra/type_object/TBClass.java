@@ -28,7 +28,7 @@ import net.nawaman.curry.TypeBuilder;
 /**
  * TypeBuilder for Object
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TBClass extends TypeBuilder {
 	

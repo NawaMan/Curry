@@ -28,7 +28,7 @@ import net.nawaman.util.UArray;
 
 /**
  *
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class Instructions_Array {
 

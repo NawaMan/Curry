@@ -29,7 +29,7 @@ import net.nawaman.util.UString;
 
 /**
  * Abstract instruction that take are an assignment (including an incremental assignment) 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class Inst_Assignment extends Inst_AbstractSimple {
 	

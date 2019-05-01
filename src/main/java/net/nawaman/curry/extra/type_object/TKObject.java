@@ -35,7 +35,7 @@ import net.nawaman.curry.TypeSpec;
 
 /**
  *
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 abstract public class TKObject extends TypeKind {
 

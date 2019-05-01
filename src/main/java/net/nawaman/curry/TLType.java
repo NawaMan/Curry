@@ -44,7 +44,7 @@ public class TLType extends TypeLoader {
 	
 	/**
 	 * The default TypeRef for Type of Type.
-	 * @author Nawapunth Manusitthipol
+	 * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
 	 */
 	static public class TypeTypeRef extends TypeRef {
 		

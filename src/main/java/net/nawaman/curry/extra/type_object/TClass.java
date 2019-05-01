@@ -23,7 +23,7 @@ import net.nawaman.curry.Type;
 /**
  * Type of class
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TClass extends TObject {
 	

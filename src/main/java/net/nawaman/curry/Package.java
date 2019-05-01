@@ -16,7 +16,7 @@ import net.nawaman.util.UString;
  * Package is a container of artifact definitions that will be stored/loaded at the same time.
  * Package also provides name space boundary and centralize dependency mechanism in which every
  *     required artifacts required by artifact definition in a package is grouped and stored.
- * @author nawaman
+ \* @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 final public class Package extends StackOwner_Simple implements Serializable {
 

@@ -27,7 +27,7 @@ import net.nawaman.curry.ParameterizedTypeInfo;
 /**
  * TypeSpec of Class
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TSClass extends TSObject {
 

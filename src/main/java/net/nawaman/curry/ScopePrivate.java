@@ -27,7 +27,7 @@ import net.nawaman.util.UObject;
 
 /**
  *
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class ScopePrivate {
 

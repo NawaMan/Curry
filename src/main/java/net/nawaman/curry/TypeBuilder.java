@@ -31,7 +31,7 @@ import net.nawaman.curry.util.MoreData;
  * TypeBuilder is a builder of type where developers can add detail of type before it is built.
  * TypeBuilder produce type spec.
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TypeBuilder extends StackOwnerBuilder {
 	

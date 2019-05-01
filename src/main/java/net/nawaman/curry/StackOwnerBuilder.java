@@ -29,7 +29,7 @@ import net.nawaman.curry.util.MoreData;
 
 /**
  * Abstract class for StackOwner builder (such as package and type)
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObject {
 	

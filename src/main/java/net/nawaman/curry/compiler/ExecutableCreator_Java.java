@@ -35,7 +35,7 @@ import net.nawaman.util.UObject;
  *     ported into Script as it seems to be beneficial. Both implementations turn out to be very similar in concept so
  *     they may be later combined for the better maintainability.
  * 
- * @author nawaman
+ \* @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class ExecutableCreator_Java implements ExecutableCreator {
 	

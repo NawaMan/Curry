@@ -23,7 +23,7 @@ import net.nawaman.util.Objectable;
 
 /**
  * Standalone object for DObject
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public interface DObjectStandalone extends NonNative {
 	

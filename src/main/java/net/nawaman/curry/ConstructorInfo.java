@@ -35,7 +35,7 @@ import net.nawaman.util.UObject;
  * ConstructorInfo has no used during the runtime. Every new instance is created by the TypeKind and ten passed on to
  * the initializer. ConstructorInfo is only used in the compile time and type loading when 
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 abstract public class ConstructorInfo implements Accessible, Serializable, HasSignature {
 

@@ -33,7 +33,7 @@ import net.nawaman.curry.ParameterizedTypeInfo;
 
 /**
  *
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TSObject extends TypeSpec {
 

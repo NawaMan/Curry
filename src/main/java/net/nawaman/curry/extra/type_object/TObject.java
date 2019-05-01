@@ -25,7 +25,7 @@ import net.nawaman.curry.TypeRef;
 /**
  * Super type of all curry object
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TObject extends Type {
 	

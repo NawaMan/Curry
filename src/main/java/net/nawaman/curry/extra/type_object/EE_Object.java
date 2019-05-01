@@ -22,7 +22,7 @@ import net.nawaman.curry.EngineExtension;
 
 /**
  * Engine Extension to support Object Types
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class EE_Object extends EngineExtension {
 	
