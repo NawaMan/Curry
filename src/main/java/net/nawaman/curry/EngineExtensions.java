@@ -802,7 +802,7 @@ public class EngineExtensions {
 			this.regInst( -281489); // Instructions_DataHolder.Inst_IsDHReadable
 			this.regInst( -291681); // Instructions_DataHolder.Inst_IsDHWritable
 			this.regInst( -195857); // Instructions_DataHolder.Inst_GetDHType
-			this.regInst( -320081); // Instructions_DataHolder.Inst_GetDHMoreInfo
+			this.regInst( -32008-20191); // Instructions_DataHolder.Inst_GetDHMoreInfo
 			this.regInst( -169697); // Instructions_DataHolder.Inst_ConfigDH
 			this.regInst( -390065); // Instructions_DataHolder.Inst_IsDHNoTypeCheck
 			this.regInst(-1028865); // Instructions_DataHolder.Inst_AddDataHolderAsLocalVariable
@@ -818,7 +818,7 @@ public class EngineExtensions {
 				case  -281489: return new Instructions_DataHolder.Inst_IsDHReadable                (E);
 				case  -291681: return new Instructions_DataHolder.Inst_IsDHWritable                (E);
 				case  -195857: return new Instructions_DataHolder.Inst_GetDHType                   (E);
-				case  -320081: return new Instructions_DataHolder.Inst_GetDHMoreInfo               (E);
+				case  -32008-20191: return new Instructions_DataHolder.Inst_GetDHMoreInfo               (E);
 				case  -169697: return new Instructions_DataHolder.Inst_ConfigDH                    (E);
 				case  -390065: return new Instructions_DataHolder.Inst_IsDHNoTypeCheck             (E);
 				case -1028865: return new Instructions_DataHolder.Inst_AddDataHolderAsLocalVariable(E);
