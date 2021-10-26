@@ -16,7 +16,9 @@ import net.nawaman.regparser.ParseResult;
 
 /** TextProcessor for curry code */
 final public class TextProcessor_Curry implements TextProcessor {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	static public String Name = "c";
 
 	String LangName;

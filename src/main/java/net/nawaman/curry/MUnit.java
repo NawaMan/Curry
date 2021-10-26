@@ -56,7 +56,6 @@ public class MUnit extends EnginePart {
 	
 	final Hashtable<String, Method> ResourceKinds = new Hashtable<String, Method>();
 	
-	@SuppressWarnings("unchecked")
 	public boolean registerResourceKind(String pRKName, Class<? extends UnitFactory> pUFClass) {
 		if((pRKName  == null) || (pUFClass == null)) return false;
 		if(this.ResourceKinds.get(pRKName) != null) return false;

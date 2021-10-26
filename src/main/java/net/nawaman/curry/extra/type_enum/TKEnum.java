@@ -87,6 +87,7 @@ final public class TKEnum extends TypeKind {
 		return this.ensureTypeSpecFormat(pContext, TSE.getTypeRef(), TSE.getSuperRef(), TSE.isFinal(),
 				TSE.getEnumKind(), TSE.getMemberSpecs());
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	String ensureTypeSpecFormat(Context pContext, TypeRef pTypeRef, TypeRef pSuper,
 			boolean IsFinal, EnumKind pEnumKind, TEMemberSpec[] pMemberSpecs) {
 
@@ -491,6 +492,9 @@ final public class TKEnum extends TypeKind {
 				pTheType,
 				Public,
 				new JavaExecutable.JavaSubRoutine_Complex(ES) {
+		            
+		            private static final long serialVersionUID = -3009836901006887137L;
+		            
 					/**{@inheritDoc}*/ @Override
 					protected Object run(Context $Context, Object[] pParams) {
 						if(pParams[0] == null) return null;
@@ -508,6 +512,9 @@ final public class TKEnum extends TypeKind {
 				pTheType,
 				Public,
 				new JavaExecutable.JavaSubRoutine_Complex(ES) {
+		            
+		            private static final long serialVersionUID = -3009836901006887137L;
+		            
 					/**{@inheritDoc}*/ @Override
 					protected Object run(Context $Context, Object[] pParams) {
 						if(pParams[0] == null) return null;

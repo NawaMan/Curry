@@ -113,6 +113,7 @@ final public class PackageBuilder extends StackOwnerBuilder {
 	
 	// Add Required Package, PVar, Func, Type (Ensure non of those are default package)
 	
+    @SuppressWarnings("unlikely-arg-type")
 	/** Add a required package to this package */
 	public boolean addRequiredPackage(String pPName) {
 		if(!this.isActive())                   return false;
@@ -127,6 +128,7 @@ final public class PackageBuilder extends StackOwnerBuilder {
 		if(this.RequiredArtifacts.contains(pPName)) this.RequiredArtifacts.add(new Required(pPName));
 		return true;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	/** Add a required type to this package */
 	public boolean addRequiredType(String pPName, String pTName) {
 		if(!this.isActive())                   return false;
@@ -143,6 +145,7 @@ final public class PackageBuilder extends StackOwnerBuilder {
 		if(this.RequiredArtifacts.contains(pPName)) this.RequiredArtifacts.add(new Required_Type(pPName, pTName));
 		return true;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	/** Add a required package variable to this package */
 	public boolean addRequiredPackageVariable(String pPName, String pVName) {
 		if(!this.isActive())                   return false;
@@ -159,6 +162,7 @@ final public class PackageBuilder extends StackOwnerBuilder {
 		if(this.RequiredArtifacts.contains(pPName)) this.RequiredArtifacts.add(new Required_PVar(pPName, pVName));
 		return true;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	/** Add a required package variable to this package */
 	public boolean addRequiredFunction(String pPName, ExecSignature pES) {
 		if(!this.isActive())                   return false;

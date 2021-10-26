@@ -15,6 +15,9 @@ public class NativeExecutable {
 	// Field Read ------------------------------------------------------------------
 
 	static class JavaFieldRead extends JavaFragment_Simple implements Executable.Fragment {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		JavaFieldRead(Engine pEngine, Field pField) {
 			super(pEngine, ExecSignature.newSignature_ReadField(pEngine, pField), null, null);
 			this.Field = pField;
@@ -57,9 +60,15 @@ public class NativeExecutable {
 		}
 	}
 	static final class NativeClassFieldRead extends JavaFieldRead {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		NativeClassFieldRead(Engine pEngine, Field pField) { super(pEngine, pField); }
 	}
 	static final class JavaObjectFieldRead extends JavaFieldRead {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		JavaObjectFieldRead(Engine pEngine, Object pObj, Field pField) {
 			super(pEngine, pField);
 			this.Obj = pObj;
@@ -73,6 +82,9 @@ public class NativeExecutable {
 	// Field Write -----------------------------------------------------------------
 
 	static class JavaFieldWrite extends JavaSubRoutine_Simple {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		JavaFieldWrite(Engine pEngine, Field pField) {
 			super(pEngine, ExecSignature.newSignature_WriteField(pEngine, pField), null, null);
 			this.Field = pField;
@@ -114,9 +126,15 @@ public class NativeExecutable {
 		}
 	}
 	static final class JavaClassFieldWrite extends JavaFieldWrite {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaClassFieldWrite(Engine pEngine, Field pField) { super(pEngine, pField); }
 	}
 	static final class JavaObjectFieldWrite extends JavaFieldWrite {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaObjectFieldWrite(Engine pEngine, Object pObj, Field pField) {
 			super(pEngine, pField);
 			this.Obj = pObj;
@@ -130,6 +148,9 @@ public class NativeExecutable {
 	// Method Invoke ---------------------------------------------------------------
 
 	static abstract class JavaMethodInvoke extends JavaSubRoutine_Simple implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaMethodInvoke(Method pMethod, ExecSignature pSignature) {
 			super(pSignature);
 
@@ -193,11 +214,17 @@ public class NativeExecutable {
 		}
 	}
 	static final class JavaClassMethodInvoke extends JavaMethodInvoke {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaClassMethodInvoke(Engine pEngine, Method pMethod) {
 			super(pEngine, pMethod);
 		}
 	}
 	static final class JavaObjectMethodInvoke extends JavaMethodInvoke {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaObjectMethodInvoke(Engine pEngine, Object pObj, Method pMethod) {
 			super(pEngine, pMethod);
 			if(pObj == null) throw new NullPointerException("Null object for a native object method-invokation executable.");
@@ -216,6 +243,9 @@ public class NativeExecutable {
 	// Method Invoke With NoParam ---------------------------------------------------
 
 	static class JavaMethodInvoke_NoParam extends JavaFragment_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaMethodInvoke_NoParam(Engine pEngine, Method pMethod) {
 			super(pEngine, ExecSignature.newSignature(pEngine, pMethod), null, null);
 			this.Method = pMethod;
@@ -257,9 +287,15 @@ public class NativeExecutable {
 		}
 	}
 	static final class JavaClassMethodInvoke_NoParam extends JavaMethodInvoke_NoParam {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaClassMethodInvoke_NoParam(Engine pEngine, Method pMethod) { super(pEngine, pMethod); }
 	}
 	static final class JavaObjectMethodInvoke_NoParam extends JavaMethodInvoke_NoParam {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaObjectMethodInvoke_NoParam(Engine pEngine, Object pObj, Method pMethod) {
 			super(pEngine, pMethod);
 			this.Obj = pObj;
@@ -273,6 +309,9 @@ public class NativeExecutable {
 	// Constructor Invoke ----------------------------------------------------------
 
 	static final class JavaConstructorInvoke extends JavaSubRoutine_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaConstructorInvoke(Engine pEngine, Constructor<?> pConstructor) {
 			super(pEngine, ExecSignature.newSignature(pEngine, pConstructor), null, null);
 			this.Constructor = pConstructor;
@@ -314,6 +353,9 @@ public class NativeExecutable {
 	// Constructor Invoke With NoParams --------------------------------------------
 
 	static final class JavaConstructorInvoke_NoParam extends JavaFragment_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		JavaConstructorInvoke_NoParam(Engine pEngine, Constructor<?> pConstructor) {
 			super(pEngine, ExecSignature.newSignature(pEngine, pConstructor), null, null);
 			this.Constructor = pConstructor;

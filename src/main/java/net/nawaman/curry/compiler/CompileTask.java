@@ -9,7 +9,9 @@ import net.nawaman.task.TaskOptions;
 
 /** Tasks for compiling a code */
 abstract public class CompileTask  extends TaskForCodeUsingRegParser {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs a CompileTask */
 	protected CompileTask(String pName, PTypeProvider pTProvider) {
 		super(pName, new Class<?>[] { ParseResult.class }, null, new Class<?>[] { Object.class });

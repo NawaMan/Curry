@@ -14,6 +14,8 @@ import net.nawaman.util.UClass;
 import net.nawaman.util.UString;
 
 public class CurrySignature implements Signature {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	public CurrySignature(CurryEngine pCEngine, ExecSignature pES) {
 		if(pES == null) throw new NullPointerException();

@@ -12,6 +12,8 @@ import net.nawaman.task.TaskOptions;
  * Change the state so that compiling files can be done properly.
  **/
 public class FileCompileTasks_StateChange extends TaskForCompiler.Simple {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
 	
 	public FileCompileTasks_StateChange(CompilationState pCState) {
 		super("FCTStateChange_" + pCState.toString());

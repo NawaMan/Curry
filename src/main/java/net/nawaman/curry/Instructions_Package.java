@@ -5,7 +5,6 @@ import net.nawaman.curry.compiler.CompileProduct;
 public class Instructions_Package {
 
 	static public class Inst_GetUnitManager extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getUnitManager";
 		
 		Inst_GetUnitManager(Engine pEngine) {
@@ -17,7 +16,6 @@ public class Instructions_Package {
 		}
 	}
 	static public class Inst_GetCurrentPackage extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getCurrentPackage";
 		
 		Inst_GetCurrentPackage(Engine pEngine) {
@@ -39,7 +37,6 @@ public class Instructions_Package {
 		}
 	}
 	static public class Inst_GetPackage extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getPackage";
 		
 		Inst_GetPackage(Engine pEngine) {
@@ -65,7 +62,6 @@ public class Instructions_Package {
 		}
 	}
 	static public class Inst_EnsurePackage extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "ensurePackage";
 		
 		Inst_EnsurePackage(Engine pEngine) {

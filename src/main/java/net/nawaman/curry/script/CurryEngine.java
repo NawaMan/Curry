@@ -125,17 +125,12 @@ public class CurryEngine implements ScriptEngine {
 		
 		String LangName    = null;
 		String EngineName  = null;
-		String CEngineName = null;
 
 		// Split the parameter by ":"
 		String[] Params = (Param == null) ? UString.EmptyStringArray : Param.split(":");
 
 		// Get the Language name and Engine name
-		if((LangName != null) && (LangName.length() != 0)) LangName   = null;
-		if(Params.length > 1)                              EngineName = Params[1];
-			
-		CEngineName = (LangName == null) ? "Curry" : LangName;
-		if((EngineName != null) && (EngineName.length() != 0)) CEngineName += ":" + EngineName;
+		if(Params.length > 1) EngineName = Params[1];
 		
 		// Get the language
 		CurryLanguage CLanguage = CurryLanguage.Util.GetCurryLanguage(LangName, EngineName, false);

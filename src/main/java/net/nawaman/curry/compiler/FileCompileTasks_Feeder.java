@@ -13,7 +13,9 @@ public class FileCompileTasks_Feeder {
 	 * This task will create UnitBuilder for every code feeder.
 	 **/
 	static public class CreateUnitBuilder extends TaskForFeeder.Simple {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public CreateUnitBuilder() {
 			super("CreateUnitBuilder");
 		}
@@ -47,6 +49,9 @@ public class FileCompileTasks_Feeder {
 	 * This tasks in-activates all UnitBuilder currently being compiled.
 	 **/
 	static public class InactivateUnitBuilder extends TaskForFeeder.Simple {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public InactivateUnitBuilder() {
 			super("InactivateUnitBuilder");
 		}
@@ -79,6 +84,9 @@ public class FileCompileTasks_Feeder {
 	 * This tasks save all UnitBuilder currently being compiled.
 	 **/
 	static public class SaveUnitBuilder extends TaskForFeeder.Simple {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public SaveUnitBuilder() {
 			super("SaveUnitBuilder");
 		}

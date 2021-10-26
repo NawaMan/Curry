@@ -14,7 +14,8 @@ public class Test_03_BasicOperations extends TestCaseParser {
 		return this.ParaserTypeName;
 	}
 
-	/**{@inheritDoc}*/ @Override
+	@SuppressWarnings("unused")
+    /**{@inheritDoc}*/ @Override
 	protected void doTest(final String ... Args) {
 		this.printSection("TryOrElse");
 		this.assertValue("try(5 <:= 10)",  5);
@@ -50,8 +51,8 @@ public class Test_03_BasicOperations extends TestCaseParser {
 		this.assertValue("5 >= 5",    5 >= 5);
 		
 		this.printSection("InstanceOf");
-		this.assertValue("5 instanceof int",                    (new Integer(5)) instanceof Integer);
-		this.assertValue("(new Integer(5)) instanceof Integer", (new Integer(5)) instanceof Integer);
+		this.assertValue("5 instanceof int",                    (Integer.valueOf(5)) instanceof Integer);
+		this.assertValue("(new Integer(5)) instanceof Integer", (Integer.valueOf(5)) instanceof Integer);
 
 		this.printSection("Equality");
 		this.assertValue("5          === 5",          true);	// is

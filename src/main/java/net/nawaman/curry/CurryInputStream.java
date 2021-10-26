@@ -18,8 +18,6 @@ public class CurryInputStream extends JavaCompilerObjectInputStream {
 	/** Constructs an ObjectWriter */
 	protected CurryInputStream(Engine pEngine, ConstructorData pJCOISCD) throws IOException, ClassNotFoundException {
 		super(pJCOISCD, pEngine.getClassPaths().getJavaCompiler());
-		
-		if(pEngine == null) throw new NullPointerException();
 		this.Engine = pEngine;
 	}
 	

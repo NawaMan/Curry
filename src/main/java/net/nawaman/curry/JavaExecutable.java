@@ -1,10 +1,11 @@
 package net.nawaman.curry;
 
-import net.nawaman.curry.AbstractExecutable;
 import net.nawaman.curry.util.MoreData;
 
 /** Java executable. **/
 abstract public class JavaExecutable extends AbstractExecutable {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	/** Constructs this a normal way */
 	protected JavaExecutable(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
@@ -54,7 +55,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 	
 	/** Simple Java Fragment */
 	static public abstract class JavaFragment_Simple extends JavaExecutable implements Executable.Fragment {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		JavaFragment_Simple(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);
 			if(pSignature.getParamCount() != 0)
@@ -82,6 +85,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 	
 	/** Simple Java Macro */
 	static public abstract class JavaMacro_Simple extends JavaExecutable implements Executable.Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Construct a new native macro */
 		public JavaMacro_Simple(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);
@@ -101,6 +107,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 	
 	/** Simple Java SubRoutine */
 	static public abstract class JavaSubRoutine_Simple extends JavaExecutable implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Construct a new native sub-routine */
 		public JavaSubRoutine_Simple(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);
@@ -122,6 +131,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 	
 	/** Complex Java Fragment */
 	static public abstract class JavaFragment_Complex extends JavaExecutable implements Executable.Fragment {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Construct a new native fragment */
 		public JavaFragment_Complex(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);
@@ -156,6 +168,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 
 	/** Complex Java Macro */
 	static public abstract class JavaMacro_Complex extends JavaExecutable implements Executable.Macro {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Construct a new native macro */
 		public JavaMacro_Complex(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);
@@ -171,6 +186,9 @@ abstract public class JavaExecutable extends AbstractExecutable {
 
 	/** Complex Java SubRoutine */
 	static public abstract class JavaSubRoutine_Complex extends JavaExecutable implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Construct a new native sub-routine */
 		public JavaSubRoutine_Complex(Engine pEngine, ExecSignature pSignature, String[] pFVNames, Scope pFrozenScope) {
 			super(pEngine, pSignature, pFVNames, pFrozenScope);

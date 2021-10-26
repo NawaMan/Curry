@@ -21,6 +21,9 @@ import net.nawaman.regparser.typepackage.PTypePackage;
 public class Util_ElementResolver {
 	
 	static public final Object CompileResolvedHasProblem = new Serializable() {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		public @Override String toString() { return "Problem"; }
 	};
 
@@ -74,8 +77,6 @@ public class Util_ElementResolver {
 						OwnerPackageName,
 						DoesSuperHaveDefaultConstructor);
 				if(Imports != null) $CProduct.addImport(Imports);
-				
-				if(ThisT == null) ThisT = $CProduct.getTypeAtCompileTime(OwnerTypeRef);
 				
 				ParameterizedTypeInfo PTInfo = ThisT.getTypeSpec().getParameterizedTypeInfo();				
 				if(PTInfo != null) $CProduct.useParameterizedTypeInfos(PTInfo);

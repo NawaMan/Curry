@@ -190,6 +190,7 @@ public class Instructions_StackOwner {
 			}
 		}
 		/** Checks if this invocation is static */
+	    @SuppressWarnings("incomplete-switch")
 		protected boolean isStatic(Expression pExpr, CompileProduct pCProduct) {
 			AsTypeProcessKind K = this.getAsTypeProcessKind();
 			if(K == null) K = AsTypeProcessKind.OTHER;
@@ -217,8 +218,7 @@ public class Instructions_StackOwner {
 	// Execute a operation -------------------------------------------------------------------------
 	
 	// Directly
-	static public class Inst_Invoke extends Instructions_StackOwner.Inst_Abst_InvokeDirect {
-		@SuppressWarnings("hiding") static public final String Name = "invoke";
+	static public class Inst_Invoke extends Instructions_StackOwner.Inst_Abst_InvokeDirect { static public final String Name = "invoke";
 		
 		protected Inst_Invoke(Engine pEngine, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, Name + "(~,+"+ExecSignature.class.getCanonicalName()+",~...)", pIsBlindCaller, pIsAdjusted);
@@ -233,8 +233,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_Invoke_ByParams extends Instructions_StackOwner.Inst_Abst_InvokeByParams {
-		@SuppressWarnings("hiding") static public final String Name = "invokeByParams";
+	static public class Inst_Invoke_ByParams extends Instructions_StackOwner.Inst_Abst_InvokeByParams { static public final String Name = "invokeByParams";
 		
 		protected Inst_Invoke_ByParams(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,+$,~...)", pIsBlindCaller);
@@ -249,8 +248,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_Invoke_ByPTRefs extends Instructions_StackOwner.Inst_Abst_InvokeByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "invokeByPTRefs";
+	static public class Inst_Invoke_ByPTRefs extends Instructions_StackOwner.Inst_Abst_InvokeByPTRefs { static public final String Name = "invokeByPTRefs";
 		
 		protected Inst_Invoke_ByPTRefs(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,+$,+"+TypeRef.class.getCanonicalName()+"[],~...)", pIsBlindCaller);
@@ -266,8 +264,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterfaces
-	static public class Inst_Invoke_ByInterface extends Instructions_StackOwner.Inst_Abst_InvokeByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "invokeByInterface";
+	static public class Inst_Invoke_ByInterface extends Instructions_StackOwner.Inst_Abst_InvokeByInterface { static public final String Name = "invokeByInterface";
 		
 		protected Inst_Invoke_ByInterface(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,+$,+"+ExecInterface.class.getCanonicalName()+",~...)", pIsBlindCaller);
@@ -285,8 +282,7 @@ public class Instructions_StackOwner {
 	
 	// Access Package Variable ---------------------------------------------------------------------
 	
-	static public class Inst_SetAttrValue extends Instructions_StackOwner.Inst_Abst_SetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "setAttrValue";
+	static public class Inst_SetAttrValue extends Instructions_StackOwner.Inst_Abst_SetAttrValue { static public final String Name = "setAttrValue";
 		
 		protected Inst_SetAttrValue(Engine pEngine) {
 			super(pEngine, Name + "(~,+$,~)");
@@ -299,8 +295,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_GetAttrValue extends Instructions_StackOwner.Inst_Abst_GetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrValue";
+	static public class Inst_GetAttrValue extends Instructions_StackOwner.Inst_Abst_GetAttrValue { static public final String Name = "getAttrValue";
 		
 		protected Inst_GetAttrValue(Engine pEngine) {
 			super(pEngine, Name + "(~,+$)");
@@ -313,8 +308,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_GetAttrType extends Instructions_StackOwner.Inst_Abst_GetAttrType {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrType";
+	static public class Inst_GetAttrType extends Instructions_StackOwner.Inst_Abst_GetAttrType { static public final String Name = "getAttrType";
 		
 		protected Inst_GetAttrType(Engine pEngine) {
 			super(pEngine, Name + "(~,+$)");
@@ -326,8 +320,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_IsAttrReadable extends Instructions_StackOwner.Inst_Abst_IsAttrReadable {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrReadable";
+	static public class Inst_IsAttrReadable extends Instructions_StackOwner.Inst_Abst_IsAttrReadable { static public final String Name = "isAttrReadable";
 		
 		protected Inst_IsAttrReadable(Engine pEngine) {
 			super(pEngine, Name + "(~,+$)");
@@ -339,8 +332,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_IsAttrWritable extends Instructions_StackOwner.Inst_Abst_IsAttrWritable {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrWritable";
+	static public class Inst_IsAttrWritable extends Instructions_StackOwner.Inst_Abst_IsAttrWritable { static public final String Name = "isAttrWritable";
 		
 		protected Inst_IsAttrWritable(Engine pEngine) {
 			super(pEngine, Name + "(~,+$)");
@@ -352,8 +344,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_IsAttrNoTypeCheck extends Instructions_StackOwner.Inst_Abst_IsAttrNoTypeCheck {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrNoTypeCheck";
+	static public class Inst_IsAttrNoTypeCheck extends Instructions_StackOwner.Inst_Abst_IsAttrNoTypeCheck { static public final String Name = "isAttrNoTypeCheck";
 		
 		protected Inst_IsAttrNoTypeCheck(Engine pEngine) {
 			super(pEngine, Name + "(~,+$)");
@@ -365,8 +356,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_ConfigAttr extends Instructions_StackOwner.Inst_Abst_ConfigAttr {
-		@SuppressWarnings("hiding") static public final String Name = "configAttr";
+	static public class Inst_ConfigAttr extends Instructions_StackOwner.Inst_Abst_ConfigAttr { static public final String Name = "configAttr";
 		
 		protected Inst_ConfigAttr(Engine pEngine) {
 			super(pEngine, Name + "(~,+$,+$,~...)");
@@ -380,8 +370,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.NONE;
 		}
 	}
-	static public class Inst_GetAttrMoreInfo extends Instructions_StackOwner.Inst_Abst_GetAttrMoreInfo {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrMoreInfo";
+	static public class Inst_GetAttrMoreInfo extends Instructions_StackOwner.Inst_Abst_GetAttrMoreInfo { static public final String Name = "getAttrMoreInfo";
 		
 		protected Inst_GetAttrMoreInfo(Engine pEngine) {
 			super(pEngine, Name + "(~,+$,+$)");
@@ -400,8 +389,7 @@ public class Instructions_StackOwner {
 	// Execute a operation -------------------------------------------------------------------------
 	
 	// Directly
-	static public class Inst_InvokeAsType extends Instructions_StackOwner.Inst_Abst_InvokeDirect {
-		@SuppressWarnings("hiding") static public final String Name = "invokeAsType";
+	static public class Inst_InvokeAsType extends Instructions_StackOwner.Inst_Abst_InvokeDirect { static public final String Name = "invokeAsType";
 		
 		protected Inst_InvokeAsType(Engine pEngine, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, Name + "(~,!,+"+ExecSignature.class.getCanonicalName()+",~...)", pIsBlindCaller, pIsAdjusted);
@@ -417,8 +405,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_InvokeAsType_ByParams extends Instructions_StackOwner.Inst_Abst_InvokeByParams {
-		@SuppressWarnings("hiding") static public final String Name = "invokeAsTypeByParams";
+	static public class Inst_InvokeAsType_ByParams extends Instructions_StackOwner.Inst_Abst_InvokeByParams { static public final String Name = "invokeAsTypeByParams";
 		
 		protected Inst_InvokeAsType_ByParams(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,!,+$,~...)", pIsBlindCaller);
@@ -434,8 +421,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_InvokeAsType_ByPTRefs extends Instructions_StackOwner.Inst_Abst_InvokeByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "invokeAsTypeByPTRefs";
+	static public class Inst_InvokeAsType_ByPTRefs extends Instructions_StackOwner.Inst_Abst_InvokeByPTRefs { static public final String Name = "invokeAsTypeByPTRefs";
 		
 		protected Inst_InvokeAsType_ByPTRefs(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,!,+$,+"+TypeRef.class.getCanonicalName()+"[],~...)", pIsBlindCaller);
@@ -452,8 +438,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterfaces
-	static public class Inst_InvokeAsType_ByInterface extends Instructions_StackOwner.Inst_Abst_InvokeByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "invokeAsTypeByInterface";
+	static public class Inst_InvokeAsType_ByInterface extends Instructions_StackOwner.Inst_Abst_InvokeByInterface { static public final String Name = "invokeAsTypeByInterface";
 		
 		protected Inst_InvokeAsType_ByInterface(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name + "(~,!,+$,+"+ExecInterface.class.getCanonicalName()+",~...)", pIsBlindCaller);
@@ -472,8 +457,7 @@ public class Instructions_StackOwner {
 	
 	// Access Package Variable ---------------------------------------------------------------------
 	
-	static public class Inst_SetAttrDataAsType extends Instructions_StackOwner.Inst_Abst_SetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "setAttrValueAsType";
+	static public class Inst_SetAttrDataAsType extends Instructions_StackOwner.Inst_Abst_SetAttrValue { static public final String Name = "setAttrValueAsType";
 		
 		protected Inst_SetAttrDataAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$,~)");
@@ -487,8 +471,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_GetAttrValueAsType extends Instructions_StackOwner.Inst_Abst_GetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrValueAsType";
+	static public class Inst_GetAttrValueAsType extends Instructions_StackOwner.Inst_Abst_GetAttrValue { static public final String Name = "getAttrValueAsType";
 		
 		protected Inst_GetAttrValueAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$)");
@@ -502,8 +485,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_GetAttrTypeAsType extends Instructions_StackOwner.Inst_Abst_GetAttrType {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrTypeAsType";
+	static public class Inst_GetAttrTypeAsType extends Instructions_StackOwner.Inst_Abst_GetAttrType { static public final String Name = "getAttrTypeAsType";
 		
 		protected Inst_GetAttrTypeAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$)");
@@ -516,8 +498,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_IsAttrReadableAsType extends Instructions_StackOwner.Inst_Abst_IsAttrReadable {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrReadableAsType";
+	static public class Inst_IsAttrReadableAsType extends Instructions_StackOwner.Inst_Abst_IsAttrReadable { static public final String Name = "isAttrReadableAsType";
 		
 		protected Inst_IsAttrReadableAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$)");
@@ -530,8 +511,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_IsAttrWritableAsType extends Instructions_StackOwner.Inst_Abst_IsAttrWritable {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrWritableAsType";
+	static public class Inst_IsAttrWritableAsType extends Instructions_StackOwner.Inst_Abst_IsAttrWritable { static public final String Name = "isAttrWritableAsType";
 		
 		protected Inst_IsAttrWritableAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$)");
@@ -544,8 +524,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_IsAttrNoTypeCheckAsType extends Instructions_StackOwner.Inst_Abst_IsAttrNoTypeCheck {
-		@SuppressWarnings("hiding") static public final String Name = "isAttrNoTypeCheckAsType";
+	static public class Inst_IsAttrNoTypeCheckAsType extends Instructions_StackOwner.Inst_Abst_IsAttrNoTypeCheck { static public final String Name = "isAttrNoTypeCheckAsType";
 		
 		protected Inst_IsAttrNoTypeCheckAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$)");
@@ -558,8 +537,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_ConfigAttrAsType extends Instructions_StackOwner.Inst_Abst_ConfigAttr {
-		@SuppressWarnings("hiding") static public final String Name = "configAttrAsType";
+	static public class Inst_ConfigAttrAsType extends Instructions_StackOwner.Inst_Abst_ConfigAttr { static public final String Name = "configAttrAsType";
 		
 		protected Inst_ConfigAttrAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$,+$,~...)");
@@ -574,8 +552,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.ASTYPE;
 		}
 	}
-	static public class Inst_GetAttrMoreInfoAsType extends Instructions_StackOwner.Inst_Abst_GetAttrMoreInfo {
-		@SuppressWarnings("hiding") static public final String Name = "getAttrMoreInfoAsType";
+	static public class Inst_GetAttrMoreInfoAsType extends Instructions_StackOwner.Inst_Abst_GetAttrMoreInfo { static public final String Name = "getAttrMoreInfoAsType";
 		
 		protected Inst_GetAttrMoreInfoAsType(Engine pEngine) {
 			super(pEngine, Name + "(~,!,+$,+$)");
@@ -595,8 +572,7 @@ public class Instructions_StackOwner {
 	// Execute a operation -------------------------------------------------------------------------
 	
 	// Directly
-	static public class Inst_thisInvoke extends Inst_typeInvoke {
-		@SuppressWarnings("hiding") static public final String Name = "this_invoke";
+	static public class Inst_thisInvoke extends Inst_typeInvoke { static public final String Name = "this_invoke";
 		
 		Inst_thisInvoke(Engine pEngine, String pName, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, pName, pIsAdjusted, pIsBlindCaller);
@@ -610,8 +586,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_thisInvoke_ByParams extends Inst_typeInvoke_ByParams {
-		@SuppressWarnings("hiding") static public final String Name = "this_invokeByParams";
+	static public class Inst_thisInvoke_ByParams extends Inst_typeInvoke_ByParams { static public final String Name = "this_invokeByParams";
 		
 		Inst_thisInvoke_ByParams(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName, pIsBlindCaller);
@@ -625,8 +600,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_thisInvoke_ByPTRefs extends Inst_typeInvoke_ByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "this_invokeByPTRefs";
+	static public class Inst_thisInvoke_ByPTRefs extends Inst_typeInvoke_ByPTRefs { static public final String Name = "this_invokeByPTRefs";
 		protected Inst_thisInvoke_ByPTRefs(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName, pIsBlindCaller);
 		}
@@ -639,8 +613,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterface
-	static public class Inst_thisInvoke_ByInterface extends Inst_typeInvoke_ByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "this_invokeByInterface";
+	static public class Inst_thisInvoke_ByInterface extends Inst_typeInvoke_ByInterface { static public final String Name = "this_invokeByInterface";
 		
 		Inst_thisInvoke_ByInterface(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName, pIsBlindCaller);
@@ -656,8 +629,7 @@ public class Instructions_StackOwner {
 	
 	// Access Package Variable ---------------------------------------------------------------------
 	
-	static public class Inst_thisSetAttrValue extends Inst_typeSetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "this_setAttrValue";
+	static public class Inst_thisSetAttrValue extends Inst_typeSetAttrValue { static public final String Name = "this_setAttrValue";
 		
 		protected Inst_thisSetAttrValue(Engine pEngine) {
 			super(pEngine, Name);
@@ -669,8 +641,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisGetAttrValue extends Inst_typeGetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "this_getAttrValue";
+	static public class Inst_thisGetAttrValue extends Inst_typeGetAttrValue { static public final String Name = "this_getAttrValue";
 		
 		protected Inst_thisGetAttrValue(Engine pEngine) {
 			super(pEngine, Name);
@@ -680,8 +651,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisGetAttrType extends Inst_typeGetAttrType {
-		@SuppressWarnings("hiding") static public final String Name = "this_getAttrType";
+	static public class Inst_thisGetAttrType extends Inst_typeGetAttrType { static public final String Name = "this_getAttrType";
 		
 		protected Inst_thisGetAttrType(Engine pEngine) {
 			super(pEngine, Name);
@@ -690,8 +660,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisIsAttrReadable extends Inst_typeIsAttrReadable {
-		@SuppressWarnings("hiding") static public final String Name = "this_isAttrReadable";
+	static public class Inst_thisIsAttrReadable extends Inst_typeIsAttrReadable { static public final String Name = "this_isAttrReadable";
 		
 		protected Inst_thisIsAttrReadable(Engine pEngine) {
 			super(pEngine, Name);
@@ -700,8 +669,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisIsAttrWritable extends Inst_typeIsAttrWritable {
-		@SuppressWarnings("hiding") static public final String Name = "this_isAttrWritable";
+	static public class Inst_thisIsAttrWritable extends Inst_typeIsAttrWritable { static public final String Name = "this_isAttrWritable";
 		
 		protected Inst_thisIsAttrWritable(Engine pEngine) {
 			super(pEngine, Name);
@@ -710,8 +678,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisIsAttrNoTypeCheck extends Inst_typeIsAttrNoTypeCheck {
-		@SuppressWarnings("hiding") static public final String Name = "this_isAttrNoTypeCheck";
+	static public class Inst_thisIsAttrNoTypeCheck extends Inst_typeIsAttrNoTypeCheck { static public final String Name = "this_isAttrNoTypeCheck";
 		
 		protected Inst_thisIsAttrNoTypeCheck(Engine pEngine) {
 			super(pEngine, Name);
@@ -720,8 +687,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisConfigAttr extends Inst_typeConfigAttr {
-		@SuppressWarnings("hiding") static public final String Name = "this_configAttr";
+	static public class Inst_thisConfigAttr extends Inst_typeConfigAttr { static public final String Name = "this_configAttr";
 		
 		protected Inst_thisConfigAttr(Engine pEngine) {
 			super(pEngine, Name);
@@ -730,8 +696,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.THIS;
 		}
 	}
-	static public class Inst_thisGetAttrMoreInfo extends Inst_typeGetAttrMoreInfo {
-		@SuppressWarnings("hiding") static public final String Name = "this_getAttrMoreInfo";
+	static public class Inst_thisGetAttrMoreInfo extends Inst_typeGetAttrMoreInfo { static public final String Name = "this_getAttrMoreInfo";
 		
 		protected Inst_thisGetAttrMoreInfo(Engine pEngine) {
 			super(pEngine, Name);
@@ -744,8 +709,7 @@ public class Instructions_StackOwner {
 	// super StackOwner *****************************************************************************
 
 	// Directly
-	static public class Inst_superInvoke extends Inst_thisInvoke {
-		@SuppressWarnings("hiding") static public final String Name = "super_invoke";
+	static public class Inst_superInvoke extends Inst_thisInvoke { static public final String Name = "super_invoke";
 		
 		protected Inst_superInvoke(Engine pEngine, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, Name, pIsAdjusted, pIsBlindCaller);
@@ -756,8 +720,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_superInvoke_ByParams extends Inst_thisInvoke_ByParams {
-		@SuppressWarnings("hiding") static public final String Name = "super_invokeByParams";
+	static public class Inst_superInvoke_ByParams extends Inst_thisInvoke_ByParams { static public final String Name = "super_invokeByParams";
 		
 		protected Inst_superInvoke_ByParams(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -768,8 +731,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_superInvoke_ByPTRefs extends Inst_thisInvoke_ByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "super_invokeByPTRefs";
+	static public class Inst_superInvoke_ByPTRefs extends Inst_thisInvoke_ByPTRefs { static public final String Name = "super_invokeByPTRefs";
 		
 		protected Inst_superInvoke_ByPTRefs(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -780,8 +742,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterface
-	static public class Inst_superInvoke_ByInterface extends Inst_thisInvoke_ByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "super_invokeByInterface";
+	static public class Inst_superInvoke_ByInterface extends Inst_thisInvoke_ByInterface { static public final String Name = "super_invokeByInterface";
 		
 		protected Inst_superInvoke_ByInterface(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -796,8 +757,7 @@ public class Instructions_StackOwner {
 	// Execute a operation -------------------------------------------------------------------------
 	
 	// Directly
-	static public class Inst_typeInvoke extends Inst_Abst_InvokeDirect {
-		@SuppressWarnings("hiding") static public final String Name = "type_invoke";
+	static public class Inst_typeInvoke extends Inst_Abst_InvokeDirect { static public final String Name = "type_invoke";
 
 		Inst_typeInvoke(Engine pEngine, String pName, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, pName + "(+"+ExecSignature.class.getCanonicalName()+",~...)", pIsBlindCaller, pIsAdjusted);
@@ -814,8 +774,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_typeInvoke_ByParams extends Inst_Abst_InvokeByParams {
-		@SuppressWarnings("hiding") static public final String Name = "type_invokeByParams";
+	static public class Inst_typeInvoke_ByParams extends Inst_Abst_InvokeByParams { static public final String Name = "type_invokeByParams";
 		
 		Inst_typeInvoke_ByParams(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName + "(+$,~...)", pIsBlindCaller);
@@ -832,8 +791,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_typeInvoke_ByPTRefs extends Inst_Abst_InvokeByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "type_invokeByPTRefs";
+	static public class Inst_typeInvoke_ByPTRefs extends Inst_Abst_InvokeByPTRefs { static public final String Name = "type_invokeByPTRefs";
 
 		Inst_typeInvoke_ByPTRefs(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName + "(+$,+"+TypeRef.class.getCanonicalName()+"[],~...)", pIsBlindCaller);
@@ -851,8 +809,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterfaces
-	static public class Inst_typeInvoke_ByInterface extends Inst_Abst_InvokeByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "type_invokeByInterface";
+	static public class Inst_typeInvoke_ByInterface extends Inst_Abst_InvokeByInterface { static public final String Name = "type_invokeByInterface";
 		
 		protected Inst_typeInvoke_ByInterface(Engine pEngine, String pName, boolean pIsBlindCaller) {
 			super(pEngine, pName + "(+$,+"+ExecInterface.class.getCanonicalName()+",~...)", pIsBlindCaller);
@@ -872,8 +829,7 @@ public class Instructions_StackOwner {
 	
 	// Current Type Variable -----------------------------------------------------------------------
 	
-	static public class Inst_typeSetAttrValue extends Inst_Abst_SetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "type_setAttrValue";
+	static public class Inst_typeSetAttrValue extends Inst_Abst_SetAttrValue { static public final String Name = "type_setAttrValue";
 		
 		Inst_typeSetAttrValue(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$,~)");
@@ -891,8 +847,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeGetAttrValue extends Inst_Abst_GetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "type_getAttrValue";
+	static public class Inst_typeGetAttrValue extends Inst_Abst_GetAttrValue { static public final String Name = "type_getAttrValue";
 		
 		Inst_typeGetAttrValue(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$)");
@@ -907,8 +862,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeGetAttrType extends Inst_Abst_GetAttrType {
-		@SuppressWarnings("hiding") static public final String Name = "type_getAttrType";
+	static public class Inst_typeGetAttrType extends Inst_Abst_GetAttrType { static public final String Name = "type_getAttrType";
 		
 		Inst_typeGetAttrType(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$)");
@@ -923,8 +877,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeIsAttrReadable extends Inst_Abst_IsAttrReadable {
-		@SuppressWarnings("hiding") static public final String Name = "type_isAttrReadable";
+	static public class Inst_typeIsAttrReadable extends Inst_Abst_IsAttrReadable { static public final String Name = "type_isAttrReadable";
 		
 		Inst_typeIsAttrReadable(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$)");
@@ -939,8 +892,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeIsAttrWritable extends Inst_Abst_IsAttrWritable {
-		@SuppressWarnings("hiding") static public final String Name = "type_isAttrWritable";
+	static public class Inst_typeIsAttrWritable extends Inst_Abst_IsAttrWritable { static public final String Name = "type_isAttrWritable";
 		
 		Inst_typeIsAttrWritable(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$)");
@@ -955,8 +907,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeIsAttrNoTypeCheck extends Inst_Abst_IsAttrNoTypeCheck {
-		@SuppressWarnings("hiding") static public final String Name = "type_isAttrNoTypeCheck";
+	static public class Inst_typeIsAttrNoTypeCheck extends Inst_Abst_IsAttrNoTypeCheck { static public final String Name = "type_isAttrNoTypeCheck";
 		
 		Inst_typeIsAttrNoTypeCheck(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$)");
@@ -971,8 +922,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeConfigAttr extends Inst_Abst_ConfigAttr {
-		@SuppressWarnings("hiding") static public final String Name = "type_configAttr";
+	static public class Inst_typeConfigAttr extends Inst_Abst_ConfigAttr { static public final String Name = "type_configAttr";
 		
 		Inst_typeConfigAttr(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$,+$,~...)");
@@ -993,8 +943,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.TYPE;
 		}
 	}
-	static public class Inst_typeGetAttrMoreInfo extends Inst_Abst_GetAttrMoreInfo {
-		@SuppressWarnings("hiding") static public final String Name = "type_getAttrMoreInfo";
+	static public class Inst_typeGetAttrMoreInfo extends Inst_Abst_GetAttrMoreInfo { static public final String Name = "type_getAttrMoreInfo";
 		
 		Inst_typeGetAttrMoreInfo(Engine pEngine, String pName) {
 			super(pEngine, pName + "(+$,+$)");
@@ -1018,8 +967,7 @@ public class Instructions_StackOwner {
 	// Execute a operation -------------------------------------------------------------------------
 	
 	// Directly
-	static public class Inst_packageInvoke extends Inst_typeInvoke {
-		@SuppressWarnings("hiding") static public final String Name = "package_invoke";
+	static public class Inst_packageInvoke extends Inst_typeInvoke { static public final String Name = "package_invoke";
 
 		protected Inst_packageInvoke(Engine pEngine, boolean pIsBlindCaller, boolean pIsAdjusted) {
 			super(pEngine, Name, pIsAdjusted, pIsBlindCaller);
@@ -1029,8 +977,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by Parameters
-	static public class Inst_packageInvoke_ByParams extends Inst_typeInvoke_ByParams {
-		@SuppressWarnings("hiding") static public final String Name = "package_invokeByParams";
+	static public class Inst_packageInvoke_ByParams extends Inst_typeInvoke_ByParams { static public final String Name = "package_invokeByParams";
 		
 		protected Inst_packageInvoke_ByParams(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -1040,8 +987,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by PTRefs
-	static public class Inst_packageInvoke_ByPTRefs extends Inst_typeInvoke_ByPTRefs {
-		@SuppressWarnings("hiding") static public final String Name = "package_invokeByPTRefs";
+	static public class Inst_packageInvoke_ByPTRefs extends Inst_typeInvoke_ByPTRefs { static public final String Name = "package_invokeByPTRefs";
 		
 		protected Inst_packageInvoke_ByPTRefs(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -1051,8 +997,7 @@ public class Instructions_StackOwner {
 		}
 	}
 	// Search by ParamInterfaces
-	static public class Inst_packageInvoke_ByInterface extends Inst_typeInvoke_ByInterface {
-		@SuppressWarnings("hiding") static public final String Name = "package_invokeByInterface";
+	static public class Inst_packageInvoke_ByInterface extends Inst_typeInvoke_ByInterface { static public final String Name = "package_invokeByInterface";
 		
 		protected Inst_packageInvoke_ByInterface(Engine pEngine, boolean pIsBlindCaller) {
 			super(pEngine, Name, pIsBlindCaller);
@@ -1064,8 +1009,7 @@ public class Instructions_StackOwner {
 	
 	// Access Package Variable ---------------------------------------------------------------------
 	
-	static public class Inst_packageSetAttrValue extends Inst_typeSetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "package_setAttrValue";
+	static public class Inst_packageSetAttrValue extends Inst_typeSetAttrValue { static public final String Name = "package_setAttrValue";
 		
 		protected Inst_packageSetAttrValue(Engine pEngine) {
 			super(pEngine, Name);
@@ -1074,8 +1018,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageGetAttrValue extends Inst_typeGetAttrValue {
-		@SuppressWarnings("hiding") static public final String Name = "package_getAttrValue";
+	static public class Inst_packageGetAttrValue extends Inst_typeGetAttrValue { static public final String Name = "package_getAttrValue";
 		
 		protected Inst_packageGetAttrValue(Engine pEngine) {
 			super(pEngine, Name);
@@ -1084,8 +1027,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageGetAttrType extends Inst_typeGetAttrType {
-		@SuppressWarnings("hiding") static public final String Name = "package_getAttrType";
+	static public class Inst_packageGetAttrType extends Inst_typeGetAttrType { static public final String Name = "package_getAttrType";
 		
 		protected Inst_packageGetAttrType(Engine pEngine) {
 			super(pEngine, Name);
@@ -1094,8 +1036,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageIsAttrReadable extends Inst_typeIsAttrReadable {
-		@SuppressWarnings("hiding") static public final String Name = "package_isAttrReadable";
+	static public class Inst_packageIsAttrReadable extends Inst_typeIsAttrReadable { static public final String Name = "package_isAttrReadable";
 		
 		protected Inst_packageIsAttrReadable(Engine pEngine) {
 			super(pEngine, Name);
@@ -1104,8 +1045,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageIsAttrWritable extends Inst_typeIsAttrWritable {
-		@SuppressWarnings("hiding") static public final String Name = "package_isAttrWritable";
+	static public class Inst_packageIsAttrWritable extends Inst_typeIsAttrWritable { static public final String Name = "package_isAttrWritable";
 		
 		protected Inst_packageIsAttrWritable(Engine pEngine) {
 			super(pEngine, Name);
@@ -1114,8 +1054,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageIsAttrNoTypeCheck extends Inst_typeIsAttrNoTypeCheck {
-		@SuppressWarnings("hiding") static public final String Name = "package_isAttrNoTypeCheck";
+	static public class Inst_packageIsAttrNoTypeCheck extends Inst_typeIsAttrNoTypeCheck { static public final String Name = "package_isAttrNoTypeCheck";
 		
 		protected Inst_packageIsAttrNoTypeCheck(Engine pEngine) {
 			super(pEngine, Name);
@@ -1124,8 +1063,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageConfigAttr extends Inst_typeConfigAttr {
-		@SuppressWarnings("hiding") static public final String Name = "package_configAttr";
+	static public class Inst_packageConfigAttr extends Inst_typeConfigAttr { static public final String Name = "package_configAttr";
 		
 		protected Inst_packageConfigAttr(Engine pEngine) {
 			super(pEngine, Name);
@@ -1134,8 +1072,7 @@ public class Instructions_StackOwner {
 			return AsTypeProcessKind.PACKAGE;
 		}
 	}
-	static public class Inst_packageGetAttrMoreInfo extends Inst_typeGetAttrMoreInfo {
-		@SuppressWarnings("hiding") static public final String Name = "package_getAttrMoreInfo";
+	static public class Inst_packageGetAttrMoreInfo extends Inst_typeGetAttrMoreInfo { static public final String Name = "package_getAttrMoreInfo";
 		
 		protected Inst_packageGetAttrMoreInfo(Engine pEngine) {
 			super(pEngine, Name);
@@ -1305,7 +1242,6 @@ public class Instructions_StackOwner {
 					}
 					
 					Executable Exec = (OperationInfo.OIDirect)OI;
-					if(Exec == null) return null;
 					return pContext.getExecutor().execExecutable(pContext, pInitiator, Exec,
 							Exec.getKind(), this.isBlindCaller(), O, pParams, false, true);
 				} else {

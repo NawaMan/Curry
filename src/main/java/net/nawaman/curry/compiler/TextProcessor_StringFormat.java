@@ -9,7 +9,9 @@ import net.nawaman.regparser.ParseResult;
 
 /** TextProcessor for String format */
 public class TextProcessor_StringFormat implements TextProcessor {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	static public String Name = "s";
 	
 	String LangName;

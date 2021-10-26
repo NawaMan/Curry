@@ -229,7 +229,6 @@ public class Instructions_Core {
 	}
 	
 	static public class Inst_CastOrElse extends Inst_Stack {
-		@SuppressWarnings("hiding")
 		static public final String Name = "castOrElse";
 		
 		// StackName, Object, Type to cast to, Variable name, Default value
@@ -656,7 +655,6 @@ public class Instructions_Core {
 	
 	// Create new instance of a type
 	static public class Inst_NewInstanceByTypeRefs extends Inst_NewInstance {
-		@SuppressWarnings("hiding")
 		static public final String Name = "newInstanceByTypeRefs";
 		
 		Inst_NewInstanceByTypeRefs(Engine pEngine) {
@@ -674,7 +672,6 @@ public class Instructions_Core {
 	
 	// Create new instance of a type
 	static public class Inst_NewInstanceByInterface extends Inst_NewInstance {
-		@SuppressWarnings("hiding")
 		static public final String Name = "newInstanceByInterface";
 		
 		Inst_NewInstanceByInterface(Engine pEngine) {
@@ -933,6 +930,7 @@ public class Instructions_Core {
 			return false;
 		}
 		/**@inherDoc()*/ @Override
+	    @SuppressWarnings("incomplete-switch")
 		protected boolean processNonSingleValue(Context pContext, Object O1, Object O2) {
 			
 			if(this.Method == CheckMethod.IS)   return !this.Engine.is(    pContext, O1, O2);

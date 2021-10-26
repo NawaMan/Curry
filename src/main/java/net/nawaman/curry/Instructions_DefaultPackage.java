@@ -12,7 +12,6 @@ public class Instructions_DefaultPackage {
 	// Instructions ----------------------------------------------------------------------------
 
 	static public class Inst_GetDefaultPackage extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getDefaultPackage";
 		
 		Inst_GetDefaultPackage(Engine pEngine) {
@@ -24,7 +23,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_GetDefaultPackageBuilder extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getDefaultPackageBuilder";
 		
 		Inst_GetDefaultPackageBuilder(Engine pEngine) {
@@ -55,7 +53,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_AddDefaultPackageVariable extends Inst_DefaultPackageAccess {
-		@SuppressWarnings("hiding")
 		static public final String Name = "addDefaultPackageVariable";
 		
 		Inst_AddDefaultPackageVariable(Engine pEngine) {
@@ -86,7 +83,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_AddDefaultPackageDataHolder extends Inst_DefaultPackageAccess {
-		@SuppressWarnings("hiding")
 		static public final String Name = "addDefaultPackageDataHolder";
 		
 		Inst_AddDefaultPackageDataHolder(Engine pEngine) {
@@ -115,7 +111,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_BindDefaultPackageDataHolder extends Inst_DefaultPackageAccess {
-		@SuppressWarnings("hiding")
 		static public final String Name = "bindDefaultPackageDataHolder";
 		
 		Inst_BindDefaultPackageDataHolder(Engine pEngine) {
@@ -144,7 +139,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_AddDefaultPackageFunction extends Inst_DefaultPackageAccess {
-		@SuppressWarnings("hiding")
 		static public final String Name = "addDefaultPackageFunction";
 		
 		Inst_AddDefaultPackageFunction(Engine pEngine) {
@@ -157,7 +151,6 @@ public class Instructions_DefaultPackage {
 		}
 	}
 	static public class Inst_AddDefaultPackageType extends Inst_DefaultPackageAccess {
-		@SuppressWarnings("hiding")
 		static public final String Name = "addDefaultPackageType";
 		
 		Inst_AddDefaultPackageType(Engine pEngine) {

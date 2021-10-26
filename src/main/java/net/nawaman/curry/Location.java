@@ -6,7 +6,9 @@ import net.nawaman.compiler.Code;
 
 /** Executional location. */
 final public class Location implements HasLocation, Serializable, Cloneable {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs a location using the code or name and the start line number. */
 	public Location(String pCodeOrName) {
 		this(null, pCodeOrName, -1, -1);

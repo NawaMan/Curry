@@ -954,7 +954,6 @@ public class Util_Atomic {
 			for(int i = 0; i < PTRefs.length; i++)
 				PTRefs[i] = $CProduct.getReturnTypeRefOf(Params[i]);
 			
-			if(Params == null) Params = UObject.EmptyObjectArray;
 			Object[] NewParams = new Object[3 + Params.length];
 			NewParams[0] = $ME.newExpr(Location, Instructions_Package.Inst_GetPackage.Name, Name.toString());
 			NewParams[1] = AccName;

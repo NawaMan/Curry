@@ -200,7 +200,6 @@ public class EngineExtensions {
 		/** Increment access to package attribute */
 		static public class SPPackageAttribute extends SourceProvider {
 			
-			@SuppressWarnings("hiding")
 			static final public String Name     = "PackageAttribute";
 			static final public int    NameHash = UString.hash(Name);
 			
@@ -403,7 +402,6 @@ public class EngineExtensions {
 		/** Increment access to StackOwner's attribute */
 		static public class SPSOAttribute extends SourceProvider {
 			
-			@SuppressWarnings("hiding")
 			static final public String Name     = "SOAttribute";
 			static final public int    NameHash = UString.hash(Name);
 			
@@ -463,8 +461,7 @@ public class EngineExtensions {
 		
 		/** Increment access to StackOwner's attribute with AsType */
 		static public class SPSOAttributeAsType extends SourceProvider {
-			
-			@SuppressWarnings("hiding")
+		    
 			static final public String Name     = "SOAttributeAsType";
 			static final public int    NameHash = UString.hash(Name);
 			
@@ -670,7 +667,6 @@ public class EngineExtensions {
 		/** Increment access to this attribute */
 		static public class SPThisAttribute extends SourceProvider {
 			
-			@SuppressWarnings("hiding")
 			static final public String Name     = "ThisAttribute";
 			static final public int    NameHash = UString.hash(Name);
 			
@@ -726,7 +722,6 @@ public class EngineExtensions {
 		/** Increment access to Type's attribute  */
 		static public class SPTypeAttribute extends SourceProvider {
 			
-			@SuppressWarnings("hiding")
 			static final public String Name     = "TypeAttribute";
 			static final public int    NameHash = UString.hash(Name);
 			

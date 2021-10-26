@@ -8,8 +8,6 @@ import net.nawaman.util.UObject;
 /** TypeLoader of a Parametered type reference*/
 public class TLParametered extends TLBasedOnType {
 	
-	static private final long serialVersionUID = -6545165416516516556L;
-	
 	/** KindName of this Type Loader */
 	static final public String KindName = "Parametered";
 	
@@ -63,6 +61,9 @@ public class TLParametered extends TLBasedOnType {
 	
 	/** TypeRef that refer to the parameter of a parametered type */
 	static public final class TRParametered extends TRBasedOnType {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		TypeRef   TargetTypeRef;
 		TypeRef[] ParamTypeRefs;
 

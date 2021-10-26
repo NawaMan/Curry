@@ -58,7 +58,6 @@ public class EE_Language extends EngineExtension {
 	}
 	
 	static public class Inst_GetDefaultLanguage extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "getDefaultLanguage";
 		
 		Inst_GetDefaultLanguage(Engine pEngine) {

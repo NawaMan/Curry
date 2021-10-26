@@ -36,7 +36,9 @@ import net.nawaman.curry.ParameterizedTypeInfo;
  * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TSObject extends TypeSpec {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	// Constants ----------------------------------------------------------------------------------
 
 	final static public int IndexCount = 12;
@@ -59,7 +61,6 @@ public class TSObject extends TypeSpec {
 
 	// Constructor and verification ---------------------------------------------------------------
 	
-	@SuppressWarnings("unchecked")
 	protected TSObject(TypeRef pTRef, String pKind, boolean pIsAbstract, boolean pIsFinal, TypeRef pSuperRef,
 			TypeRef[] pInterfaceRefs, ParameterizedTypeInfo pTPInfo, MoreData pMoreData, MoreData pExtraInfo) {
 		super(pTRef);
@@ -105,7 +106,6 @@ public class TSObject extends TypeSpec {
 		return IndexCount;
 	}
 	
-	@SuppressWarnings("unchecked")
 	/**{@inheritDoc}*/ @Override
 	protected void resolveParameteredTypeSpec(Context pContext, Engine pEngine) {
 		super.resolveParameteredTypeSpec(pContext, pEngine);

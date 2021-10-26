@@ -643,7 +643,9 @@ public class Instructions_ControlFlow {
 		static public final CaseEntry[] EmptyCaseEntries = new CaseEntry[0];
 		
 		final static public class CaseEntry implements Serializable {
-			
+	        
+	        private static final long serialVersionUID = 8605071645446256069L;
+	        
 			static public CaseEntry newCaseEntry(Object pCaseValue) {
 				return newCaseEntry(pCaseValue, null);
 			}
@@ -785,7 +787,6 @@ public class Instructions_ControlFlow {
 		}
 	}
 	static public class Inst_Choose extends Inst_Switch {
-		@SuppressWarnings("hiding")
 		static public final String Name = "choose";
 		
 		Inst_Choose(Engine pEngine) {
@@ -863,7 +864,8 @@ public class Instructions_ControlFlow {
 		static final Class<?>[] HalfConstructorClass  = new Class<?>[] { String.class                                 };
 		static final Class<?>[] NoneConstructorClass  = new Class<?>[] {};
 		
-		/**{@inherDoc}*/ @Override protected Object run(Context pContext, Object[] pParams) {
+		@SuppressWarnings("rawtypes")
+        /**{@inherDoc}*/ @Override protected Object run(Context pContext, Object[] pParams) {
 			Class<?> Cls = (Class)pParams[1];
 			if(Cls == null) Cls = CurryError.class;
 			if(!Throwable.class.isAssignableFrom(Cls)) {
@@ -899,7 +901,8 @@ public class Instructions_ControlFlow {
 					E
 				);
 		}
-		/**@inherDoc()*/ @Override
+		@SuppressWarnings("rawtypes")
+        /**@inherDoc()*/ @Override
 		public TypeRef getReturnTypeRef(Expression pExpr, CompileProduct pCProduct) {
 			Object O = pExpr.getParam(1);
 			if((O instanceof Class) && (pCProduct != null))
@@ -951,7 +954,10 @@ public class Instructions_ControlFlow {
 		static public final String ReturnValueName = "$ReturnValue$";
 		
 		final static public class CatchEntry implements Serializable {
-			static public CatchEntry newCatchEntry(Engine pEngine, String pCatchName,
+		    
+            private static final long serialVersionUID = -3009836901006887137L;
+            
+            static public CatchEntry newCatchEntry(Engine pEngine, String pCatchName,
 					Class<? extends Throwable> pCatchType, Expression pCatchBody) {
 				
 				if(pCatchName == null) throw new NullPointerException("Catch name is null.");
@@ -997,8 +1003,7 @@ public class Instructions_ControlFlow {
 		// (String StackName, String[] VarNames, Class<Throwable>[] Catches, E[] CatchBodies, E Finally) { Body }
 		Inst_TryCatch(Engine pEngine, String          pISpecStr) { super(pEngine, pISpecStr); }
 		Inst_TryCatch(Engine pEngine, InstructionSpec pISpec)    { super(pEngine, pISpec);    }
-		
-		@SuppressWarnings("hiding") static public final String Name = "tryCatch";
+		 static public final String Name = "tryCatch";
 		
 		Inst_TryCatch(Engine pEngine) {
 			super(pEngine, Name + "($,"+CatchEntry.class.getCanonicalName()+"[],E){}:~");

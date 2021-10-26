@@ -9,7 +9,9 @@ import net.nawaman.task.TaskOptions;
 
 /** Compiler for curry */
 public class CurryCompiler extends net.nawaman.compiler.Compiler {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Data Name for DNUnitBuilder        */ static public final String DNUnitBuilder        = "UnitBuilder";
 	/** Data Name for DNUnitBuilderCreater */ static public final String DNUnitBuilderCreator = "UnitBuilderCreator";
 	

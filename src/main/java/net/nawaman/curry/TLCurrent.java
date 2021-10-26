@@ -4,8 +4,6 @@ import net.nawaman.util.UObject;
 
 public class TLCurrent  extends TLBasedOnType {
 	
-	static private final long serialVersionUID = -6652632163513213521L;
-	
 	/** KindName of this Type Loader */
 	static final public String KindName = "Current";
 	
@@ -58,7 +56,9 @@ public class TLCurrent  extends TLBasedOnType {
 	
 	/** TypeRef that refer to the Current StackOwner type */
 	static public class TRCurrent extends TRBasedOnType {
-
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a type based on another type. */
 		public TRCurrent() {
 			super();

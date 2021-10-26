@@ -12,7 +12,9 @@ import net.nawaman.curry.util.MoreData;
 import net.nawaman.util.UArray;
 
 class TSEnum extends TypeSpec {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	// Constants ------------------------------------------------------------------------
 	
 	static final public String KindName = "Enum";

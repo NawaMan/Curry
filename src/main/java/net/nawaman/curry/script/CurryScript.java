@@ -9,6 +9,8 @@ import net.nawaman.script.Script;
 
 /** Script written in Curry */
 public class CurryScript extends CurryExecutable implements Script {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	public CurryScript(CurryEngine pCEngine, String pCode, CurryCompiledCode pCCode) {
 		super(pCEngine, pCode, (pCCode == null)?null:pCCode.TheFragment);

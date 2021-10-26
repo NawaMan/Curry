@@ -29,6 +29,9 @@ final public class MoreData implements Serializable, Cloneable {
 	}
 	
 	static public class Entry implements Serializable, Cloneable {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		public Entry(String pName, Serializable pData) { this.Name = pName; this.Data = pData; }
 		String       Name;
 		Serializable Data;

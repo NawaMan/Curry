@@ -284,7 +284,6 @@ abstract public class TypeSpec implements Serializable, Cloneable, Objectable {
 	}
 	
 	/** Returns the number of interface this type is defined to have */
-	@SuppressWarnings("unchecked")
 	final public int getInterfaceCount() {
 		TypeRef[] Interfaces = this.getInterfaces();
 		if(Interfaces == null) return 0;
@@ -292,7 +291,6 @@ abstract public class TypeSpec implements Serializable, Cloneable, Objectable {
 	}
 
 	/** Returns the type reference of the interface at the index */
-	@SuppressWarnings("unchecked")
 	final public TypeRef getInterfaceRefAt(int I) {
 		if(I < 0) return null;
 		TypeRef[] Interfaces = this.getInterfaces();

@@ -38,7 +38,9 @@ import net.nawaman.util.UObject;
  * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 abstract public class ConstructorInfo implements Accessible, Serializable, HasSignature {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	static public final ConstructorInfo[] EmptyConstructorInfos = new ConstructorInfo[0];
 	
 	/** The name (int its signature) of all Constructor */
@@ -133,7 +135,9 @@ abstract public class ConstructorInfo implements Accessible, Serializable, HasSi
 	
 	/** Initialize with Macro */
 	static final class CIMacro extends ConstructorInfo implements Executable.Macro {
-	
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		CIMacro(Accessibility pAccess, TypeRef pOwnerAsTypeRef, Executable.Macro pDclExec) {
 			super(pAccess, pOwnerAsTypeRef);
 			this.DclExec  = (Executable.Macro)pDclExec.clone();
@@ -293,7 +297,9 @@ abstract public class ConstructorInfo implements Accessible, Serializable, HasSi
 	
 	/** Initialize with Native Constructor */
 	static final class CINative extends ConstructorInfo {
-	
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		CINative(Engine pEngine, Accessibility pAccess, Constructor<?> pConstructor, MoreData pMoreData) { 
 			super(pAccess, pEngine.getTypeManager().getTypeOfTheInstanceOf(pConstructor.getDeclaringClass()).getTypeRef());
 			
@@ -312,6 +318,9 @@ abstract public class ConstructorInfo implements Accessible, Serializable, HasSi
 	
 	/** Initialize with Root Constructor */
 	static final class CIRoot extends ConstructorInfo {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		CIRoot(Engine pEngine, Accessibility pAccess, TypeRef pOwnerAsTypeRef) {
 			super(pAccess, pOwnerAsTypeRef);
 			this.DclExec = new CurryExecutable.CurryMacro(pEngine, DefaultConstructorSignature, null, null, null);

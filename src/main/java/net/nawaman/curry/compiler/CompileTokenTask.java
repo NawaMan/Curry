@@ -10,6 +10,9 @@ import net.nawaman.task.TaskOptions;
 
 /** Task for compiling a language token */
 public class CompileTokenTask  extends TaskForCodeUsingRegParser {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs a CompileTask */
 	protected CompileTokenTask(String pName, PTypeProvider pTProvider) {
 		super(pName, new Class<?>[] { String.class, ParseResult.class }, null, new Class<?>[] { Object.class });

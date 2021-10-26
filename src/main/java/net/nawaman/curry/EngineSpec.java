@@ -82,13 +82,14 @@ abstract public class EngineSpec implements Objectable {
 	 * Creates a simple engine spec form the given name and array of extension classes. This classes must have a public
 	 * default constructor.
 	 **/
-	static public EngineSpec newSimpleEngineSpec(String pName, Class<? extends EngineExtension> ... pEExtClasses) {
+	@SuppressWarnings("unchecked")
+    static public EngineSpec newSimpleEngineSpec(String pName, Class<? extends EngineExtension> ... pEExtClasses) {
 		Vector<EngineExtension> VExts = new Vector<EngineExtension>();
 		for(int i = 0; i < ((pEExtClasses == null)?0:pEExtClasses.length); i++) {
 			Class<? extends EngineExtension> Cls = pEExtClasses[i];
 			if(Cls == null) continue;
 			
-			try { VExts.add(Cls.newInstance()); }
+			try { VExts.add(Cls.getConstructor().newInstance()); }
 			catch(Exception E) {
 				throw new RuntimeException(
 				            "Error while trying to creates an instance of the engine extension: `"+Cls.getClass()+"`", E);
@@ -122,7 +123,7 @@ abstract public class EngineSpec implements Objectable {
 				continue;
 			}
 			
-			try { VExts.add(Cls.newInstance()); }
+			try { VExts.add(Cls.getConstructor().newInstance()); }
 			catch(Exception E) {
 				throw new RuntimeException(
 				            "Error while trying to creates an instance of the engine extension: `"+ExtName+"`", E);
@@ -424,7 +425,9 @@ abstract public class EngineSpec implements Objectable {
 	
 	/** Engine Specification Signature. */
 	static public class Signature implements Serializable, Objectable {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Construct a signature */
 		public Signature(EngineSpec pEngineSpec) {
 			this.EngineSpecName = pEngineSpec.getEngineName();

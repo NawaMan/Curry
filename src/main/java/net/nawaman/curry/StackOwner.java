@@ -505,7 +505,6 @@ abstract public class StackOwner implements Objectable {
 		}
 		// Get the body and do the early return
 		Executable Exec = ((OperationInfo.OIDirect)OI);
-		if(Exec == null) return null;
 		return pContext.getExecutor().execExecutable(pContext, pInitiator, Exec, Exec.getKind(), pIsBlindCaller,
 				this, pParams, pIsAlreadyAdjusted, true);
 	}
@@ -896,7 +895,8 @@ abstract public class StackOwner implements Objectable {
 	}
 
 	/** Execute an operation */
-	protected Object invokeOperation(Context pContext, Expression pInitiator, boolean pIsBlindCaller,
+	@SuppressWarnings("incomplete-switch")
+    protected Object invokeOperation(Context pContext, Expression pInitiator, boolean pIsBlindCaller,
 			OperationSearchKind pOSKind, Type pAsType, Object pParam1, Object pParam2, Object[] pParams,
 			boolean pIsAlreadyAdjusted) {
 		

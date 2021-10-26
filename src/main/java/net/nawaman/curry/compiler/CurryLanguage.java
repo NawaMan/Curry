@@ -11,7 +11,6 @@ import net.nawaman.curry.ExecSignature;
 import net.nawaman.curry.Executable;
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.Scope;
-import net.nawaman.curry.compiler.CompileProduct;
 import net.nawaman.regparser.CompilationContext;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;

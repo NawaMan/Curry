@@ -2,6 +2,9 @@ package net.nawaman.curry;
 
 /** Information about a parametered type */
 public final class ParameteredTypeInfo extends TypeParameterInfo.TypeParameterInfos {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
+    
 	
 	TypeRef OrgTypeRef;
 	

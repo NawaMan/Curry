@@ -67,7 +67,9 @@ public class TLPackage extends TypeLoader {
 	
 	/** TypeRef that refer to a type in a package. */
 	static public class TRPackage extends TREnclosed {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a alias type reference. */
 		public TRPackage(String pPName, String pTName) {
 			if(pPName == null) throw new NullPointerException("An package type ref cannot be constucted without the package name.");
@@ -169,7 +171,9 @@ public class TLPackage extends TypeLoader {
 	
 	/** TypeRef that refer to a type in a package. */
 	static final class TRPackage_Internal extends TRPackage {
-
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a alias type reference. */
 		TRPackage_Internal(TypeSpec pTheSpec, String pPName, String pTName, Accessibility pPA, Location pLocation) {
 			super(pPName, pTName); //, pLocation);

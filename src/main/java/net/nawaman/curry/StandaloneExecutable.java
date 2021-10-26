@@ -2,11 +2,16 @@ package net.nawaman.curry;
 
 /** Executable that embedded the engine and ready to be execute. */
 abstract public class StandaloneExecutable extends WrapperExecutable.Wrapper {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
 	
 	Engine     Engine;
 	Executable Exec;
 	
 	static public class Fragment extends StandaloneExecutable implements Executable.Fragment {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		Fragment(Engine pEngine, Executable pExec) {
 			super(pEngine, pExec);
 		}
@@ -22,6 +27,9 @@ abstract public class StandaloneExecutable extends WrapperExecutable.Wrapper {
 		}
 	}
 	static public class Macro extends StandaloneExecutable implements Executable.Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		Macro(Engine pEngine, Executable pExec) {
 			super(pEngine, pExec);
 		}
@@ -37,6 +45,9 @@ abstract public class StandaloneExecutable extends WrapperExecutable.Wrapper {
 		}
 	}
 	static public class SubRoutine extends StandaloneExecutable implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		SubRoutine(Engine pEngine, Executable pExec) {
 			super(pEngine, pExec);
 		}

@@ -60,7 +60,7 @@ public class CurryOutputStream extends JavaCompilerObjectOutputStream {
 		
 		// Registed the required Extension name
 		EngineExtension EExt = E.getOwnerOfInstruction(Inst.getNameHash());
-		if((EExt != null) && !this.EngineExtNames.contains(EExt))
+		if((EExt != null) && !this.EngineExtNames.contains(EExt.getExtName()))
 			this.EngineExtNames.add(EExt.getExtName()); 
 		
 		// Use a package
@@ -88,7 +88,7 @@ public class CurryOutputStream extends JavaCompilerObjectOutputStream {
 			if(TL == null) throw new CurryError("TypeLoader is not found in this engine: " + TRef.getRefKindName());
 			
 			EngineExtension EExt = MT.getOwnerOfTypeLoader(TL.getKindName());
-			if((EExt != null) && !this.EngineExtNames.contains(EExt))
+			if((EExt != null) && !this.EngineExtNames.contains(EExt.getExtName()))
 				this.EngineExtNames.add(EExt.getExtName());
 		} catch(Exception E) {}
 		
@@ -102,7 +102,7 @@ public class CurryOutputStream extends JavaCompilerObjectOutputStream {
 				throw new CurryError("TypeKind is not found in this engine: " + TRef.getRefKindName());
 			
 			EngineExtension EExt = MT.getOwnerOfTypeKind(TK.getKindName());
-			if((EExt != null) && !this.EngineExtNames.contains(EExt))
+			if((EExt != null) && !this.EngineExtNames.contains(EExt.getExtName()))
 				this.EngineExtNames.add(EExt.getExtName());
 		} catch(Exception E) {}
 	}

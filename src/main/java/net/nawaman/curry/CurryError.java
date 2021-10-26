@@ -1,7 +1,9 @@
 package net.nawaman.curry;
 
 public class CurryError extends RuntimeException {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
     // Public constructors -------------------------------------------------------------------------
 	
     /** Constructs a new CurryError with <code>null</code> as its detail message. */

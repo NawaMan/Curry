@@ -433,6 +433,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(TCIDE == null) return null;
 		return TCIDE.getTempData();
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempCons(ExecSignature pES, Object pID, Expression pBody) {
 		if(this.TempConstructors == null) return false;
 		TempCIDirectEntry TCIDE = this.TempConstructors.get(pES);
@@ -441,6 +442,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(Result) this.TempConstructors.remove(TCIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempCons(ExecSignature pES, Object pID, ExternalExecutor pEE, Object pEEID, Object pEESC) {
 		if(this.TempConstructors == null) return false;
 		TempCIDirectEntry TCIDE = this.TempConstructors.get(pES);
@@ -449,6 +451,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(Result) this.TempConstructors.remove(TCIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempCons(ExecSignature pES, Object pID, Executable.Macro pMacro) {
 		if(this.TempConstructors == null) return false;
 		TempCIDirectEntry TCIDE = this.TempConstructors.get(pES);
@@ -472,6 +475,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		return TAIDE.getTempData();
 	}
 	/** Resolve the temporary attribute */
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveStaticTempAttr(String pName, Object pID, TypeRef pDValueTypeRef, Serializable pDValue) {
 		if(this.StaticTempAttrs == null) return false;
 		TempAIDirectEntry TAIDE = this.StaticTempAttrs.get(pName);
@@ -508,6 +512,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(TOIDE == null) return null;
 		return TOIDE.getTempData();
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveStaticTempOper(ExecSignature pES, Object pID, Expression pBody) {
 		if(this.StaticTempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.StaticTempOpers.get(pES);
@@ -516,6 +521,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(Result) this.StaticTempOpers.remove(TOIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveStaticTempOper(ExecSignature pES, Object pID, ExternalExecutor pEE, Object pEEID, Object pEESC) {
 		if(this.StaticTempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.StaticTempOpers.get(pES);
@@ -524,6 +530,7 @@ public class TypeBuilder extends StackOwnerBuilder {
 		if(Result) this.StaticTempOpers.remove(TOIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveStaticTempOper(ExecSignature pES, Object pID, Executable pExec) {
 		if(this.StaticTempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.StaticTempOpers.get(pES);

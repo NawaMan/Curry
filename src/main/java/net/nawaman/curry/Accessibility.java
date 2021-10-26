@@ -7,11 +7,16 @@ import net.nawaman.util.Objectable;
 
 /** General Accessibility */
 abstract public class Accessibility implements Objectable, Serializable {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	protected Accessibility() {}
 
 	/** Predefine public */
 	static public final Accessibility Public = new Accessibility() {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		@Override public    String  getName()                      { return "Public";        }
 		@Override protected boolean checkEqual(Accessibility pAcc) { return pAcc.isPublic(); }
 		@Override public    boolean isPublic()                     { return true;            }
@@ -22,6 +27,9 @@ abstract public class Accessibility implements Objectable, Serializable {
 	};
 	/** Predefine public */
 	static public final Accessibility Private = new Accessibility() {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		@Override public    String  getName()                      { return "Private";        }
 		@Override protected boolean checkEqual(Accessibility pAcc) { return pAcc.isPrivate(); }
 		@Override public    boolean isPrivate()                    { return true;             }

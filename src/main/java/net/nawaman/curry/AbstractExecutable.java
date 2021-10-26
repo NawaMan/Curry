@@ -10,6 +10,8 @@ import net.nawaman.util.UObject;
 
 /** Default implementation of the executable */
 abstract public class AbstractExecutable implements Executable, Serializable, Objectable {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	static final Scope EmptyScope = new Scope(); {
 		// Do not allow this scope to be modifiable

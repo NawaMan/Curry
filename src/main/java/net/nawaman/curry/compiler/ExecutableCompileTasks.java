@@ -10,6 +10,9 @@ public class ExecutableCompileTasks {
 
 	/** Task for compiling a fragment body */
 	static public class CompileFragmentTask extends CompileTask {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileFragmentTask */
 		protected CompileFragmentTask(String pName, PTypeProvider pTProvider) {
 			super(pName, pTProvider);
@@ -39,6 +42,9 @@ public class ExecutableCompileTasks {
 	
 	/** Task for compiling a macro body */
 	static public class CompileMacroTask extends CompileTask {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileMacroTask */
 		protected CompileMacroTask(String pName, PTypeProvider pTProvider) {
 			super(pName, pTProvider);
@@ -70,6 +76,9 @@ public class ExecutableCompileTasks {
 	
 	/** Task for compile subroutine body */
 	static public class CompileSubRoutineTask extends CompileTask {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileSubRoutineTask */
 		protected CompileSubRoutineTask(String pName, PTypeProvider pTProvider) {
 			super(pName, pTProvider);

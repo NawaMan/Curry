@@ -1,9 +1,9 @@
 package net.nawaman.curry;
 
-import net.nawaman.curry.AbstractExecutable;
-
 /** Executable that wrap other executable */
 abstract public class WrapperExecutable implements Executable {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
 	
 	// Only class in size Curry package can implement this class
 	WrapperExecutable() {}
@@ -98,6 +98,9 @@ abstract public class WrapperExecutable implements Executable {
 	
 	/** A wrapper of an executable */
 	static abstract public class Wrapper extends WrapperExecutable {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		// Kind --------------------------------------------------------------------
 		/**{@inheritDoc}*/ @Override 
 		final Executable.ExecKind getExecKind() {
@@ -134,6 +137,9 @@ abstract public class WrapperExecutable implements Executable {
 
 	/** A wrapper of that change the executable kind */
 	static abstract class TransformWrapper<Source extends Executable, Target extends Executable> extends WrapperExecutable {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		Source SourceExec;
 		public TransformWrapper(Source pSourceExec) {
 			if(pSourceExec == null) throw new NullPointerException();
@@ -147,6 +153,9 @@ abstract public class WrapperExecutable implements Executable {
 
 	/** A wrapper of fragment to a macro */
 	static public class FragmentToMacroWrapper extends TransformWrapper<Fragment, Macro> implements Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public FragmentToMacroWrapper(Fragment pFragment) {
 			super(pFragment);
 		}
@@ -167,6 +176,9 @@ abstract public class WrapperExecutable implements Executable {
 
 	/** A wrapper of fragment to a sub-routine */
 	static public class FragmentToSubRoutineWrapper extends TransformWrapper<Fragment, SubRoutine> implements SubRoutine {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public FragmentToSubRoutineWrapper(Fragment pFragment) {
 			super(pFragment);
 		}
@@ -185,6 +197,9 @@ abstract public class WrapperExecutable implements Executable {
 
 	/** A wrapper of macro to a sub-routine */
 	static public class MacroToSubRoutineWrapper extends TransformWrapper<Macro, SubRoutine> implements SubRoutine {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public MacroToSubRoutineWrapper(Macro pMacro) {
 			super(pMacro);
 		}
@@ -203,6 +218,9 @@ abstract public class WrapperExecutable implements Executable {
 
 	/** A wrapper of a sub-routine to a macro */
 	static public class SubRoutineToMacroWrapper extends TransformWrapper<SubRoutine, Macro> implements Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public SubRoutineToMacroWrapper(SubRoutine pSubRoutine) {
 			super(pSubRoutine);
 		}

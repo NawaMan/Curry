@@ -11,7 +11,9 @@ import net.nawaman.curry.WrapperExecutable;
 import net.nawaman.script.Signature;
 
 public class CurryFunction extends CurryExecutable implements net.nawaman.script.Function, Serializable {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	public CurryFunction(CurryEngine pCEngine, String pCode, SubRoutine pSubRoutine) {
 		super(pCEngine, pCode, pSubRoutine);
 		

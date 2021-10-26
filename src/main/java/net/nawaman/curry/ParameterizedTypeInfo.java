@@ -5,6 +5,9 @@ import net.nawaman.util.UArray;
 // Used in the specification of a type to be a generic type
 /** Information about a parameterized type */
 public final class ParameterizedTypeInfo extends TypeParameterInfo.TypeParameterInfos {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	public ParameterizedTypeInfo(TypeParameterInfo ... pPTInfos) {
 		super(pPTInfos);
 	}

@@ -6,8 +6,7 @@ import net.nawaman.util.UArray;
 /** Initializer of a StackOwner object */
 public class Instructions_Initializer {
 	
-	static public class Inst_InvokeThisInitializer_ByParams extends Inst_AbstractInvokeInitializer {
-		@SuppressWarnings("hiding") static public final String Name = "this_initialize_ByParams";
+	static public class Inst_InvokeThisInitializer_ByParams extends Inst_AbstractInvokeInitializer { static public final String Name = "this_initialize_ByParams";
 		
 		Inst_InvokeThisInitializer_ByParams(Engine pEngine) {
 			super(pEngine, Name + "(~...):^");
@@ -32,15 +31,13 @@ public class Instructions_Initializer {
 		}
 	}
 	
-	static public class Inst_InvokeThisInitializer_ByPTRefs extends Inst_AbstractInvokeInitializerBy {
-		@SuppressWarnings("hiding") static public final String Name = "this_initialize_ByTRefs";
+	static public class Inst_InvokeThisInitializer_ByPTRefs extends Inst_AbstractInvokeInitializerBy { static public final String Name = "this_initialize_ByTRefs";
 		
 		protected Inst_InvokeThisInitializer_ByPTRefs(Engine pEngine) {
 			super(pEngine, Name, TypeRef.class.getCanonicalName()+"[]");
 		}
 	}
-	static public class Inst_InvokeThisInitializer_ByInterface extends Inst_AbstractInvokeInitializerBy {
-		@SuppressWarnings("hiding") static public final String Name = "this_initialize_ByInterface";
+	static public class Inst_InvokeThisInitializer_ByInterface extends Inst_AbstractInvokeInitializerBy { static public final String Name = "this_initialize_ByInterface";
 		
 		protected Inst_InvokeThisInitializer_ByInterface(Engine pEngine) {
 			super(pEngine, Name, "+" + ExecInterface.class.getCanonicalName());
@@ -49,8 +46,7 @@ public class Instructions_Initializer {
 	
 	// Super -----------------------------------------------------------------------------------------------------------
 	
-	static public class Inst_InvokeSuperInitializer_ByParams extends Inst_AbstractInvokeInitializer {
-		@SuppressWarnings("hiding") static public final String Name = "super_initialize_ByParams";
+	static public class Inst_InvokeSuperInitializer_ByParams extends Inst_AbstractInvokeInitializer { static public final String Name = "super_initialize_ByParams";
 		
 		protected Inst_InvokeSuperInitializer_ByParams(Engine pEngine) {
 			super(pEngine, Name + "(~...):^");
@@ -97,15 +93,13 @@ public class Instructions_Initializer {
 		}
 	}
 	
-	static public class Inst_InvokeSuperInitializer_ByPTRefs extends Inst_AbstractInvokeSuperInitializerBy {
-		@SuppressWarnings("hiding") static public final String Name = "super_initialize_ByTRefs";
+	static public class Inst_InvokeSuperInitializer_ByPTRefs extends Inst_AbstractInvokeSuperInitializerBy { static public final String Name = "super_initialize_ByTRefs";
 		
 		protected Inst_InvokeSuperInitializer_ByPTRefs(Engine pEngine) {
 			super(pEngine, Name, TypeRef.class.getCanonicalName()+"[]");
 		}
 	}
-	static public class Inst_InvokeSuperInitializer_ByInterface extends Inst_AbstractInvokeSuperInitializerBy {
-		@SuppressWarnings("hiding") static public final String Name = "super_initialize_ByInterface";
+	static public class Inst_InvokeSuperInitializer_ByInterface extends Inst_AbstractInvokeSuperInitializerBy { static public final String Name = "super_initialize_ByInterface";
 		
 		protected Inst_InvokeSuperInitializer_ByInterface(Engine pEngine) {
 			super(pEngine, Name, "+" + ExecInterface.class.getCanonicalName());

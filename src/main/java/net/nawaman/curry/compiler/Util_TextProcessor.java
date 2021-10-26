@@ -29,6 +29,9 @@ public class Util_TextProcessor {
 	
 	/** Class for Macro for Runtime Text processor */
 	static public final class RuntimeTextProcessorMacro extends JavaExecutable.JavaMacro_Complex {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public RuntimeTextProcessorMacro(ExecSignature ES, TextProcessor pTP, Object pBody) {
 			super(ES);
 			if(pTP == null) throw new NullPointerException("Null TextProcessor");

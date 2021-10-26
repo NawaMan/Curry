@@ -49,7 +49,9 @@ public interface Documentation extends Serializable {
 	
 	/** A simple documentation */
 	static public class Simple implements Documentation {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		// Constructors ------------------------------------------------------------------------------------------------
 		
 		public Simple(String pText) {

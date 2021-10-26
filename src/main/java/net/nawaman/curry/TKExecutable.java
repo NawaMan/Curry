@@ -257,10 +257,11 @@ public class TKExecutable extends TypeKind {
 	
 	/** Executable TypeSpec */
 	static public class TSExecutable extends TypeSpec {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		// Constants ------------------------------------------------------------------------
 		
-		@SuppressWarnings("hiding")
 		static final public String KindName = "Executable";
 		
 		final static public int Index_ExecKind          = 0;

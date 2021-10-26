@@ -259,9 +259,13 @@ public class CLRegParser implements CurryLanguage {
 	/** Add an executable creator */
 	public boolean registerExecutableCreator(Class<? extends ExecutableCreator> pEC) {
 		if(pEC == null) return false;
-		try { return this.registerExecutableCreator(pEC.newInstance()); }
-		catch (InstantiationException E) { return false; }
-		catch (IllegalAccessException E) { return false; }
+		try { return this.registerExecutableCreator(pEC.getConstructor().newInstance()); }
+		catch (InstantiationException e)    { return false; }
+		catch (IllegalAccessException e)    { return false; }
+		catch (IllegalArgumentException e)  { return false; }
+		catch (InvocationTargetException e) { return false; }
+		catch (NoSuchMethodException e)     { return false; }
+		catch (SecurityException e)         { return false; }
 	}
 
 	/** Add an executable creator */
@@ -315,9 +319,13 @@ public class CLRegParser implements CurryLanguage {
 	/** Add a Text processor */
 	public boolean registerTextProcessor(Class<? extends TextProcessor> TPCls) {
 		if(TPCls == null) return false;
-		try { return this.registerTextProcessor(TPCls.newInstance()); }
-		catch (InstantiationException E) { return false; }
-		catch (IllegalAccessException E) { return false; }
+		try { return this.registerTextProcessor(TPCls.getConstructor().newInstance()); }
+		catch (InstantiationException e)    { return false; }
+		catch (IllegalAccessException e)    { return false; }
+        catch (IllegalArgumentException e)  { return false; }
+        catch (InvocationTargetException e) { return false; }
+        catch (NoSuchMethodException e)     { return false; }
+        catch (SecurityException e)         { return false; }
 	}
 
 	/** Add a Text processor  */

@@ -7,7 +7,9 @@ import net.nawaman.script.CompiledCode;
 
 /** Compiled code of curry */
 public class CurryCompiledCode implements Serializable, CompiledCode {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Compiled code of curry */
 	public CurryCompiledCode(CurryEngine pCEngine, Executable.Fragment pFragment) {
 		this.EngineName  = pCEngine.getName();

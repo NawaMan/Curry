@@ -10,6 +10,8 @@ import net.nawaman.util.*;
 
 /** Information of an attribute */
 abstract public class AttributeInfo implements Respond, Serializable {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
 	
 	static public final AttributeInfo[] EmptyAttributeInfoArray = new AttributeInfo[0];
 	
@@ -226,6 +228,9 @@ abstract public class AttributeInfo implements Respond, Serializable {
 
 	/** Information of a delegating attribute */
 	static final public AttributeInfo NoPermission = new AttributeInfo(null, null, null, null, null) {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/**{@inheritDoc}*/ @Override public RKind         getRKind()                        { return RKind.NoPermission; }
 		/**{@inheritDoc}*/ @Override public AttributeInfo makeClone()                       { return this; }
 		/**{@inheritDoc}*/ @Override public boolean       resolve(Engine pEngine)           { return true; }
@@ -243,7 +248,10 @@ abstract public class AttributeInfo implements Respond, Serializable {
 
 	/** Information of a delegating attribute */
 	static final public class AIDynamic extends AttributeInfo implements Dynamic {
-		AIDynamic(Accessibility pReadAcc, Accessibility pWriteAcc, Accessibility pConfigAcc, String pName, TypeRef pTRef,
+	    
+        private static final long serialVersionUID = 8605071645446256069L;
+        
+        AIDynamic(Accessibility pReadAcc, Accessibility pWriteAcc, Accessibility pConfigAcc, String pName, TypeRef pTRef,
 				MoreData pMoreData) {
 			super(pReadAcc, pWriteAcc, pConfigAcc, pName, pMoreData);
 			
@@ -299,6 +307,8 @@ abstract public class AttributeInfo implements Respond, Serializable {
 	
 	/** Information of a java attribute */
 	static final public class AINative extends AttributeInfo implements Native {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
 		
 		static MoreData prepareMoreData(Field pField) {
 			if(pField == null) return null;
@@ -377,6 +387,9 @@ abstract public class AttributeInfo implements Respond, Serializable {
 	}
 	/** Information of a direct attribute */
 	static final public class AIDirect extends AttributeInfo implements Direct {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		AIDirect(Accessibility pReadAcc, Accessibility pWriteAcc, Accessibility pConfigAcc, String pName,
 				boolean pIsNotNull, DataHolderInfo pDHInfo, Location pLocation, MoreData pMoreData) {
 			super(pReadAcc, pWriteAcc, pConfigAcc, pName, pMoreData);
@@ -482,6 +495,9 @@ abstract public class AttributeInfo implements Respond, Serializable {
 	}
 	/** Information of a delegating attribute */
 	static final public class AIDlgAttr extends AttributeInfo implements DlgAttr {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		AIDlgAttr(Accessibility pReadAcc, Accessibility pWriteAcc, Accessibility pConfigAcc, String pName,
 				String pDlgName, MoreData pMoreData) {
 			super(pReadAcc, pWriteAcc, pConfigAcc, pName, pMoreData);
@@ -551,6 +567,9 @@ abstract public class AttributeInfo implements Respond, Serializable {
 	}
 	/** Information of a delegating attribute */
 	static final public class AIDlgObject extends AttributeInfo implements DlgObject {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		AIDlgObject(Accessibility pReadAcc, Accessibility pWriteAcc, Accessibility pConfigAcc, String pName,
 				Object pTarget, MoreData pMoreData) {
 			super(pReadAcc, pWriteAcc, pConfigAcc, pName, pMoreData);
@@ -623,6 +642,9 @@ abstract public class AttributeInfo implements Respond, Serializable {
 	}
 	/** Information of a variant attribute */
 	static final public class AIVariant extends AttributeInfo implements Variant {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		AIVariant(String pName, TypeRef pTypeRef) {
 			super(Accessibility.Public, Accessibility.Public, Accessibility.Public, pName, null);
 			this.DlcTypeRef = (pTypeRef == null) ? TKJava.TAny.getTypeRef() : pTypeRef;

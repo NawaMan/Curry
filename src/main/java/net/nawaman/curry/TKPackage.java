@@ -326,7 +326,9 @@ public class TKPackage extends TypeKind {
 	// TypeRef {}
 	
 	static final class TSPackage extends TypeSpec {
-
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a new type spec. */
 		TSPackage(String pPackageName) {
 			super(

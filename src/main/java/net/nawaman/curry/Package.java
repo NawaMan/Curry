@@ -18,6 +18,7 @@ import net.nawaman.util.UString;
  *     required artifacts required by artifact definition in a package is grouped and stored.
  \* @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
+@SuppressWarnings("serial")
 final public class Package extends StackOwner_Simple implements Serializable {
 
 	static final private long serialVersionUID = 165465645651565465L;
@@ -36,11 +37,16 @@ final public class Package extends StackOwner_Simple implements Serializable {
 	
 	/** An emun type for object type artifact accessibility */
 	static abstract public class Access extends Accessibility {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Access() {}
 
 		/** Predefine package */
-		@SuppressWarnings("hiding")
 		static public final Access Package = new Access() {
+            
+            private static final long serialVersionUID = -3009836901006887137L;
+            
 			@Override public    String  getName()   { return "Package"; }
 			@Override public    boolean isPackage() { return true;        }
 			@Override protected boolean checkEqual(Accessibility pAcc) {
@@ -54,8 +60,10 @@ final public class Package extends StackOwner_Simple implements Serializable {
 			}
 		};
 		/** Predefine public */
-		@SuppressWarnings("hiding")
 		static public final Access Group = new Access() {
+            
+            private static final long serialVersionUID = -3009836901006887137L;
+            
 			@Override public    String  getName() { return "Group"; }
 			@Override public    boolean isGroup() { return true;    }
 			@Override protected boolean checkEqual(Accessibility pAcc) {
@@ -168,7 +176,7 @@ final public class Package extends StackOwner_Simple implements Serializable {
 	
 	// Initialization ---------------------------------------------------------------------
 	Required[] RequiredArtifacts = null;
-	static class Required      implements Serializable { Required(String pPName)                          {                this.PName = pPName; } String PName;      }
+    static class Required      implements Serializable { Required(String pPName)                          {                this.PName = pPName; } String PName;      }
 	static class Required_Type extends Required        { Required_Type(String pPName, String pTName)      { super(pPName); this.TName = pTName; } String TName;      }
 	static class Required_PVar extends Required        { Required_PVar(String pPName, String pVName)      { super(pPName); this.VName = pVName; } String VName;      }
 	static class Required_Func extends Required        { Required_Func(String pPName, ExecSignature pFES) { super(pPName); this.FES   = pFES;   } ExecSignature FES; }

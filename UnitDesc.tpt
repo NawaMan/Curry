@@ -15,6 +15,7 @@
 #Constructor:
 	// @Java:
 	import net.nawaman.regparser.*;
+    import net.nawaman.regparser.types.*;
 	import net.nawaman.regparser.typepackage.*;
 	
 	String Name    = (String)$Spec.getValue("Name");
@@ -65,12 +66,12 @@
 	
 	if(ParserCK != null) {
 		if((TheVerifier == null) && (TheCompiler == null))
-			 return new net.nawaman.regparser.PTSimple(Name, ParserCK);
-		else return new net.nawaman.regparser.PTComposable(Name, ParserCK, TheVerifier, TheCompiler);
+			 return new net.nawaman.regparser.types.PTSimple(Name, ParserCK);
+		else return new net.nawaman.regparser.types.PTComposable(Name, ParserCK, TheVerifier, TheCompiler);
 	} else {
 		if((TheVerifier == null) && (TheCompiler == null))
-			 return new net.nawaman.regparser.PTSimple(Name, ParserGC);
-		else return new net.nawaman.regparser.PTComposable(Name, ParserGC, TheVerifier, TheCompiler);
+			 return new net.nawaman.regparser.types.PTSimple(Name, ParserGC);
+		else return new net.nawaman.regparser.types.PTComposable(Name, ParserGC, TheVerifier, TheCompiler);
 	}
 
 #end def_kind;

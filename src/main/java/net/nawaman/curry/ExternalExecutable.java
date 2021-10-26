@@ -4,7 +4,9 @@ import net.nawaman.util.UObject;
 
 /** External executable */
 public class ExternalExecutable extends JavaExecutable {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	ExternalExecutable(ExternalExecutor pEE, Object pID, Object pSC) {
 		super(null, pEE.getSignature(pID), null, null);
 		
@@ -46,6 +48,9 @@ public class ExternalExecutable extends JavaExecutable {
 
 	/** External Fragment */
 	static class ExternalFragment extends ExternalExecutable implements Executable.Fragment {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		ExternalFragment(ExternalExecutor pEE, Object pID, Object pSC) {
 			super(pEE, pID, pSC);
 		}
@@ -53,6 +58,9 @@ public class ExternalExecutable extends JavaExecutable {
 	
 	/** External Macro */
 	static class ExternalMacro extends ExternalExecutable implements Executable.Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		ExternalMacro(ExternalExecutor pEE, Object pID, Object pSC) {
 			super(pEE, pID, pSC);
 		}
@@ -60,6 +68,9 @@ public class ExternalExecutable extends JavaExecutable {
 
 	/** External SubRoutine */
 	static class ExternalSubRoutine extends ExternalExecutable implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		ExternalSubRoutine(ExternalExecutor pEE, Object pID, Object pSC) {
 			super(pEE, pID, pSC);
 		}

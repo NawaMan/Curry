@@ -70,7 +70,9 @@ final public class TKType extends TypeKind {
 	// TypeRef {}
 	
 	static final class TSType extends TypeSpec {
-
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a new type spec. */
 		private TSType() {
 			super(null,

@@ -2,11 +2,13 @@ package net.nawaman.curry;
 
 import java.io.Serializable;
 
-import net.nawaman.curry.AbstractExecutable;
 import net.nawaman.curry.util.MoreData;
 import net.nawaman.util.UObject;
 
 abstract public class CurryExecutable extends AbstractExecutable implements Executable.Curry {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
+    
 	CurryExecutable(Engine pEngine, ExecSignature pSignature, Serializable pBody, String[] pFVNames, Scope pFrozenScope) {
 		super(pEngine, pFVNames, pFrozenScope);
 		this.Signature = pSignature;
@@ -44,6 +46,9 @@ abstract public class CurryExecutable extends AbstractExecutable implements Exec
 	
 	/** Curry Fragment */
 	static public class CurryFragment extends CurryExecutable implements Executable.Fragment {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		public CurryFragment(ExecSignature pSignture, Serializable pBody) {
 			super(null, pSignture, pBody, null, null);
 		}
@@ -70,6 +75,9 @@ abstract public class CurryExecutable extends AbstractExecutable implements Exec
 	
 	/** Curry Macro */
 	static public class CurryMacro extends CurryExecutable implements Executable.Macro {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		public CurryMacro(Engine pEngine, ExecSignature pSignature, Serializable pBody, String[] pFVNames,
 				Scope pFrozenScope) {
 			super(pEngine, pSignature, pBody, pFVNames, pFrozenScope);
@@ -85,6 +93,9 @@ abstract public class CurryExecutable extends AbstractExecutable implements Exec
 
 	/** Curry SubRoutine */
 	static public class CurrySubRoutine extends CurryExecutable implements Executable.SubRoutine {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		public CurrySubRoutine(Engine pEngine, ExecSignature pSignature, Serializable pBody, String[] pFVNames,
 				Scope pFrozenScope) {
 			super(pEngine, pSignature, pBody, pFVNames, pFrozenScope);

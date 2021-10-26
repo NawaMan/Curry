@@ -30,10 +30,11 @@ import net.nawaman.curry.ParameterizedTypeInfo;
  * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class TSClass extends TSObject {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	// Constants ----------------------------------------------------------------------------------
 
-	@SuppressWarnings("hiding")
 	final static public int IndexCount = 15;
 	
 	final static public int Index_Constructors     = 12;	// Vector<ConstructorInfo>

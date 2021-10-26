@@ -72,8 +72,8 @@ public class Instructions_Array {
 		Inst_IsArrayOf(Engine pEngine) {
 			super(pEngine, "=" + Name + "(!,~):?");
 		}
-		@SuppressWarnings("unchecked")
-		@Override protected Object run(Context pContext, Object[] pParams) {
+		@SuppressWarnings("rawtypes")
+        @Override protected Object run(Context pContext, Object[] pParams) {
 			Object O0 = pParams[0];
 			Object O1 = pParams[1];
 			if((O0 == null) || (O1 == null)) return false;

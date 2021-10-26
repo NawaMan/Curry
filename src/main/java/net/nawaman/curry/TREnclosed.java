@@ -2,7 +2,9 @@ package net.nawaman.curry;
 
 /** TypeRef for a type that is owned by something */
 abstract public class TREnclosed extends TypeRef {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Returns the name of the type that this type reference is referring. */
 	abstract public String   getTypeName(); 
 	

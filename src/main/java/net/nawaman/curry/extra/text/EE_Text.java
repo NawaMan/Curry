@@ -121,7 +121,6 @@ public class EE_Text extends EngineExtension {
 		Vector<Object> Objs    = new Vector<Object>();
 		
 		for(int i = 0; i < Count; i++) {
-			@SuppressWarnings("hiding")
 			String  Name   = $Result.nameOf(i);
 			boolean IsExpr = false;
 			if("$Chars[]".equals(Name)) {
@@ -175,7 +174,6 @@ public class EE_Text extends EngineExtension {
 	
 	/** The instruction to new Text object */
 	static public final class Inst_NewText extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "newText";
 		
 		Inst_NewText(Engine pEngine) {
@@ -238,7 +236,6 @@ public class EE_Text extends EngineExtension {
 	
 	/** The instruction to create Text object */
 	static public final class Inst_CreateText extends Inst_AbstractStack {
-		@SuppressWarnings("hiding")
 		static public final String Name = "createText";
 		
 		Inst_CreateText(Engine pEngine) {
@@ -406,7 +403,6 @@ public class EE_Text extends EngineExtension {
 	
 	/** The instruction to create Text object */
 	static public final class Inst_EchoText extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "echoText";
 		
 		Inst_EchoText(Engine pEngine) {
@@ -528,7 +524,6 @@ public class EE_Text extends EngineExtension {
 	
 	/** The instruction to add Tabs to Text */
 	static public final class Inst_AddTabs extends Inst_AbstractSimple {
-		@SuppressWarnings("hiding")
 		static public final String Name = "addTabs";
 		
 		Inst_AddTabs(Engine pEngine) {

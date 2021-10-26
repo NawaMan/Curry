@@ -35,9 +35,6 @@ public class TLType extends TypeLoader {
 			);
 		}
 		
-		// No type so it is any
-		if(pTRef == null) return TKJava.TAny.getTypeRef();
-
 		// Return the TypeSpec
 		return pTRef.getTypeSpec(pContext.getEngine(), pContext);
 	}

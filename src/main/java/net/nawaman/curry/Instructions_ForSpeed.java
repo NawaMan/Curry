@@ -331,8 +331,9 @@ public class Instructions_ForSpeed {
 		}
 		/**{@inherDoc}*/ @Override
 		protected Object run(Context pContext, Object[] pParams) {
-			Scanner S = new Scanner(System.in);
-			return S.nextLine();
+			try (var S = new Scanner(System.in)) {
+			    return S.nextLine();
+			}
 		}
 	}
 	static public class Inst_ReadConsolePasswordLine extends Inst_AbstractSimple {

@@ -652,6 +652,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Abstract Data expression  */
 	static abstract class Expr_AbstractData extends Expression {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_AbstractData(Object pData) {
 			super();
 			this.TheData = pData;
@@ -669,6 +672,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Regular Data expression - Functional */
 	static class Expr_Data extends Expr_AbstractData {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Data(Object pData) { super(pData); }
 		// Expression --------------------------------------------------------------
 		@Override boolean isFunctional() { return true; }
@@ -690,6 +696,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Data expression for expression value - Non-functional */
 	static class Expr_Expr extends Expr_AbstractData {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Expr(Expression pData) { super(pData); }
 		@Override public boolean    isExpr()  { return true;                     }
 		@Override public Expression getExpr() { return (Expression)this.TheData; }
@@ -710,6 +719,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Non-Data expression  */
 	static abstract class Expr_NonData extends Expression {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_NonData(int pIHash) {
 			if(pIHash == 0) throw new CurryError("Interna Error!!! An expression is created without a proper instruction signature.(Expression.java#303)");
 			this.InstHash = pIHash;
@@ -732,6 +744,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	//Have Only Sub
 	/** Group expression or expression with no parameter - Non-Functional */
 	static class Expr_Group extends Expr_NonData {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Group(int         pIHash, Expression[] pSubExprs) { super(pIHash); this.SubExprs = pSubExprs; }
 		Expr_Group(Instruction pInst,  Expression[] pSubExprs) { super(pInst); this.SubExprs = pSubExprs;  }
 		// Expression --------------------------------------------------------------
@@ -757,6 +772,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Group expression or expression with no parameter - Functional */
 	static class Expr_Group_Functional extends Expr_Group {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Group_Functional(int         pIHash, Expression[] pSubExprs) { super(pIHash, pSubExprs); }
 		Expr_Group_Functional(Instruction pInst,  Expression[] pSubExprs) { super(pInst, pSubExprs);  }
 		// Expression --------------------------------------------------------------
@@ -776,6 +794,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Simple expression or expression with parameters but no sub expressions - Non-Functional */
 	static class Expr_Simple extends Expr_NonData {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Simple(int         pIHash, Object[] pParams) { super(pIHash); this.Params = pParams; }
 		Expr_Simple(Instruction pInst,  Object[] pParams) { super(pInst);  this.Params = pParams; }
 		// Expression --------------------------------------------------------------
@@ -802,6 +823,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Simple expression or expression with parameters but no sub expressions - Functional */
 	static class Expr_Simple_Functional extends Expr_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Simple_Functional(int pIHash, Object[] pParams)        { super(pIHash, pParams); }
 		Expr_Simple_Functional(Instruction pInst, Object[] pParams) { super(pInst, pParams);  }
 		// Expression --------------------------------------------------------------
@@ -822,6 +846,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	//Have Param and Sub
 	/** Comple expression or expression with parameters and sub expressions - Non-Functional */
 	static class Expr_Complex extends Expr_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Complex(int         pIHash, Object[] pParamExprs, Expression[] pSubExprs) { super(pIHash, pParamExprs); this.SubExprs = pSubExprs; }
 		Expr_Complex(Instruction pInst,  Object[] pParamExprs, Expression[] pSubExprs) { super(pInst, pParamExprs);  this.SubExprs = pSubExprs; }
 		// Expression --------------------------------------------------------------
@@ -847,6 +874,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Comple expression or expression with parameters and sub expressions - Non-Functional */
 	static class Expr_Complex_Functional extends Expr_Complex {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Complex_Functional(int pIHash, Object[] pParamExprs, Expression[] pSubExprs)        { super(pIHash, pParamExprs, pSubExprs); }
 		Expr_Complex_Functional(Instruction pInst, Object[] pParamExprs, Expression[] pSubExprs) { super(pInst, pParamExprs, pSubExprs);  }
 		// Expression --------------------------------------------------------------
@@ -868,6 +898,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Regular Data expression - Functional */
 	static class Expr_Data_Coordinate extends Expr_Data {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Data_Coordinate(int pCoordinate, Object pData) {
 			super(pData); this.Coordinate = pCoordinate;
 		}
@@ -879,6 +912,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Data expression for expression value - Non-functional */
 	static class Expr_Expr_Coordinate extends Expr_Expr {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Expr_Coordinate(int pCoordinate, Expression pData) { super(pData); this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
 		final int Coordinate;
@@ -889,6 +925,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Group expression or expression with no parameter - Non-Functional */
 	static class Expr_Group_Coordinate extends Expr_Group {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Group_Coordinate(int pCoordinate, int         pIHash, Expression[] pSubExprs) { super(pIHash, pSubExprs); this.Coordinate = pCoordinate; }
 		Expr_Group_Coordinate(int pCoordinate, Instruction pInst,  Expression[] pSubExprs) { super(pInst, pSubExprs);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
@@ -899,6 +938,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Group expression or expression with no parameter - Functional */
 	static class Expr_Group_Functional_Coordinate extends Expr_Group_Functional {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Group_Functional_Coordinate(int pCoordinate, int         pIHash, Expression[] pSubExprs) { super(pIHash, pSubExprs); this.Coordinate = pCoordinate; }
 		Expr_Group_Functional_Coordinate(int pCoordinate, Instruction pInst,  Expression[] pSubExprs) { super(pInst, pSubExprs);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
@@ -910,6 +952,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Simple expression or expression with parameters but no sub expressions - Non-Functional */
 	static class Expr_Simple_Coordinate extends Expr_Simple {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Simple_Coordinate(int pCoordinate, int         pIHash, Object[] pParams) { super(pIHash, pParams); this.Coordinate = pCoordinate; }
 		Expr_Simple_Coordinate(int pCoordinate, Instruction pInst,  Object[] pParams) { super(pInst, pParams);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
@@ -920,6 +965,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Simple expression or expression with parameters but no sub expressions - Functional */
 	static class Expr_Simple_Functional_Coordinate extends Expr_Simple_Functional {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Simple_Functional_Coordinate(int pCoordinate, int         pIHash, Object[] pParams) { super(pIHash, pParams); this.Coordinate = pCoordinate; }
 		Expr_Simple_Functional_Coordinate(int pCoordinate, Instruction pInst,  Object[] pParams) { super(pInst, pParams);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
@@ -931,6 +979,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 
 	/** Comple expression or expression with parameters and sub expressions - Non-Functional */
 	static class Expr_Complex_Coordinate extends Expr_Complex {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Complex_Coordinate(int pCoordinate, int         pIHash, Object[] pParamExprs, Expression[] pSubExprs) { super(pIHash, pParamExprs, pSubExprs); this.Coordinate = pCoordinate; }
 		Expr_Complex_Coordinate(int pCoordinate, Instruction pInst,  Object[] pParamExprs, Expression[] pSubExprs) { super(pInst, pParamExprs, pSubExprs);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------
@@ -941,6 +992,9 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 	}
 	/** Comple expression or expression with parameters and sub expressions - Functional */
 	static class Expr_Complex_Functional_Coordinate extends Expr_Complex_Functional {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		Expr_Complex_Functional_Coordinate(int pCoordinate, int         pIHash, Object[] pParamExprs, Expression[] pSubExprs) { super(pIHash, pParamExprs, pSubExprs); this.Coordinate = pCoordinate; }
 		Expr_Complex_Functional_Coordinate(int pCoordinate, Instruction pInst,  Object[] pParamExprs, Expression[] pSubExprs) { super(pInst, pParamExprs, pSubExprs);  this.Coordinate = pCoordinate; }
 		// Expression --------------------------------------------------------------

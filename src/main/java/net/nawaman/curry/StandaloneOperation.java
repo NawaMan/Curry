@@ -5,7 +5,9 @@ import net.nawaman.curry.util.*;
 import net.nawaman.util.UObject;
 
 final public class StandaloneOperation extends JavaExecutable.JavaSubRoutine_Complex {
-	
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	static public final String DefaultOperationName = "Operation";
 	
 	StackOwner Owner = null;

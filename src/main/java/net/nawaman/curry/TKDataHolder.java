@@ -150,7 +150,7 @@ final public class TKDataHolder extends TypeKind {
 			return "Mal-form TypeSpec: A dataholder's cannot be both unreadable and unwritable. (DataHolder type " +
 					TSD.toString() + ") <TKDataHolder:249>.";
 		
-		if((TSD.getDataTypeRef() == null) || TSD.getDataTypeRef().equals(TKJava.TVoid)) 
+		if((TSD.getDataTypeRef() == null) || TSD.getDataTypeRef().equals(TKJava.TVoid.getTypeRef())) 
 			return "Mal-form TypeSpec: A dataholder's data type must not be null or void. (DataHolder type " +
 					TSD.toString() + ") <TKDataHolder:146>.";
 		
@@ -330,10 +330,11 @@ final public class TKDataHolder extends TypeKind {
 		
 	/** TypeSpec of DataHolder Type */
 	static public class TSDataHolder extends TypeSpec {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		// Constants ------------------------------------------------------------------------
 		
-		@SuppressWarnings("hiding")
 		static final public String KindName = TKDataHolder.KindName;
 		
 		final static public int Index_ParameterizedTypeInfo = 0;
@@ -341,7 +342,6 @@ final public class TKDataHolder extends TypeKind {
 		final static public int Index_IsWritable            = 2;
 		final static public int Index_ExtraData             = 3;
 
-		@SuppressWarnings("hiding")
 		static final int ParameterIndex_TheTypeRef  = 0;
 		
 		// Service ---------------------------------------------------------------------------

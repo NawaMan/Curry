@@ -152,9 +152,9 @@ final public class TKArray extends TypeKind {
 	protected TSArray getTypeSpec(TypeRef pTypeRef, Type pContainType, int pLength, boolean pIsVerify, Documentation pDoc) {
 		return this.getTypeSpec(pTypeRef, pContainType.getTypeRef(), pLength, pIsVerify, pDoc);
 	}
-	protected TSArray getTypeSpec(TypeRef pTypeRef, TypeRef pContainTypeRef, int pLength, boolean pIsVerify,
+    protected TSArray getTypeSpec(TypeRef pTypeRef, TypeRef pContainTypeRef, int pLength, boolean pIsVerify,
 			Documentation pDoc) {
-		if((pContainTypeRef == null) || (pContainTypeRef.equals(TKJava.TVoid))) return null;
+		if((pContainTypeRef == null) || (pContainTypeRef.equals(TKJava.TVoid.getTypeRef()))) return null;
 		
 		// Adjust the value
 		if(pLength < -1) pLength = -1;
@@ -188,7 +188,7 @@ final public class TKArray extends TypeKind {
 	 *    in Instruction).
 	 **/
 	TArray newArrayType(TypeRef pTypeRef, TypeRef pContainTypeRef, int pLength) {
-		if((pContainTypeRef == null) || (pContainTypeRef.equals(TKJava.TVoid))) return null;
+		if((pContainTypeRef == null) || (pContainTypeRef.equals(TKJava.TVoid.getTypeRef()))) return null;
 		
 		TSArray TSA = this.getTypeSpec(pTypeRef, pContainTypeRef, pLength);
 		TArray  TA  = (TArray)TSA.getTypeRef().getTheType();
@@ -688,6 +688,9 @@ final public class TKArray extends TypeKind {
 				pTheType,
 				Public,
 				new JavaExecutable.JavaSubRoutine_Complex(E, ES, null, null) {
+		            
+		            private static final long serialVersionUID = -3009836901006887137L;
+		            
 					/**{@inheritDoc}*/ @Override
 					protected Object run(Context $Context, Object[] pParams) {
 						Object O = $Context.getStackOwner();
@@ -719,7 +722,9 @@ final public class TKArray extends TypeKind {
 
 	/** TypeSpec of array types */
 	static final public class TSArray extends TypeSpec {
-
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a new type spec. */
 		private TSArray(TypeRef pRef, Serializable[] pDatas, TypeRef[] pRequireTypeRefs) {
 			super(pRef, pDatas, pRequireTypeRefs, null);

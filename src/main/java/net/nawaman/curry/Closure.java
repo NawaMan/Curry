@@ -2,7 +2,9 @@ package net.nawaman.curry;
 
 /** Closure is a sub-routine that holds its own context. */
 final public class Closure extends WrapperExecutable.Wrapper implements Executable.SubRoutine {
-		
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs a closure */
 	Closure(Context pTheContext, Executable pExecutable) {
 		while(pExecutable instanceof Closure) pExecutable = ((Closure)pExecutable).getSubRoutine();

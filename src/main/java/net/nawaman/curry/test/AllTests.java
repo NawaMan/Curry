@@ -169,7 +169,7 @@ public class AllTests extends net.nawaman.testsuite.TestSuite {
 			Vector<EngineExtension> EEs = new Vector<EngineExtension>();
 			// Required to create a new engine
 			for(Class<? extends EngineExtension> EECls : ExtClasses) {
-				try { EEs.add((EngineExtension)EECls.newInstance()); }
+				try { EEs.add((EngineExtension)EECls.getConstructor().newInstance()); }
 				catch (Exception Exc) { throw new RuntimeException("Problem constructing an engine.", Exc); }
 			}
 			Exts = new EngineExtension[EEs.size()];

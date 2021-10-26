@@ -65,6 +65,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 	
 	/** Information of a delegating attribute */
 	static final public OperationInfo NoPermission = new EmptyOperation() {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Returns the kinds of this respond */
 		final public RKind getRKind() { return RKind.NoPermission; }
 		/** Returns the more data of this operation */
@@ -82,6 +85,8 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 	// EmptyOperation --------------------------------------------------------------------------------------------------
 	
 	static abstract class EmptyOperation implements OperationInfo {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
 		
 		/**{@inheritDoc}*/ @Override public Accessibility getAccessibility()     { return Accessibility.Private; }
 		/**{@inheritDoc}*/ @Override public ExecSignature getSignature()         { return null; }
@@ -141,6 +146,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 	
 	/** Simple implementation of Operation */
 	static abstract class SimpleOperation extends EmptyOperation {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		private ExecSignature DclSignature;
 		private Accessibility Access;
 		
@@ -444,6 +452,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 
 	/** Information of an operation that hold Executable as a data */
 	static abstract class OIExec extends WrapperExecutable.Wrapper implements OperationInfo, Executable {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Create a new concrete OperationInfo_Exec */
 		OIExec(Accessibility pAccess, Executable pExec) {
 			this.DclExec = pExec;
@@ -660,6 +671,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 
 	/** Information of a delegating attribute */
 	static public class OIDynamic extends SimpleOperation implements Dynamic {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		OIDynamic(Accessibility pAccess, ExecSignature pSignature, MoreData pMoreData) {
 			super(pAccess, pSignature, pMoreData);
 		}
@@ -690,6 +704,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 	/** Information of a native operation */
 	static class OINative extends NativeExecutable.JavaMethodInvoke implements OperationInfo, Executable.SubRoutine,
 									Respond, Native {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		OINative(Engine pEngine, Method pMethod) {
 			super(pEngine, pMethod);
 		}
@@ -814,6 +831,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 	
 	/** Information of a direct operation */
 	static public class OIDirect extends OIExec implements Direct {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Create a new concrete OperationInfo_Direct */
 		OIDirect(Accessibility pAccess, Executable pExec, MoreData pMoreData) {
 			super(pAccess, pExec);
@@ -870,6 +890,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 
 	/** Information of a delegating operation */
 	static public class OIDlgAttr extends SimpleOperation implements DlgAttr {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		OIDlgAttr(Accessibility pAccess, ExecSignature pSignature, String pDlgName, MoreData pMoreData) {
 			super(pAccess, pSignature, pMoreData);
 			this.DlgName = pDlgName;
@@ -937,6 +960,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 
 	/** Information of a delegating operation */
 	static public class OIDlgObject extends SimpleOperation implements DlgObject {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		OIDlgObject(Accessibility pAccess, ExecSignature pSignature, Object pDlgObject, MoreData pMoreData) {
 			super(pAccess, pSignature, pMoreData);
 			this.Target = pDlgObject;
@@ -1009,6 +1035,9 @@ public interface OperationInfo extends Respond, HasSignature, Serializable, Clon
 
 	/** Information of a direct operation */
 	static public class OIVariant extends OIExec implements Variant {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		/** Create a new abstract OperationInfo_Direct */
 		OIVariant(ExecSignature pSignature, Executable.ExecKind pKind) {
 			super(Accessibility.Public, pSignature, pKind);

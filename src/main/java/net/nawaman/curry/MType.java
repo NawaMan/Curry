@@ -2175,15 +2175,16 @@ public class MType extends EnginePart {
 						catch (Exception Excp) {}
 					}
 					
-					if(TA == null) {
-						// Check the type ref only
-						if(TKJava.TDouble .getTypeRef().equals(TA)) return 3;
-						if(TKJava.TFloat  .getTypeRef().equals(TA)) return 3;
-						if(TKJava.TLong   .getTypeRef().equals(TA)) return 3;
-						if(TKJava.TInteger.getTypeRef().equals(TA)) return 3;
-						if(TKJava.TShort  .getTypeRef().equals(TA)) return 3;
-						if(TKJava.TByte   .getTypeRef().equals(TA)) return 3;
-					}
+//					This does not seems to make sense.
+//					if(TA == null) {
+//						// Check the type ref only
+//						if(TKJava.TDouble .getTypeRef().equals(TA)) return 3;
+//						if(TKJava.TFloat  .getTypeRef().equals(TA)) return 3;
+//						if(TKJava.TLong   .getTypeRef().equals(TA)) return 3;
+//						if(TKJava.TInteger.getTypeRef().equals(TA)) return 3;
+//						if(TKJava.TShort  .getTypeRef().equals(TA)) return 3;
+//						if(TKJava.TByte   .getTypeRef().equals(TA)) return 3;
+//					}
 				}
 				
 				// Primitive

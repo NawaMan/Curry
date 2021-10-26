@@ -19,7 +19,6 @@
 package net.nawaman.curry;
 
 import net.nawaman.util.NonNative;
-import net.nawaman.util.Objectable;
 
 /**
  * Standalone object for DObject

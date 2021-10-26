@@ -35,6 +35,9 @@ import net.nawaman.task.TaskOptions;
 
 /** Task for compile file */
 abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends TaskForCodeUsingRegParser {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	static final Class<?>[] IOCls = new Class<?>[] { ParseResult.class, UnitBuilder.class, String.class, String[].class };
 	static final Object[]   IODVs = new Object[]   { null, null, null };
 
@@ -192,6 +195,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 	/** Task for types operations */
 	static abstract class TypeRelated<FCRTypes extends FileCompileResult.TypeRelated>
 	                          extends FileCompileTasks_Code<FCRTypes> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected TypeRelated(String pName, PTypeProvider pTPackage) {
 			super(pName, pTPackage);
@@ -232,6 +238,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 	
 	/** Task for registering types */
 	static public class TypeRegistration extends TypeRelated<FileCompileResult.TypeRegistration> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected TypeRegistration(PTypeProvider pTPackage) {
 			super("TypeRegistration", pTPackage);
@@ -256,6 +265,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 
 	/** Task for constructing the file structure */
 	static public class StructureRegistration extends FileCompileTasks_Code<FileCompileResult.StructuralRegistration> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected StructureRegistration(PTypeProvider pTPackage) {
 			super("Structure", pTPackage);
@@ -444,6 +456,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 	
 	/** Task for refining type specification */
 	static public class TypeRefinition extends TypeRelated<FileCompileResult.TypeRegistration> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected TypeRefinition(PTypeProvider pTPackage) {
 			super("TypeRefinition", pTPackage);
@@ -473,6 +488,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 	 * The compilation is done by executing ElementResolver assigned to each elements during the registration.
 	 **/
 	static public class FullCompilation  extends FileCompileTasks_Code<FileCompileResult> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected FullCompilation(PTypeProvider pTPackage) {
 			super("FullComilation", pTPackage);
@@ -647,6 +665,9 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 
 	/** Task for validating type */
 	static public class TypeValidation extends FileCompileTasks_Code<FileCompileResult.StructuralRegistration> {
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a CompileTask */
 		protected TypeValidation(PTypeProvider pTPackage) {
 			super("Validation", pTPackage);

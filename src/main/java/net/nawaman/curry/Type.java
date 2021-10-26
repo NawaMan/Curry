@@ -292,8 +292,6 @@ abstract public class Type extends StackOwner_Simple implements Objectable {
 			);
 		
 		Engine E = this.getEngine();
-		if((E = pEngine) == null) return null;
-		
 		String    Error = null;
 		Exception Excpt = null;
 		try {
@@ -649,11 +647,16 @@ abstract public class Type extends StackOwner_Simple implements Objectable {
 	
 	/** A type for object type artifact accessibility */
 	static abstract public class Access extends Accessibility {
+        
+        private static final long serialVersionUID = -3009836901006887137L;
+        
 		protected Access() {}
 		
 		/** Predefine protected */
-		@SuppressWarnings("hiding")
 		static public final Access Protected = new Access() {
+            
+            private static final long serialVersionUID = -3009836901006887137L;
+            
 			@Override public    String  getName()     { return "Protected"; }
 			@Override public    boolean isProtected() { return true;        }
 			@Override protected boolean checkEqual(Accessibility pAcc) {

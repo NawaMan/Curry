@@ -59,7 +59,7 @@ public class DObject extends StackOwner_Lite implements TypedData, InvocationHan
 				Class<? extends DObjectStandalone> Cls = this.getTheType().getAsNativeClass(this.getEngine());
 				if(Cls != null) {
 					try {
-						this.AsNative = Cls.newInstance();
+						this.AsNative = Cls.getConstructor().newInstance();
 						UClass.invokeObjectMethod(this.AsNative, "setAsDObject", new Object[] { this });
 					} catch(Exception E) {
 						this.AsNative = null;

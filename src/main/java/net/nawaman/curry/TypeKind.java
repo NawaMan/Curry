@@ -175,7 +175,7 @@ abstract public class TypeKind implements Objectable {
 		boolean  HasSuper = (SuperTR != null) && !TKJava.TAny.getTypeRef().equals(SuperTR);
 		if(HasSuper) {
 			Super = MT.getTypeFromRefNoCheck(pContext, SuperTR);
-			if(TKJava.TAny.equals(Super.getTypeRef())) {
+			if(TKJava.TAny.equals(Super)) {
 				Super    = null;
 				SuperTR  = null;
 				HasSuper = false;
@@ -317,7 +317,6 @@ abstract public class TypeKind implements Objectable {
 		
 		// Precondition
 		if(!TheSpec.getKindName().equals(this.getKindName())) {
-			if(TheSpec == null) throw new NullPointerException();
 			throw new CurryError("Internal Error: Wrong Type Kind ("+TheSpec+").(TKTypeKind#458)", pContext);
 		}
 		if(BySpec == null) return false;

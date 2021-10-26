@@ -279,7 +279,8 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		return TAIDE.getTempData();
 	}
 	/** Resolve the temporary attribute */
-	final public boolean resolveTempAttr(String pName, Object pID, TypeRef pDValueTypeRef, Serializable pDValue) {
+	@SuppressWarnings("unlikely-arg-type")
+    final public boolean resolveTempAttr(String pName, Object pID, TypeRef pDValueTypeRef, Serializable pDValue) {
 		if(this.TempAttrs == null) return false;
 		TempAIDirectEntry TAIDE = this.TempAttrs.get(pName);
 		if(TAIDE == null) return false;
@@ -323,6 +324,7 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		if(TOIDE == null) return null;
 		return TOIDE.getTempData();
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempOper(ExecSignature pES, Object pID, Expression pBody) {
 		if(this.TempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.TempOpers.get(pES);
@@ -331,6 +333,7 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		if(Result) this.TempOpers.remove(TOIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempOper(ExecSignature pES, Object pID, ExternalExecutor pEE, Object pEEID, Object pEESC) {
 		if(this.TempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.TempOpers.get(pES);
@@ -339,6 +342,7 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		if(Result) this.TempOpers.remove(TOIDE);
 		return Result;
 	}
+    @SuppressWarnings("unlikely-arg-type")
 	final public boolean resolveTempOper(ExecSignature pES, Object pID, Executable pExec) {
 		if(this.TempOpers == null) return false;
 		TempOIDirectEntry TOIDE = this.TempOpers.get(pES);

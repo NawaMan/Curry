@@ -48,7 +48,9 @@ final public class TKVariant extends TypeKind {
 	
 	/** TypeSpec of a Variant Type */
 	static final class TSVariant extends TypeSpec {
-		
+        
+        private static final long serialVersionUID = 8605071645446256069L;
+        
 		/** Constructs a TypeSpec for Variant Type */
 		protected TSVariant(TypeRef pTypeRef, TypeRef pAsType, TypeRef[] pTypes, TypeRef pTypeToNew,
 				TypeRef[] pInterfaceRefs, ParameterizedTypeInfo pTPInfo, MoreData pExtraInfo) {

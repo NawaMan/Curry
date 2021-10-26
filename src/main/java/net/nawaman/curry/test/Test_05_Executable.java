@@ -37,6 +37,9 @@ public class Test_05_Executable extends TestCase {
 		                            new String[]  { "Integer" }, TKJava.TInteger.getTypeRef());
 		
 		Executable.SubRoutine Exec1 = new JavaExecutable.JavaSubRoutine_Simple(ExSign1) {
+            
+            private static final long serialVersionUID = -3009836901006887137L;
+            
 			// Executing -----------------------------------------------------------
 			protected @Override Object run(Object[] pParams) {
 				Number N = (Number)pParams[0];
@@ -47,6 +50,9 @@ public class Test_05_Executable extends TestCase {
 		};
 		
 		Executable.SubRoutine Exec2 = new JavaExecutable.JavaSubRoutine_Simple(ExSign2) {
+            
+            private static final long serialVersionUID = -3009836901006887137L;
+            
 			// Executing -----------------------------------------------------------
 			protected @Override Object run(Object[] pParams) {
 				if(pParams[0] == null) return 1;

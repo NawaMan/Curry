@@ -10,6 +10,9 @@ import net.nawaman.regparser.RegParser;
 import net.nawaman.task.TaskOptions;
 
 public class FileParseTask extends ParseTask {
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs a ParseTask */
 	protected FileParseTask(String pName, PTypeProvider pTProvider) {
 		super(pName);

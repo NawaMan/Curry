@@ -527,7 +527,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to local variable */
 	static public class SPLocalVar extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "LocalVariable";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -609,7 +608,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to parent variable by count */
 	static public class SPParentVarByCount extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ParentVarByCount";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -705,7 +703,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to parent variable by StackName */
 	static public class SPParentVarByName extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ParentVarByName";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -794,7 +791,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to Global variable */
 	static public class SPGlobalVar extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "GlobalVariable";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -877,7 +873,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to Engine variable */
 	static public class SPEngineVar extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "EngineVariable";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -961,7 +956,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	/** Increment access to array element */
 	static public class SPArrayElement extends SourceProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ArrayElement";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1022,7 +1016,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	
 	static public class IncBefore extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "IncBefore";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1036,7 +1029,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class DecBefore extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "DecBefore";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1050,7 +1042,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class IncAfter extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "IncAfter";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1065,7 +1056,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class DecAfter extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "DecAfter";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1081,7 +1071,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	
 	static public class AppendTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "AppendTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1098,7 +1087,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	
 	static public class AddTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "AddTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1112,7 +1100,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class SubtractFrom extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "SubtractFrom";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1126,7 +1113,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class MulTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "MulTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1140,7 +1126,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class DivTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "DivTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1154,7 +1139,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class ModulusOf extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ModulusOf";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1210,7 +1194,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class ShiftLeftBy extends ShiftBy {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ShiftLeftBy";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1224,7 +1207,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class ShiftRightBy extends ShiftBy {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ShiftRightBy";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1238,7 +1220,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class ShiftRightUnsignedBy extends ShiftBy {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ShiftRightUnsignedBy";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1257,7 +1238,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	
 	static public class bitwiseAndTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "andTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1271,7 +1251,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class bitwiseOrTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "orTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1285,7 +1264,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class bitwiseXorTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "xorTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1302,7 +1280,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	
 	static public class ANDTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ANDTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1318,7 +1295,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class ORTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "ORTo";
 		static final public int    NameHash = UString.hash(Name);
 		
@@ -1334,7 +1310,6 @@ public class Inst_Assignment extends Inst_AbstractSimple {
 	}
 	static public class XORTo extends OperatorProvider {
 		
-		@SuppressWarnings("hiding")
 		static final public String Name     = "XORTo";
 		static final public int    NameHash = UString.hash(Name);
 		

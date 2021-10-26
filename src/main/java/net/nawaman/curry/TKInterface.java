@@ -131,8 +131,9 @@ public class TKInterface extends TypeKind {
 		return this.newTypeSpec(TRef, pInterfaceRefs, pTargetRef, pTPInfo, pExtraInfo, true, pMethodsSignature);
 	}
 	
-	/** Creats a TypeSpec for Interface Type */
-	public TypeSpec newTypeSpec(TypeRef TRef, TypeRef[] pInterfaceRefs, TypeRef pTargetRef, final ParameterizedTypeInfo pTPInfo,
+	/** Creates a TypeSpec for Interface Type */
+	@SuppressWarnings("unlikely-arg-type")
+    public TypeSpec newTypeSpec(TypeRef TRef, TypeRef[] pInterfaceRefs, TypeRef pTargetRef, final ParameterizedTypeInfo pTPInfo,
 			MoreData pExtraInfo, boolean pIsStrict, ExecSignature ... pMethodsSignature) {
 		
 		TSInterface TSI = new TSInterface(TRef, pInterfaceRefs, pTargetRef, pTPInfo, pIsStrict, pExtraInfo);
@@ -625,7 +626,6 @@ public class TKInterface extends TypeKind {
 
 		// Constructor and verification ---------------------------------------------------------------
 
-        @SuppressWarnings("unchecked")
 		protected TSInterface(TypeRef pTRef, TypeRef[] pInterfaceRefs, TypeRef pTargetRef, ParameterizedTypeInfo pTPInfo,
 				boolean pIsStrict, MoreData pExtraInfo) {
 			super(pTRef);
@@ -695,7 +695,6 @@ public class TKInterface extends TypeKind {
 			return Index_Parameterization;
 		}
 		
-		@SuppressWarnings("unchecked")
 		/**{@inheritDoc}*/ @Override
 		protected void resolveParameteredTypeSpec(Context pContext, Engine pEngine) {
 			super.resolveParameteredTypeSpec(pContext, pEngine);

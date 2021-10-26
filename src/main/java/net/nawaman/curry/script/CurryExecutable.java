@@ -16,7 +16,9 @@ import net.nawaman.script.ScriptManager;
 
 /** Script Executable wrapper for Curry Executable */
 abstract public class CurryExecutable implements net.nawaman.script.Executable {
-
+    
+    private static final long serialVersionUID = 8605071645446256069L;
+    
 	/** Constructs CurryExecutable from curry executable and the code*/
 	protected CurryExecutable(CurryEngine pCEngine, String pCode, Executable pExec) {
 		this.CEngine = pCEngine;
@@ -52,6 +54,9 @@ abstract public class CurryExecutable implements net.nawaman.script.Executable {
 		final CurryExecutable This = this;
 		if(this.FVInfos == null) {
 			this.FVInfos = new FrozenVariableInfos() {
+	            
+	            private static final long serialVersionUID = -3009836901006887137L;
+	            
 				/**{@inheritDoc}*/ @Override 
 				public String[] getFrozenVariableNames() {
 					return This.TheExecutable.getFrozenVariableNames();

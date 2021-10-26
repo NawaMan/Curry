@@ -13,6 +13,9 @@ import net.nawaman.script.Scope;
 import net.nawaman.script.Signature;
 
 public class CurryMacro extends CurryExecutable implements net.nawaman.script.Macro, Serializable {
+    
+    private static final long serialVersionUID = -3009836901006887137L;
+    
 	
 	public CurryMacro(CurryEngine pCEngine, String pCode, Macro pMacro) {
 		super(pCEngine, pCode, pMacro);

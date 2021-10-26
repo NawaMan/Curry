@@ -91,78 +91,79 @@ public class UnitFactories {
 			try {
 				Object O = null;
 				FIS = new FileInputStream(FileName);
-				ObjectInputStream OIS = new ObjectInputStream(FIS);
-				
-				// Check Signature of the file
-				O = OIS.readObject();
-				if(!MUnit.UNIT_FILE_SIGNATURE.equals(O)) {
-					System.err.println("File Unit Loading Error: Incompatible unit file (Wrong File Signature): " + pName);
-					return null;
-				}
-				
-				// Check Signature of the engine
-				O = OIS.readObject();
-				StringBuffer SB = new StringBuffer();
-				if(!pEngine.getEngineSpec().checkCompatibility((Serializable)O, SB) || (SB.length() != 0)) {
-					System.err.println(
-						String.format(
-							"File Unit Loading Error: Incompatible package unit (Wrong Engine Signature: %s): %s",
-							SB, pName
-						)
-					);
-					return null;
-				}
-				
-				// Get Packages
-				O = OIS.readObject();
-				if(O == null) return null;
-				if(!(O instanceof byte[])) {
-					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid byte array): " + pName);
-					return null;
-				}
-				
-				byte[] Bytes = (byte[])O;
-				// Load the dependency info
-				O = LoadPackagesDependencyInfo(Bytes);
-				if(O == null) return null;
-				if(!(O instanceof DependencyInfo)) {
-					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid dependency info array): " + pName);
-					return null;
-				}
-				DInfo = (DependencyInfo)O;
-				
-				// Load the package
-				O = LoadPackages(pEngine, Bytes);
-				if(O == null) return null;
-				if(!(O instanceof Package[])) {
-					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid package Array): " + pName);
-					return null;
-				}
-				Ps = (Package[])O;
-
-				// Get Code Names
-				O = OIS.readObject();
-				if((O != null) && !(O instanceof String[])) {
-					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid code name Array): " + pName);
-					return null;
-				}
-				CodeNames = (String[])O;
-
-				// Get Codes
-				O = OIS.readObject();
-				if((O != null) && !(O instanceof Code[])) {
-					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid code Array): " + FileName);
-					return null;
-				}
-				Codes = (Code[])O;
-				
-				if((CodeNames != null) || (Codes != null)) {
-					boolean IsError = ((CodeNames == null) || (Codes == null));
-					if(IsError || (CodeNames.length != Codes.length)) {
-						System.err.println("File Unit Loading Error: Incompatible package unit (code names and codes "
-								+ "have different dimension): " + pName);
-						return null;
-					}
+				try (var OIS = new ObjectInputStream(FIS)) {
+    				
+    				// Check Signature of the file
+    				O = OIS.readObject();
+    				if(!MUnit.UNIT_FILE_SIGNATURE.equals(O)) {
+    					System.err.println("File Unit Loading Error: Incompatible unit file (Wrong File Signature): " + pName);
+    					return null;
+    				}
+    				
+    				// Check Signature of the engine
+    				O = OIS.readObject();
+    				StringBuffer SB = new StringBuffer();
+    				if(!pEngine.getEngineSpec().checkCompatibility((Serializable)O, SB) || (SB.length() != 0)) {
+    					System.err.println(
+    						String.format(
+    							"File Unit Loading Error: Incompatible package unit (Wrong Engine Signature: %s): %s",
+    							SB, pName
+    						)
+    					);
+    					return null;
+    				}
+    				
+    				// Get Packages
+    				O = OIS.readObject();
+    				if(O == null) return null;
+    				if(!(O instanceof byte[])) {
+    					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid byte array): " + pName);
+    					return null;
+    				}
+    				
+    				byte[] Bytes = (byte[])O;
+    				// Load the dependency info
+    				O = LoadPackagesDependencyInfo(Bytes);
+    				if(O == null) return null;
+    				if(!(O instanceof DependencyInfo)) {
+    					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid dependency info array): " + pName);
+    					return null;
+    				}
+    				DInfo = (DependencyInfo)O;
+    				
+    				// Load the package
+    				O = LoadPackages(pEngine, Bytes);
+    				if(O == null) return null;
+    				if(!(O instanceof Package[])) {
+    					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid package Array): " + pName);
+    					return null;
+    				}
+    				Ps = (Package[])O;
+    
+    				// Get Code Names
+    				O = OIS.readObject();
+    				if((O != null) && !(O instanceof String[])) {
+    					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid code name Array): " + pName);
+    					return null;
+    				}
+    				CodeNames = (String[])O;
+    
+    				// Get Codes
+    				O = OIS.readObject();
+    				if((O != null) && !(O instanceof Code[])) {
+    					System.err.println("File Unit Loading Error: Incompatible package unit (Invalid code Array): " + FileName);
+    					return null;
+    				}
+    				Codes = (Code[])O;
+    				
+    				if((CodeNames != null) || (Codes != null)) {
+    					boolean IsError = ((CodeNames == null) || (Codes == null));
+    					if(IsError || (CodeNames.length != Codes.length)) {
+    						System.err.println("File Unit Loading Error: Incompatible package unit (code names and codes "
+    								+ "have different dimension): " + pName);
+    						return null;
+    					}
+    				}
 				}
 				
 			} catch(Exception E) {
