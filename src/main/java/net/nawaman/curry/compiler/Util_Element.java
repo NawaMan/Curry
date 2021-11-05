@@ -15,7 +15,7 @@ import net.nawaman.curry.Variable;
 import net.nawaman.curry.Executable.ExecKind;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_Element {
@@ -104,7 +104,7 @@ public class Util_Element {
 		if(NonNull   && IsNull)            { $CProduct.reportError("The variable/constant must not be null <Util_Element:95>",     null, $Result.posOf(enDEFAULTVALUE)); return null; }
 
 		int EIndex = -1;
-		for(int i = $Result.count(); --i >= 0; ) { if(DValue == $Result.getSubOf(i)) { EIndex = i; break; } }
+		for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultAt(i)) { EIndex = i; break; } }
 		ElementResolver Resolver = (DValue == null)?null:Util_ElementResolver.newAttrResolver(false, Name, $Result, EIndex, $TPackage, $CProduct);
 
 		if             (RAccess == null)  RAccess = net.nawaman.curry.Package.Public;	// Default is public
@@ -177,12 +177,12 @@ public class Util_Element {
 		}
 
 		if(Language != null) {
-			int EIndex = $Result.getLastIndexOfEntryName(enLANGCODE);
+			int EIndex = $Result.lastIndexFor(enLANGCODE);
 			// Create the resolver
 			Resolver = Util_ElementResolver.newOperResolver(false, Signature, EKind, $Result, EIndex, Language, $TPackage, $CProduct);
 				
 		} else {
-			int EIndex = $Result.getLastIndexOfEntryName(enCURRYBODY);
+			int EIndex = $Result.lastIndexFor(enCURRYBODY);
 			// Create the resolver
 			Resolver = Util_ElementResolver.newOperResolver(false, Signature, EKind, $Result, EIndex, null, $TPackage, $CProduct);
 				

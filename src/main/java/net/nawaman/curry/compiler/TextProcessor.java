@@ -5,7 +5,7 @@ import java.io.Serializable;
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.ExternalContext;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 
 /**	Process a text - Implementation of this class must have a default constructor */
 public interface TextProcessor extends Serializable {

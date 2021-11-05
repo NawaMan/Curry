@@ -68,12 +68,12 @@ public class Test_10_Location extends TestCaseParser {
 		this.IsProcessed = false;
 		this.assertValue(ProductContainer.toString(),
 			"CompileProduct ===================================================================================\n" +
-			"CodeFeeder#0 => [Feeder] {\n"                                                                         +
-			"	Code: `Code1.curry::S1():any` => [Source, PResult, SubRoutine, Code]\n"                            +
-			"}\n"                                                                                                  +
-			"Arbitrary Datas => [GlobalScope, FVNames, IsOwnerObject, Offset, EndPos, CodeFeederName, Signature, OwnerTypeRef, IsLocal, Imports, CodeName, OwnerPackage, TopScope, ExtraData]\n" +
+			"CodeFeeder#0 => [Feeder] {\n" + 
+	        "	Code: `Code1.curry::S1():any` => [PResult, Code, SubRoutine, Source]\n" +
+			"}\n" +
+	        "Arbitrary Datas => [OwnerPackage, GlobalScope, EndPos, CodeName, IsOwnerObject, IsLocal, TopScope, Imports, ExtraData, Offset, OwnerTypeRef, FVNames, Signature, CodeFeederName]\n" +
 			"--------------------------------------------------------------------------------------------------\n" +
-			"Messages: 0 message(s)\n"                                                                             +
+	        "Messages: 0 message(s)\n" +
 			"=================================================================================================="
 		);
 		

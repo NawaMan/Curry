@@ -27,7 +27,7 @@ import net.nawaman.curry.compiler.ExecutableCompileTasks.*;
 import net.nawaman.curry.util.MoreData;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.util.UClass;
 
 /**

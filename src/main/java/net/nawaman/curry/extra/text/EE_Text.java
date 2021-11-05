@@ -34,7 +34,7 @@ import net.nawaman.curry.compiler.CompileProduct;
 import net.nawaman.curry.compiler.Util_Literal;
 import net.nawaman.curry.extra.type_object.EE_Object;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.text.FixedLengthText;
 import net.nawaman.text.StructureText;
 import net.nawaman.text.Text;
@@ -117,7 +117,7 @@ public class EE_Text extends EngineExtension {
 		CreateText.manipulateCompileContextStart($CProduct, $Result.posOf(0));
 		
 		StringBuilder  LastStr = new StringBuilder();
-		int            Count   = $Result.count();
+		int            Count   = $Result.entryCount();
 		Vector<Object> Objs    = new Vector<Object>();
 		
 		for(int i = 0; i < Count; i++) {

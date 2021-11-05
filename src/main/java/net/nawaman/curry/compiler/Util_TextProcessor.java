@@ -8,7 +8,7 @@ import net.nawaman.curry.JavaExecutable;
 import net.nawaman.curry.TKJava;
 import net.nawaman.curry.TypeRef;
 import net.nawaman.curry.Instructions_Executable.Inst_Call;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
 
@@ -67,7 +67,7 @@ public class Util_TextProcessor {
 					$LangName
 				),
 				null,
-				$Result.getStartPosition()
+				$Result.startPosition()
 			);
 			return null;
 		}
@@ -82,7 +82,7 @@ public class Util_TextProcessor {
 						$LangName
 					),
 					null,
-					$Result.getStartPosition()
+					$Result.startPosition()
 				);
 				return null;
 			}
@@ -102,7 +102,7 @@ public class Util_TextProcessor {
 						$LangName
 					),
 					null,
-					$Result.getStartPosition()
+					$Result.startPosition()
 				);
 				return null;
 			}

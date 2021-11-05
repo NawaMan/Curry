@@ -1,7 +1,7 @@
 package net.nawaman.curry.compiler;
 
 import net.nawaman.curry.Location;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 
 public class Util_Curry {
 

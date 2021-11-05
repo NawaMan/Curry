@@ -12,7 +12,7 @@ import net.nawaman.curry.Instructions_Array.Inst_NewArrayLiteral;
 import net.nawaman.curry.Instructions_Context.Inst_NewConstant;
 import net.nawaman.curry.util.FormattableAdaptor;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 
 /** TextProcessor for curry code */
 final public class TextProcessor_Curry implements TextProcessor {

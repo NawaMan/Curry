@@ -15,7 +15,7 @@ import net.nawaman.curry.TypeBuilder;
 import net.nawaman.curry.TypeRef;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_ElementResolver {
@@ -39,13 +39,13 @@ public class Util_ElementResolver {
 			public void resolveElement(CompileProduct $CProduct, StackOwnerBuilder SOB) {
 				if($ThisResult == null) return;
 				
-				ParseResult $Result = $ThisResult.getSubOf(pEIndex);
-				PType       Type    = $TProvider.getType($ThisResult.getTypeNameOfSubOf(pEIndex));
+				ParseResult $Result = $ThisResult.subResultAt(pEIndex);
+				PType       Type    = $TProvider.getType($ThisResult.typeNameAt(pEIndex));
 				// Just ignored this part
 				if((Type == null) || ($Result == null)) {
 					$CProduct.reportError(
 						"Unable to compile the body. <ConstructorResolver:38>",
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 					return;
 				}
 				
@@ -55,7 +55,7 @@ public class Util_ElementResolver {
 							"Only a type can have a constructor: `{%s}` is not a type. <ConstructorResolver:47>",
 							SOB),
 						null,
-						$Result.getStartPosition()
+						$Result.startPosition()
 					);
 					return;
 				}
@@ -87,7 +87,7 @@ public class Util_ElementResolver {
 						String.format(
 							"The constructor body must be a serializable. (``{%s}.{%s}``) <ConstructorResolver:70>",
 							SOB, pSignature),
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 					return;
 				}
 				
@@ -163,15 +163,15 @@ public class Util_ElementResolver {
 				null, null, null, false);
 		if(Imports != null) $CProduct.addImport(Imports);
 		
-		ParseResult $Result = $ThisResult.getSubOf(EIndex);
-		PType       Type    = $TProvider.getType($ThisResult.getTypeNameOfSubOf(EIndex));
+		ParseResult $Result = $ThisResult.subResultAt(EIndex);
+		PType       Type    = $TProvider.getType($ThisResult.typeNameAt(EIndex));
 		// Just ignored this part
 		if((Type == null) || ($Result == null)) {
 			$CProduct.reportError(
 				String.format(
 					"Unable to compile the default value (`{%s}.{%s}`). <AttributeResolver:120>",
 					SOB, Name),
-				null, $Result.getStartPosition());
+				null, $Result.startPosition());
 			return CompileResolvedHasProblem;
 		}
 		
@@ -181,7 +181,7 @@ public class Util_ElementResolver {
 				String.format(
 					"The default value must be a serializable (`{%s}.{%s}`). <AttributeResolver:130>",
 					SOB, Name),
-				null, $Result.getStartPosition());
+				null, $Result.startPosition());
 			return CompileResolvedHasProblem;
 		}
 		
@@ -268,7 +268,7 @@ public class Util_ElementResolver {
 			
 			/**{@inheritDoc}*/ @Override
 			public int getDefaultValuePosition() {
-				return $ThisResult.getSubOf(EIndex).getStartPosition();
+				return $ThisResult.subResultAt(EIndex).startPosition();
 			}
 			/**{@inheritDoc}*/ @Override
 			public Serializable getDefaultValue(CompileProduct $CProduct, StackOwnerBuilder SOB) {

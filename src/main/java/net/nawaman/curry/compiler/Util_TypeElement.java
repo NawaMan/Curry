@@ -17,7 +17,7 @@ import net.nawaman.curry.Variable;
 import net.nawaman.curry.Executable.ExecKind;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UString;
 
@@ -58,7 +58,7 @@ public class Util_TypeElement {
 			Object C = Cs[i];
 			if(C == null) continue;
 			if(!(C instanceof FileCompileResult.TypeConstructor)) {
-				$CProduct.reportError("Invalid return result for constructor. <TypeElements:53>", null, CPRs[i].getStartPosition());
+				$CProduct.reportError("Invalid return result for constructor. <TypeElements:53>", null, CPRs[i].startPosition());
 				return null;
 			}
 			Elements.add((FileCompileResult.TypeElement<?>)C);
@@ -72,7 +72,7 @@ public class Util_TypeElement {
 			Object M = Ms[i];
 			if(M == null) continue;
 			if(!(M instanceof FileCompileResult.TypeMethod)) {
-				$CProduct.reportError("Invalid return result for method. <TypeElements:53>", null, MPRs[i].getStartPosition());
+				$CProduct.reportError("Invalid return result for method. <TypeElements:53>", null, MPRs[i].startPosition());
 				return null;
 			}
 			Elements.add((FileCompileResult.TypeElement<?>)M);
@@ -86,7 +86,7 @@ public class Util_TypeElement {
 			Object F = Fs[i];
 			if(F == null) continue;
 			if(!(F instanceof FileCompileResult.TypeField)) {
-				$CProduct.reportError("Invalid return result for field. <TypeElements:67>", null, FPRs[i].getStartPosition());
+				$CProduct.reportError("Invalid return result for field. <TypeElements:67>", null, FPRs[i].startPosition());
 				return null;
 			}
 			Elements.add((FileCompileResult.TypeElement<?>)F);
@@ -224,12 +224,12 @@ public class Util_TypeElement {
 			
 		} else if(HasBody) {		
 			if(Language != null) {
-				int EIndex = $Result.getLastIndexOfEntryName(Util_Element.enLANGCODE);
+				int EIndex = $Result.lastIndexFor(Util_Element.enLANGCODE);
 				// Create the resolver
 				Resolver = Util_ElementResolver.newOperResolver(IsStatic, Signature, EKind, $Result, EIndex, Language, $TPackage, $CProduct);
 				
 			} else {
-				int EIndex = $Result.getLastIndexOfEntryName(Util_Element.enCURRYBODY);
+				int EIndex = $Result.lastIndexFor(Util_Element.enCURRYBODY);
 				// Create the resolver
 				Resolver = Util_ElementResolver.newOperResolver(IsStatic, Signature, EKind, $Result, EIndex, null, $TPackage, $CProduct);
 				
@@ -350,8 +350,8 @@ public class Util_TypeElement {
 		}
 		
 		int EIndex = -1;
-		for(int i = $Result.count(); --i >= 0; ) {
-			if(DValue != $Result.getSubOf(i)) continue;
+		for(int i = $Result.entryCount(); --i >= 0; ) {
+			if(DValue != $Result.subResultAt(i)) continue;
 			EIndex = i;
 			break;
 		}
@@ -415,7 +415,7 @@ public class Util_TypeElement {
 		ExecSignature Signature = ExecSignature.newSignature(   "new", ITRefs, INames, Interface.isVarArgs(), TKJava.TVoid.getTypeRef(), Location, null);
 		MoreData      MData     = MoreData.newMoreDataFromArray($Result.valuesOf(Util_Element.enMOREDATA, $TPackage, $CProduct), true);
 		
-		int             EIndex   = $Result.getLastIndexOfEntryName(Util_Element.enCURRYBODY);
+		int             EIndex   = $Result.lastIndexFor(Util_Element.enCURRYBODY);
 		ElementResolver Resolver = Util_ElementResolver.newConstructorResolver(Signature, $Result, EIndex, $TPackage, $CProduct);
 		
 		StackOwnerAppender SOA = StackOwnerAppender.Util.newConstructor($CProduct, $TPackage, $Result, Access, Signature, MData, Resolver, Document);

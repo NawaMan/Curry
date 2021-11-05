@@ -18,7 +18,11 @@
 
 package net.nawaman.curry;
 
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -469,6 +473,7 @@ public class TKInterface extends TypeKind {
 		
 		// Check Operation
 		OperationInfo[] OIs = pInterface.getObjectOperationInfos();
+		var notFounds = new ArrayList<OperationInfo>();
 		for(OperationInfo OI : OIs) {
 			if(OI == null) continue;
 			// Operation from Object are everywhere so there is no need to check
@@ -499,16 +504,24 @@ public class TKInterface extends TypeKind {
 			}
 			
 			if(!IsFound) {
-				if(!pIsThrowError) return false;
-				throw new CurryError(
-						String.format(
-							"The type '%s' must implement the operation '%s' in order to implement the interface '%s'.",
-							pTheType, OI.getDeclaredSignature(), pInterface
-						),
-						pContext
-					);
+			    notFounds.add(OI);
 			}
-
+		}
+		if (!notFounds.isEmpty()) {
+	        if(!pIsThrowError) return false;
+	        
+            var oiList
+                    = notFounds
+                    .stream()
+                    .map(OperationInfo::getDeclaredSignature)
+                    .map(String::valueOf)
+                    .map("        "::concat)
+                    .collect(joining("\n"));
+            var errMsg = format(
+                "The type '%s' must implement the following operations in order to implement the interface '%s': \n%s",
+                pTheType, pInterface, oiList
+            );
+            throw new CurryError(errMsg, pContext);
 		}
 
 		// Check Attribute

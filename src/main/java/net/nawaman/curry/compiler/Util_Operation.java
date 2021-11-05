@@ -22,7 +22,7 @@ import net.nawaman.curry.Inst_Assignment.XORTo;
 import net.nawaman.curry.Inst_Assignment.bitwiseAndTo;
 import net.nawaman.curry.Inst_Assignment.bitwiseOrTo;
 import net.nawaman.curry.Inst_Assignment.bitwiseXorTo;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_Operation {

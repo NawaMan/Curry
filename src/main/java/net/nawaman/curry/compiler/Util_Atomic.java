@@ -45,7 +45,7 @@ import net.nawaman.curry.TKExecutable.TExecutable;
 import net.nawaman.curry.compiler.CompileProduct.CompileTimeChecking;
 import net.nawaman.curry.util.MoreData;
 import net.nawaman.regparser.PType;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
 import net.nawaman.util.UClass;
@@ -77,7 +77,7 @@ public class Util_Atomic {
 				   $CProduct.isCompileTimeCheckingFull()) {
 					$CProduct.reportWarning(
 							"The OrElse value cannot be assigned by the cast target type '"+$Cast+"' <Util_Atomic:39>", null,
-							$Result.getStartPosition());
+							$Result.startPosition());
 				}
 			
 				// Prepare OrElse
@@ -104,7 +104,7 @@ public class Util_Atomic {
 			$CProduct.reportWarning(
 					"The given value does not seems to be castable to the target type '"+$Cast+"'\n"+
 					"You are encourage to use 'castOrElse' or 'tryCast' for a better control of casting. <Util_Atomic:66>", null,
-					$Result.getStartPosition());
+					$Result.startPosition());
 		}
 		
 		// Convert to number
@@ -169,8 +169,8 @@ public class Util_Atomic {
 				if(Index >= Params.length) return null;
 				
 				ParseResult Param = Params[Index];
-				PType PT = $TPackage.getType(Param.getTypeNameOfSubOf(0));
-				if(PT == null) return Param.getText();
+				PType PT = $TPackage.getType(Param.typeNameAt(0));
+				if(PT == null) return Param.text();
 				
 				return PT.compile(Param, null, $CProduct, $TPackage);
 			}
@@ -525,7 +525,7 @@ public class Util_Atomic {
 							$CProduct.reportError(
 								String.format(
 									"The current type does not have the constructor: %s  <Util_Atomic:552>",
-									$Result.getText()
+									$Result.text()
 								),
 								null, Position
 							);
@@ -567,7 +567,7 @@ public class Util_Atomic {
 						$CProduct.reportError(
 							String.format(
 								"The super type does not have the constructor: %s  <Util_Atomic:552>",
-								$Result.getText()
+								$Result.text()
 							),
 							null, Position
 						);
@@ -1170,7 +1170,7 @@ public class Util_Atomic {
 					return null;
 				}
 				if(!$CProduct.isParentVariableExist(StackName, VarName)) {
-					$CProduct.reportError("Parent variable does not exist ("+$Result.getText()+") <Util_Atomic:924>", null, VarNamePosition);
+					$CProduct.reportError("Parent variable does not exist ("+$Result.text()+") <Util_Atomic:924>", null, VarNamePosition);
 					return null;
 				}
 			}
@@ -1179,7 +1179,7 @@ public class Util_Atomic {
 		} else {
 			// Parent stack ------------------------------------------------------------------------------------------------
 			if(!$CProduct.isParentVariableExist(ParentCount, VarName)) {
-				$CProduct.reportError("Parent variable does not exist ("+$Result.getText()+") <Util_Atomic:934>", null, $Result.posOf(0));
+				$CProduct.reportError("Parent variable does not exist ("+$Result.text()+") <Util_Atomic:934>", null, $Result.posOf(0));
 				return null;
 			}
 			Expr = $ME.newExpr($Result.locationCROf(0), "getParentVarValue", ParentCount, VarName);

@@ -426,7 +426,7 @@ abstract public class EngineSpec implements Objectable {
 	/** Engine Specification Signature. */
 	static public class Signature implements Serializable, Objectable {
         
-        private static final long serialVersionUID = 8605071645446256069L;
+        private static final long serialVersionUID = -5445019255241401765L;
         
 		/** Construct a signature */
 		public Signature(EngineSpec pEngineSpec) {
@@ -730,7 +730,7 @@ abstract public class EngineSpec implements Objectable {
 		this.regInst(-1071521); // Inst_SetParentVarValueByStackName
 		this.regInst(-1064417); // Inst_GetParentVarValueByStackName
 		this.regInst(-1010449); // Inst_IsParentVarExistByStackName
-		this.regInst(-12008-201917); // Inst_IsParentVarConstantByStackName
+		this.regInst(-1200817); // Inst_IsParentVarConstantByStackName
 		// Engine
 		this.regInst(-500145); // Inst_SetEngineVarValue
 		this.regInst(-495153); // Inst_GetEngineVarValue
@@ -975,7 +975,7 @@ abstract public class EngineSpec implements Objectable {
 			case -1071521: return new Inst_SetParentVarValueByStackName(  E);
 			case -1064417: return new Inst_GetParentVarValueByStackName(  E);
 			case -1010449: return new Inst_IsParentVarExistByStackName(   E);
-			case -12008-201917: return new Inst_IsParentVarConstantByStackName(E);
+			case -1200817: return new Inst_IsParentVarConstantByStackName(E);
 			// Engine
 			case -500145: return new Inst_SetEngineVarValue(  E);
 			case -495153: return new Inst_GetEngineVarValue(  E);

@@ -67,6 +67,12 @@ public class Test_15_PredefinedTypes extends AllTests.TestCaseUnit {
 				"	@@:Method public remove():void {\n" +
 				"		throw new UnsupportedOperationException(`ArrayIterator does not support remove operation.`);\n" +
 				"	};\n" +
+				"   @@:Method public forEachRemaining(consumer:java.util.function.Consumer):void {\n" +
+				"   };\n" +
+				"   @@:Method public forEach(consumer:java.util.function.Consumer):void {\n" +
+				"   };\n" +
+                "   @@:Method public spliterator():java.util.Spliterator {\n" +
+                "   };\n" +
 				"};" +
 				"\n" +
 				"@@:TypeDef public class ArrayIterable <ValueType:any> implements curry=>Iterable<ValueType> {\n" +
@@ -81,6 +87,12 @@ public class Test_15_PredefinedTypes extends AllTests.TestCaseUnit {
 				"	@@:Method public iterator():curry=>Iterator<ValueType> {\n" +
 				"		return new ArrayIterator<ValueType>(this.Data);\n" +
 				"	};\n" +
+                "   @@:Method public forEachRemaining(consumer:java.util.function.Consumer):void {\n" +
+                "   };\n" +
+                "   @@:Method public forEach(consumer:java.util.function.Consumer):void {\n" +
+                "   };\n" +
+                "   @@:Method public spliterator():java.util.Spliterator {\n" +
+                "   };\n" +
 				"};"
 			)
 		);

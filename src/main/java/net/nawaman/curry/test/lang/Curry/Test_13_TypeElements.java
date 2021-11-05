@@ -25,32 +25,32 @@ public class Test_13_TypeElements extends AllTests.TestCaseUnit {
 		
 		this.addUnit(
 			this.newFile(PName1.replaceAll("~>", "/") + "/C1.curry",
-				"@@:Package("+PName1+");" +
-				
-				"@@:TypeDef public wrapper MyString of String {" +
-				"	<?{ Returns escape string }?>" +
-				"	@@:Method public Sub escapeText():String @@Java:{" +
-				"		if($This$ == null) return null;" +
-				"		return net.nawaman.util.UString.escapeText((String)$This$).toString();" +
-				"	}:Java:;" +
-				"};"+
-				"@@:TypeDef public variant Chars<T:any> as <any||:char:|char[]|CharSequence> {" +
-				"	@@:Method public Sub showOff(t:T):int {" +
-				"		@:println(T.type);" +
-				"		@:println(@:instanceOf(T.type, 5));" +
-				"		@:println(@:instanceOf(T.type, `5`));" +
-				"		@:return(@:invokeAsTypeByParams(@:getVarValue(`this`), Chars.type, `count`));" +
-				"	};" +
-				"	@@:Method public Sub count():int {" +
-				"		@:if(@:instanceOf(char  .type,       @:getVarValue(`this`))){ @:return(1); };" +
-				"		@:if(@:instanceOf(char[].type,       @:getVarValue(`this`))){ @:return(@:getLengthArrayObject((:char[]?@:getVarValue(`this`)))); };" +
-				"		@:if(@:instanceOf(CharSequence.type, @:getVarValue(`this`))){ @:return(@:invokeByParams((:CharSequence?@:getVarValue(`this`)), `length`)); };" +
-				"		@:return(0);" +
-				"	};" +
-				"};" +
-				
-				"@@:TypeDef public duck HasLength { @@:Method public Sub length():int; };" +
-				""                                                                              +
+				"@@:Package("+PName1+");\n" +
+				"\n" + 
+				"@@:TypeDef public wrapper MyString of String {\n" +
+				"	<?{ Returns escape string }?>\n" +
+				"	@@:Method public Sub escapeText():String @@Java:{\n" +
+				"		if($This$ == null) return null;\n" +
+				"		return net.nawaman.util.UString.escapeText((String)$This$).toString();\n" +
+				"	}:Java:;\n" +
+				"};\n"+
+				"@@:TypeDef public variant Chars<T:any> as <any||:char:|char[]|CharSequence> {\n" +
+				"	@@:Method public Sub showOff(t:T):int {\n" +
+				"		@:println(T.type);\n" +
+				"		@:println(@:instanceOf(T.type, 5));\n" +
+				"		@:println(@:instanceOf(T.type, `5`));\n" +
+				"		@:return(@:invokeAsTypeByParams(@:getVarValue(`this`), Chars.type, `count`));\n" +
+				"	};\n" +
+				"	@@:Method public Sub count():int {\n" +
+				"		@:if(@:instanceOf(char  .type,       @:getVarValue(`this`))){ @:return(1); };\n" +
+				"		@:if(@:instanceOf(char[].type,       @:getVarValue(`this`))){ @:return(@:getLengthArrayObject((:char[]?@:getVarValue(`this`)))); };\n" +
+				"		@:if(@:instanceOf(CharSequence.type, @:getVarValue(`this`))){ @:return(@:invokeByParams((:CharSequence?@:getVarValue(`this`)), `length`)); };\n" +
+				"		@:return(0);\n" +
+				"	};\n" +
+				"};\n" +
+				"\n" +
+				"@@:TypeDef public duck HasLength { @@:Method public Sub length():int; };\n" +
+				"\n"                                                                              +
 				"@@:TypeDef public class Str implements HasLength, CharSequence {\n"            +
 				"	@@:Constant static public  DefaultData:String       = `Str:`;\n"            +
 				"	@@:Field           private Data       :StringBuffer = @:newInstance(StringBuffer.type);\n"   +
@@ -69,6 +69,12 @@ public class Test_13_TypeElements extends AllTests.TestCaseUnit {
 				"	@@:Method public Sub append(S:String):CharSequence {\n"                     +
 				"		@:return(@:invokeByParams(@:this_getAttrValue(`Data`), `append`, @:getVarValue(`S`)));\n" +
 				"	};\n"                                                                       +
+                "	@@:Method public Sub chars():java.util.stream.IntStream {\n"                +
+                "		@:return(null);\n"                                                      +
+                "	};\n"                                                                       +
+                "   @@:Method public Sub codePoints():java.util.stream.IntStream {\n"                +
+                "       @:return(null);\n"                                                      +
+                "   };\n"                                                                       +
 				"};\n"                                                                          +
 				"\n"                                                                            +
 				"@@:TypeDef public class Str2 implements HasLength, CharSequence, Appendable {\n" +

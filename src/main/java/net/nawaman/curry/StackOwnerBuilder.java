@@ -18,11 +18,15 @@
 
 package net.nawaman.curry;
 
+import static java.util.stream.Collectors.joining;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
@@ -552,7 +556,7 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		return true;
 	}
 	
-	Hashtable<String, TypeBuilder> TypeBuilders = null;
+	private Hashtable<String, TypeBuilder> TypeBuilders = null;
 	
 	/** Returns the name of all the type builder held by this builder */
 	final public Set<String> getTypeBuilderNames() {
@@ -575,7 +579,8 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		
 		TREnclosed TheValidTypeRef = this.ensureTypeRefValid(pPAccess, TS, pLocation);
 		if(TheValidTypeRef == null)                         return null;
-		if(this.isTypeExist(TheValidTypeRef.getTypeName())) return null;
+		String typeName = TheValidTypeRef.getTypeName();
+        if(this.isTypeExist(typeName)) return null;
 		
 		TS.Ref = TheValidTypeRef;
 		
@@ -585,7 +590,8 @@ abstract public class StackOwnerBuilder implements StackOwnerBuilderEncloseObjec
 		// Create the type builder and remember it
 		TypeBuilder TB = TK.newTypeBuilder(TS, pPAccess, pLocation, this);
 		if(this.TypeBuilders == null) this.TypeBuilders = new Hashtable<String, TypeBuilder>();
-		this.TypeBuilders.put(TheValidTypeRef.getTypeName(), TB);
+		System.out.println("Adding: " + typeName + ": " + this + "\n" + TypeBuilders.entrySet().stream().map(Objects::toString).map("    "::concat).collect(joining("\n")));
+		this.TypeBuilders.put(typeName, TB);
 		return TB;
 	}
 	

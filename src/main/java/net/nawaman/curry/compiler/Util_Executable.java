@@ -22,7 +22,7 @@ import net.nawaman.curry.Instructions_Core.Inst_Group;
 import net.nawaman.curry.Instructions_Executable.Inst_NewClosure;
 import net.nawaman.curry.Instructions_Executable.Inst_ReCreate;
 import net.nawaman.curry.Instructions_Executable.Inst_Run_Unsafe;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_Executable {
@@ -127,7 +127,7 @@ public class Util_Executable {
 				String.format(
 					"There is a problem creating executable type of %s %s. <Util_Executable:439>",
 					EKind, $Exec.getSignature()),
-				null, $Result.getStartPosition());
+				null, $Result.startPosition());
 			return null;
 		}
 
@@ -140,7 +140,7 @@ public class Util_Executable {
 		Instruction Inst = $Engine.getInstruction(Inst_NewConstant.Name);
 		Inst.manipulateCompileContextBeforeSub(
 				new Object[] { ConstName, ConstType, ConstValue },
-				$CProduct, $Result.getStartPosition());
+				$CProduct, $Result.startPosition());
 		
 		$Expr = Inst.newExpression_Coordinate($LocationCR, ConstName, ConstType, ConstValue);
 
@@ -340,7 +340,7 @@ public class Util_Executable {
 
 				if((ELang == null) || CL.getName().equals(ELang)) {
 
-					String OCode = $Result.getOriginalString();
+					String OCode = $Result.originalString();
 					String EName = $CProduct.getCurrentCodeName();
 					if(EName == null) EName = "";
 					EName += "::" + (($Kind == 'g') ? "group()" : $Signature.toString());
@@ -387,7 +387,7 @@ public class Util_Executable {
 				ECode  = $Result.textOf(ENCode);
 				Offset = $Result.posOf( ENCode);
 	
-				String OrgTxt = $Result.getOriginalString();
+				String OrgTxt = $Result.originalString();
 				int    EndPos = Offset + ECode.length();
 				StringBuilder SB = new StringBuilder();
 				for(int i = 0; i < OrgTxt.length(); i++) {	

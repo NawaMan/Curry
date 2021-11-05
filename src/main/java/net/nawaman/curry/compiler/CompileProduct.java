@@ -37,7 +37,7 @@ import net.nawaman.curry.TLParametered.TRParametered;
 import net.nawaman.curry.TLPrimitive.TRPrimitive;
 import net.nawaman.curry.TLType.TypeTypeRef;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 
 /** Compile Product */
 public class CompileProduct extends net.nawaman.compiler.CompileProduct {

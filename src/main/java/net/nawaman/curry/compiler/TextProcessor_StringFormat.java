@@ -5,7 +5,7 @@ import net.nawaman.curry.ExternalContext;
 import net.nawaman.curry.Instructions_Operations.InstFormat;
 import net.nawaman.curry.util.FormattableAdaptor;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 
 /** TextProcessor for String format */
 public class TextProcessor_StringFormat implements TextProcessor {

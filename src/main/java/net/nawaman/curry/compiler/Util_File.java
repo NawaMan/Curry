@@ -3,7 +3,7 @@ package net.nawaman.curry.compiler;
 import net.nawaman.curry.Documentation;
 import net.nawaman.curry.TLPackage;
 import net.nawaman.curry.TypeRef;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UString;
 
@@ -126,7 +126,7 @@ public class Util_File {
 		if($Imports != null) $CProduct.addImport($Imports);
 
 		Documentation Doc = null;
-		for(int i = 0; i < $Result.count(); i++) {
+		for(int i = 0; i < $Result.entryCount(); i++) {
 			String EntryName = $Result.nameOf(i);
 
 			if(enTYPE.equals(EntryName)) {
@@ -202,7 +202,7 @@ public class Util_File {
 			$CProduct.OwnerPackageName = $PackageName;
 		
 			Documentation Doc = null;
-			for(int i = 0; i < $Result.count(); i++) {
+			for(int i = 0; i < $Result.entryCount(); i++) {
 				String EntryName = $Result.nameOf(i);
 				if(enFUNCTION.equals(EntryName)) {
 					TypeRef OldOwnerTypeRef = $CProduct.OwnerTypeRef;	

@@ -42,6 +42,12 @@ public class Test_14_Constructor extends AllTests.TestCaseUnit {
 				"	@@:Method public append(S:String):CharSequence {\n"                         +
 				"		@:return(@:invokeByParams(@:this_getAttrValue(`Data`), `append`, @:getVarValue(`S`)));\n" +
 				"	};\n"                                                                       +
+                "   @@:Method public Sub chars():java.util.stream.IntStream {\n"                +
+                "       @:return(null);\n"                                                      +
+                "   };\n"                                                                       +
+                "   @@:Method public Sub codePoints():java.util.stream.IntStream {\n"           +
+                "       @:return(null);\n"                                                      +
+                "   };\n"                                                                       +
 				"};\n"                                                                          +
 				"@@:TypeDef public class MyStr extends Str {\n"                                 +
 				"	@@:Constructor public () {\n"                                               +

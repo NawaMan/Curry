@@ -21,7 +21,7 @@ import net.nawaman.curry.compiler.FileCompileResult;
 import net.nawaman.curry.compiler.StackOwnerAppender;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
 import net.nawaman.util.UClass;
@@ -130,7 +130,7 @@ public class CompilerUtil {
 		// StructuralRegistration
 		
 		String VarName = $Result.textOf("$VarName");
-		int    VarPos  = $Result.getStartPosition();
+		int    VarPos  = $Result.startPosition();
 		int[]  VarLoc  = $Result.locationCROf(0);
 		
 		String   PName;
@@ -181,7 +181,7 @@ public class CompilerUtil {
 				}
 				
 				int EIndex = -1;
-				for(int i = $Result.count(); --i >= 0; ) { if(DValue == $Result.getSubOf(i)) { EIndex = i; break; } }
+				for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultAt(i)) { EIndex = i; break; } }
 				ElementResolver Resolver = null;
 				if(DValue != null) Resolver = Util_ElementResolver.newAttrResolver(IsStatic, Name, $Result, EIndex, $TPackage, $CProduct);
 

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 import net.nawaman.regparser.CompilationContext;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.util.UNumber;
 
 public class Util_Literal {
@@ -123,7 +123,7 @@ public class Util_Literal {
 			ParseResult $Result, PTypeProvider $TProvider, CompilationContext $CContext) {
 		// Short string
 		StringBuffer SB = new StringBuffer();
-		int Count = $Result.count();
+		int Count = $Result.entryCount();
 		for(int i = 0; i < Count; i++) {
 			String Name = $Result.nameOf(i);
 			if("$Chars[]".equals(Name)) {

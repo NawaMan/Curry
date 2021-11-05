@@ -13,7 +13,7 @@ import net.nawaman.curry.Type;
 import net.nawaman.curry.TypeKind;
 import net.nawaman.curry.TypeRef;
 import net.nawaman.curry.TypeSpec;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UClass;
 
@@ -69,7 +69,7 @@ public class Util_TypeRef {
 									$BaseTypeRef
 								),
 								null,
-								$Result.getStartPosition()
+								$Result.startPosition()
 							);
 							return null;
 						}
@@ -77,7 +77,7 @@ public class Util_TypeRef {
 							$CProduct.reportError(
 								"Invalid type parameterization <Util_TypeRef:66>",
 								null,
-								$Result.getStartPosition());
+								$Result.startPosition());
 							return null;
 						}
 					}
@@ -114,7 +114,7 @@ public class Util_TypeRef {
 		                   ? TKJava.Instance
 		                   : $CProduct.getEngine().getTypeManager().getTypeKind($KindName);
 		if(TK == null) {
-			$CProduct.reportError("Unknown TypeKind '"+$KindName+"'<Util_TypeRef:233>", null, $Result.getStartPosition());
+			$CProduct.reportError("Unknown TypeKind '"+$KindName+"'<Util_TypeRef:233>", null, $Result.startPosition());
 			return null;
 		}
 		
@@ -123,7 +123,7 @@ public class Util_TypeRef {
 			O = UClass.invokeObjectMethod(TK, $MethodName, $Params);
 		} catch (Exception E) {
 			$CProduct.reportError("Invalid Arbitrary TypeKind Invocation <Util_TypeRef:254>", E,
-					$Result.getStartPosition());
+					$Result.startPosition());
 		}
 		
 		// Returns
@@ -131,7 +131,7 @@ public class Util_TypeRef {
 		if(O instanceof TypeSpec) return ((TypeSpec)O).getTypeRef();
 
 		$CProduct.reportError("Invalid Arbitrary TypeKind Invocation return value '"+O+"' <Util_TypeRef:247>", null,
-				$Result.getStartPosition());
+				$Result.startPosition());
 		return null;
 	}
 	
@@ -160,7 +160,7 @@ public class Util_TypeRef {
 		if(TKV == null) {
 			$CProduct.reportError(
 					"Variant types are not supported by this engine <Util_TypeRef:137>.",
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 			return null;
 		}
 		
@@ -171,7 +171,7 @@ public class Util_TypeRef {
 		else if(($AsType_NewType != null) && !$AsType.equals($AsType_NewType)) {
 			$CProduct.reportError(
 					"A variant type cannot have more than one `AsType` <Util_TypeRef:148>.",
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 			return null;
 		}
 
@@ -196,7 +196,7 @@ public class Util_TypeRef {
 			if(Has_Multiple_TypeForNew) {
 				$CProduct.reportError(
 						"A variant type cannot have more than one `TypeForNew` <Util_TypeRef:173>.",
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 				return null;
 			}
 		}
@@ -217,7 +217,7 @@ public class Util_TypeRef {
 		if($MemberTypeRefs.size() == 0) {
 			$CProduct.reportError(
 					"A variant type must have atleast one member type <Util_TypeRef:194>.",
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 			return null;
 		}
 		
@@ -235,7 +235,7 @@ public class Util_TypeRef {
 
 				$CProduct.reportError(
 						"Member type '"+MTRef+"' of a variant must all be assignable to its AsType <Util_TypeRef:211>.",
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 				return null;
 			}
 		}

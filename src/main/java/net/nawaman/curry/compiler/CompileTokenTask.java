@@ -5,7 +5,7 @@ import net.nawaman.compiler.TaskForCodeUsingRegParser;
 import net.nawaman.curry.TKJava;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
 /** Task for compiling a language token */

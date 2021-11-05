@@ -17,7 +17,7 @@ import net.nawaman.curry.Instructions_Context.Inst_NewVariable;
 import net.nawaman.curry.Instructions_Core.Inst_Group;
 import net.nawaman.curry.Instructions_Core.Inst_RunOnce;
 import net.nawaman.curry.Instructions_Core.Inst_Stack;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_Statments {

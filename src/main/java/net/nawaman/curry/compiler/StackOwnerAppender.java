@@ -5,8 +5,8 @@ import java.io.Serializable;
 import net.nawaman.curry.*;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.ParseResult;
 import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.result.ParseResult;
 
 public interface StackOwnerAppender {
 	
@@ -19,7 +19,7 @@ public interface StackOwnerAppender {
 			if(SOB.isAttrExist(pAName)) {
 				$CProduct.reportError(
 					String.format("The attribute `{%s}.{%s}` is already exist", SOB, pAName),
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 				return true;
 			}
 			return false;
@@ -28,7 +28,7 @@ public interface StackOwnerAppender {
 			if(!(SOB instanceof TypeBuilder)) {
 				$CProduct.reportError(
 						String.format("Only type attribute can be static: `{%s}.{%s}` is not a type attribute", SOB, pAName),
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 				return false;
 			}
 			return true;
@@ -41,7 +41,7 @@ public interface StackOwnerAppender {
 			if(SOB.isOperExist(pSignature)) {
 				$CProduct.reportError(
 					String.format("The operation `{%s}.{%s}` is already exist", SOB, pSignature),
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 				return true;
 			}
 			return false;
@@ -51,7 +51,7 @@ public interface StackOwnerAppender {
 			if(!(SOB instanceof TypeBuilder)) {
 				$CProduct.reportError(
 						String.format("Only type operation can be static: `{%s}.{%s}` is not a type operation", SOB, pSignature),
-						null, $Result.getStartPosition());
+						null, $Result.startPosition());
 				return false;
 			}
 			return true;
@@ -81,7 +81,7 @@ public interface StackOwnerAppender {
 					if(((TypeBuilder)SOB).isConstructorExist(pSignature)) {
 						$CProduct.reportError(
 							String.format("The constructor `{%s}.{%s}` is already exist", SOB, pSignature),
-							null, $Result.getStartPosition());
+							null, $Result.startPosition());
 						return true;
 					}
 					return false;
@@ -90,7 +90,7 @@ public interface StackOwnerAppender {
 					if(!(SOB instanceof TypeBuilder)) {
 						$CProduct.reportError(
 								String.format("Only type operation can be static: `{%s}.{%s}` is not a type operation", SOB, pSignature),
-								null, $Result.getStartPosition());
+								null, $Result.startPosition());
 						return;
 					}
 					if(this.isRepeat($CProduct, SOB)) return;

@@ -4,7 +4,7 @@ import net.nawaman.compiler.TaskEntry;
 import net.nawaman.compiler.TaskForCodeUsingRegParser;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
 /** Tasks for compiling a code */

@@ -5,8 +5,8 @@ import net.nawaman.compiler.ParseTask;
 import net.nawaman.compiler.TaskEntry;
 import net.nawaman.regparser.PTypeProvider;
 import net.nawaman.regparser.PTypeRef;
-import net.nawaman.regparser.ParseResult;
 import net.nawaman.regparser.RegParser;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
 public class FileParseTask extends ParseTask {
@@ -35,10 +35,10 @@ public class FileParseTask extends ParseTask {
 			pContext.reportFatalError("Unmatch!!", null);
 			return null;
 		}
-		if(PR.getEndPosition() != Source.length()) {
-			String S = Source.subSequence(PR.getEndPosition(), Source.length()).toString().trim();
+		if(PR.endPosition() != Source.length()) {
+			String S = Source.subSequence(PR.endPosition(), Source.length()).toString().trim();
 			if(S.length() != 0) {
-				((CompileProduct)pContext).reportError("Left over token <CompileTask:33> ", null, PR.getEndPosition());
+				((CompileProduct)pContext).reportError("Left over token <CompileTask:33> ", null, PR.endPosition());
 				return null;
 			}
 		}

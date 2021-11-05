@@ -242,7 +242,7 @@ public class Test_01_Extensions_Instructions extends TestCase {
 			"Engine => -1076097: InstSpec:  newArrayLiteral_CharSequence(CharSequence...):CharSequence[]\n"+
 			"Engine => -1086337: InstSpec:  newArrayLiteral_Serializable(Serializable...):Serializable[]\n"+
 			"Engine => -1177505: InstSpec:  checkVariableDataHolderFactory(+String,+String):boolean\n"+
-			"Engine => -12008-201917: InstSpec:  isParentVarConstantByStackName(+String,+String):boolean\n",
+			"Engine => -1200817: InstSpec:  isParentVarConstantByStackName(+String,+String):boolean\n",
 			AllTests.getEngine().getInstructionsAsString(null, false)
 		);
 		
@@ -384,7 +384,7 @@ public class Test_01_Extensions_Instructions extends TestCase {
 			"DataHolder =>  -227217: InstSpec:  setDHValue(+DataHolder,any):any\n"+
 			"DataHolder =>  -281489: InstSpec:  isDHReadable(+DataHolder):boolean\n"+
 			"DataHolder =>  -291681: InstSpec:  isDHWritable(+DataHolder):boolean\n"+
-			"DataHolder =>  -32008-20191: InstSpec:  getDHMoreInfo(+DataHolder,+String):any\n"+
+			"DataHolder =>  -320081: InstSpec:  getDHMoreInfo(+DataHolder,+String):any\n"+
 			"DataHolder =>  -390065: InstSpec:  isDHNoTypeCheck(+DataHolder):boolean\n"+
 			"DataHolder => -1028865: InstSpec:  addDataHolderAsLocalVariable(+String,+DataHolder):DataHolder\n",
 			AllTests.getEngine().getInstructionsAsString(AllTests.getEngine().getExtension(EE_DataHolder.Name))

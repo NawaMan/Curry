@@ -18,7 +18,7 @@ import net.nawaman.curry.TypeRef;
 import net.nawaman.curry.TypeSpec;
 import net.nawaman.curry.Executable.ExecKind;
 import net.nawaman.curry.extra.type_object.TKClass;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
 
@@ -139,7 +139,7 @@ public class Util_TypeDef {
 		if(TKE == null) {
 			$CProduct.reportError(
 					"Executable types are not supported by this engine <Util_TypeDef:27>.",
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 			return null;
 		}
 		
@@ -147,7 +147,7 @@ public class Util_TypeDef {
 		if(($DesiredKind == ExecKind.Fragment) && ($EInterface.getParamCount() != 0)) {
 			$CProduct.reportError(
 					"A fragment must have no parameter <Util_TypeDef:35>.",
-					null, $Result.getStartPosition());
+					null, $Result.startPosition());
 			return null;
 		} 
 		

@@ -30,7 +30,7 @@ import net.nawaman.curry.extra.type_object.TBClass;
 import net.nawaman.curry.util.MoreData;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
 /** Task for compile file */
@@ -93,7 +93,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 		if(UB == null) {
 			$CProduct.reportError(String.format(
 					"Internal Error: Missing UnitBuilder for \'%s:%s\' <FileCompileTask_File:553>",
-					FeederName, CodeName), null, $Result.getStartPosition());
+					FeederName, CodeName), null, $Result.startPosition());
 			return null;
 		}
 		
@@ -150,7 +150,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 						RawResult
 					),
 					null,
-					$Result.getStartPosition());
+					$Result.startPosition());
 				
 				pContext.setCodeData(FeederIndex, CodeName, "IsValid", false);
 				return null;
@@ -611,6 +611,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 						
 						if(TOSigns == null) continue;
 						for(ExecSignature TOSignature : TOSigns) {
+//						    System.out.println("Compiling: " + TName + " :: " + TOSignature);
 							Object O = (i == 0)?TB.getTempOperTempData(TOSignature):TB.getStaticTempOperTempData(TOSignature);
 							if(O == null) continue;
 							if(!(O instanceof ElementResolver)) {

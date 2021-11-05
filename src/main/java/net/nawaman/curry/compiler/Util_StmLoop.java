@@ -5,7 +5,7 @@ import net.nawaman.curry.Expression;
 import net.nawaman.curry.Instruction;
 import net.nawaman.curry.MExecutable;
 import net.nawaman.curry.TypeRef;
-import net.nawaman.regparser.ParseResult;
+import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class Util_StmLoop {
