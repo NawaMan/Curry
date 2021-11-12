@@ -96,15 +96,15 @@ public class Util_Element {
 		boolean       Writable = ($Result.textOf(enUNWRITABLE) == null);
 		
 		TypeRef       TRef     = (TypeRef)$Result.valueOf(enTYPE, $TPackage, $CProduct);
-		ParseResult   DValue   =          $Result.subOf(  enDEFAULTVALUE);
+		ParseResult   DValue   =          $Result.subResultOf(  enDEFAULTVALUE);
 		boolean       IsNull   = (DValue == null) || "null".equals($Result.textOf(enDEFAULTVALUE));
 
-		if(DValue == null)                 { $CProduct.reportError("Package variable must have a default value <Util_Element:93>", null, $Result.posOf(enNAME));         return null; }
-		if(!Writable && (WAccess != null)) { $CProduct.reportError("A constant is not writable <Util_Element:94>",                 null, $Result.posOf(enWRITEACCESS));  return null; }
-		if(NonNull   && IsNull)            { $CProduct.reportError("The variable/constant must not be null <Util_Element:95>",     null, $Result.posOf(enDEFAULTVALUE)); return null; }
+		if(DValue == null)                 { $CProduct.reportError("Package variable must have a default value <Util_Element:93>", null, $Result.startPositionOf(enNAME));         return null; }
+		if(!Writable && (WAccess != null)) { $CProduct.reportError("A constant is not writable <Util_Element:94>",                 null, $Result.startPositionOf(enWRITEACCESS));  return null; }
+		if(NonNull   && IsNull)            { $CProduct.reportError("The variable/constant must not be null <Util_Element:95>",     null, $Result.startPositionOf(enDEFAULTVALUE)); return null; }
 
 		int EIndex = -1;
-		for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultAt(i)) { EIndex = i; break; } }
+		for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultOf(i)) { EIndex = i; break; } }
 		ElementResolver Resolver = (DValue == null)?null:Util_ElementResolver.newAttrResolver(false, Name, $Result, EIndex, $TPackage, $CProduct);
 
 		if             (RAccess == null)  RAccess = net.nawaman.curry.Package.Public;	// Default is public
@@ -112,7 +112,7 @@ public class Util_Element {
 		if(            (CAccess == null)) CAccess = net.nawaman.curry.Package.Package;	// Default is package !!!!!
 
 		final DataHolderInfo DHI = new DataHolderInfo(TRef, null, Variable.FactoryName, true, Writable, true, true, null);
-		final Location       Loc = new Location($CProduct.getCurrentFeederName(), $CProduct.getCurrentCodeName(), $Result.locationCROf(enNAME));
+		final Location       Loc = new Location($CProduct.getCurrentFeederName(), $CProduct.getCurrentCodeName(), $Result.coordinateOf(enNAME));
 		StackOwnerAppender SOA = StackOwnerAppender.Util.newTempAttrDirect(
 				$CProduct, $TPackage, $Result,
 				RAccess, RAccess, CAccess,
@@ -139,7 +139,7 @@ public class Util_Element {
 
 		// Unless it is for interface, the method needs to be one of these
 		if(!HasBody) {
-			$CProduct.reportError("Missing function body <CompilerUtil:1144>.", null, $Result.posOf(0));
+			$CProduct.reportError("Missing function body <CompilerUtil:1144>.", null, $Result.startPositionOf(0));
 			return null;
 		}
 
@@ -147,7 +147,7 @@ public class Util_Element {
 		String Name = $Result.textOf(enNAME);
 		char   Kind = Character.toLowerCase(Util_General.GetFirstCharOf($Result, Util_Element.enKIND, 's'));
 		
-		Location      Location  = new Location($CProduct.getCurrentFeederName(), $CProduct.getCurrentCodeName(), $Result.locationCROf(0));
+		Location      Location  = new Location($CProduct.getCurrentFeederName(), $CProduct.getCurrentCodeName(), $Result.coordinateOf(0));
 		ExecInterface Interface = (ExecInterface)$Result.valueOf(enINTERFACE, $TPackage, $CProduct);
 		ExecSignature Signature = ExecSignature.newSignature(Name, Interface, Location, null);
 
@@ -177,12 +177,12 @@ public class Util_Element {
 		}
 
 		if(Language != null) {
-			int EIndex = $Result.lastIndexFor(enLANGCODE);
+			int EIndex = $Result.indexOf(enLANGCODE);
 			// Create the resolver
 			Resolver = Util_ElementResolver.newOperResolver(false, Signature, EKind, $Result, EIndex, Language, $TPackage, $CProduct);
 				
 		} else {
-			int EIndex = $Result.lastIndexFor(enCURRYBODY);
+			int EIndex = $Result.indexOf(enCURRYBODY);
 			// Create the resolver
 			Resolver = Util_ElementResolver.newOperResolver(false, Signature, EKind, $Result, EIndex, null, $TPackage, $CProduct);
 				

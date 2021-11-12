@@ -25,6 +25,18 @@ final public class Location implements HasLocation, Serializable, Cloneable {
 	}
 	
 	/** Constructs a location using the code or name and the start line number. */
+	public Location(String pCodeOrName, net.nawaman.regparser.result.Coordinate coordinate) {
+		this(null, pCodeOrName, (coordinate == null)?-1:coordinate.col(), (coordinate == null)?-1:coordinate.row());
+	}
+	
+	/** Constructs a location using the code or name and the start line number. */
+	public Location(String pUnitName, String pCodeOrName, net.nawaman.regparser.result.Coordinate coordinate) {
+		this.UnitName   = pUnitName;
+		this.CodeOrName = pCodeOrName;
+		this.Coordinate = getCoordinate(coordinate.col(), coordinate.row());
+	}
+	
+	/** Constructs a location using the code or name and the start line number. */
 	public Location(String pUnitName, String pCodeOrName, int pCol, int pRow) {
 		this.UnitName   = pUnitName;
 		this.CodeOrName = pCodeOrName;

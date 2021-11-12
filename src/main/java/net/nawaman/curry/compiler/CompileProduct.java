@@ -37,6 +37,7 @@ import net.nawaman.curry.TLParametered.TRParametered;
 import net.nawaman.curry.TLPrimitive.TRPrimitive;
 import net.nawaman.curry.TLType.TypeTypeRef;
 import net.nawaman.curry.util.MoreData;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 
 /** Compile Product */
@@ -1433,15 +1434,25 @@ public class CompileProduct extends net.nawaman.compiler.CompileProduct {
 	/**{@inheritDoc}*/ @Override public void reportError(     String pMessage, Throwable pCause, int pCol, int pRow) { this.report(TMKind.Error,      pMessage, pCause, pCol, pRow); }
 	/**{@inheritDoc}*/ @Override public void reportFatalError(String pMessage, Throwable pCause, int pCol, int pRow) { this.report(TMKind.FatalError, pMessage, pCause, pCol, pRow); }
 
+	/**{@inheritDoc}*/ @Override public void reportMessage(   String pMessage, Throwable pCause, Coordinate coordinate) { this.report(TMKind.Message,    pMessage, pCause, Coordinate.colOf(coordinate), Coordinate.rowOf(coordinate)); }
+	/**{@inheritDoc}*/ @Override public void reportWarning(   String pMessage, Throwable pCause, Coordinate coordinate) { this.report(TMKind.Warning,    pMessage, pCause, Coordinate.colOf(coordinate), Coordinate.rowOf(coordinate)); }
+	/**{@inheritDoc}*/ @Override public void reportError(     String pMessage, Throwable pCause, Coordinate coordinate) { this.report(TMKind.Error,      pMessage, pCause, Coordinate.colOf(coordinate), Coordinate.rowOf(coordinate)); }
+	/**{@inheritDoc}*/ @Override public void reportFatalError(String pMessage, Throwable pCause, Coordinate coordinate) { this.report(TMKind.FatalError, pMessage, pCause, Coordinate.colOf(coordinate), Coordinate.rowOf(coordinate)); }
+
 	/** Returns the Current Curry location using Row+Col */
 	public Location getCurrentLocation(ParseResult $Result) {
 		if($Result == null) return null;
-		return this.getCurrentLocation($Result.locationCROf(0));
+		return this.getCurrentLocation($Result.coordinateOf(0));
 	}
 	/** Returns the Current Curry location using Row+Col */
 	public Location getCurrentLocation(int[] CR) {
 		if(CR == null) return null;
 		return new Location(this.getCurrentFeederName(), this.getCurrentCodeName(), CR);
+	}
+	/** Returns the Current Curry location using coordinate */
+	public Location getCurrentLocation(Coordinate coordinate) {
+		if(coordinate == null) return null;
+		return new Location(this.getCurrentFeederName(), this.getCurrentCodeName(), coordinate.toArray());
 	}
 	
 	// Compile time state for file compilation -------------------------------------------------------------------------

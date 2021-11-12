@@ -11,6 +11,7 @@ import net.nawaman.curry.Instructions_Core.Inst_RunOnce;
 import net.nawaman.curry.Instructions_Core.Inst_Stack;
 import net.nawaman.curry.Instructions_Core.Inst_Type;
 import net.nawaman.curry.util.MoreData;
+import net.nawaman.regparser.result.Coordinate;
 
 public class MExecutable extends EnginePart {
 	
@@ -165,7 +166,13 @@ public class MExecutable extends EnginePart {
 	
 	/** Create an expression */
 	public Expression newExpr(String InstName, Object ... pParams) {
-		return this.getEngine().getInstruction(InstName).newExpression_Coordinate(null, pParams);
+		return this.getEngine().getInstruction(InstName).newExpression_Coordinate((Coordinate)null, pParams);
+	}
+	/** Create an expression */
+	public Expression newExpr(Coordinate coordinate, String InstName, Object ... pParams) {
+		Instruction Inst = this.getEngine().getInstruction(InstName);
+		if(Inst == null) throw new CurryError("Unknown instruction: " + InstName);
+		return Inst.newExpression_Coordinate(coordinate, pParams);
 	}
 	/** Create an expression */
 	public Expression newExpr(int[] pCR, String InstName, Object ... pParams) {
@@ -180,7 +187,13 @@ public class MExecutable extends EnginePart {
 	
 	/** Create an expression with sub-expressions*/
 	public Expression newExprSub(String InstName, Object[] pParams, Expression ... pSubExprs) {
-		return this.getEngine().getInstruction(InstName).newExprSubs_Coordinate(null, pParams, pSubExprs);
+		return this.getEngine().getInstruction(InstName).newExprSubs_Coordinate((Coordinate)null, pParams, pSubExprs);
+	}
+	/** Create an expression with sub-expressions*/
+	public Expression newExprSub(Coordinate coordinate, String InstName, Object[] pParams, Expression ... pSubExprs) {
+		int col = Coordinate.colOf(coordinate);
+		int row = Coordinate.rowOf(coordinate);
+		return this.getEngine().getInstruction(InstName).newExprSubs_Coordinate(col, row, pParams, pSubExprs);
 	}
 	/** Create an expression with sub-expressions*/
 	public Expression newExprSub(int[] pCR, String InstName, Object[] pParams, Expression ... pSubExprs) {
@@ -193,7 +206,11 @@ public class MExecutable extends EnginePart {
 	
 	/** Create a type expression (type from TypeRef) */
 	public Expression newType(Object pTRef) {
-		return this.getEngine().getInstruction(Inst_Type.Name).newExpression_Coordinate(null, pTRef);
+		return this.getEngine().getInstruction(Inst_Type.Name).newExpression_Coordinate((Coordinate)null, pTRef);
+	}
+	/** Create a type expression (type from TypeRef) */
+	public Expression newType(Coordinate coordinate, Object pTRef) {
+		return this.getEngine().getInstruction(Inst_Type.Name).newExpression_Coordinate(Coordinate.colOf(coordinate), Coordinate.rowOf(coordinate), pTRef);
 	}
 	/** Create a type expression (type from TypeRef) */
 	public Expression newType(int[] pCR, Object pTRef) {
@@ -207,7 +224,12 @@ public class MExecutable extends EnginePart {
 	/** Create a group expression */
 	public Expression newGroup(Expression ... pExprs) {
 		if((pExprs == null) || (pExprs.length == 0)) return null;
-		return this.getEngine().getInstruction(Inst_Group.Name).newExprSubs_Coordinate(null, null, pExprs);
+		return this.getEngine().getInstruction(Inst_Group.Name).newExprSubs_Coordinate((Coordinate)null, null, pExprs);
+	}
+	/** Create a group expression */
+	public Expression newGroup(Coordinate coordinate, Expression ... pExprs) {
+		if((pExprs == null) || (pExprs.length == 0)) return null;
+		return this.getEngine().getInstruction(Inst_Group.Name).newExprSubs_Coordinate(coordinate.toArray(), null, pExprs);
 	}
 	/** Create a group expression */
 	public Expression newGroup(int[] pCR, Expression ... pExprs) {
@@ -223,7 +245,7 @@ public class MExecutable extends EnginePart {
 	/** Create a run once expression */
 	public Expression newRunOnce(Expression ... pExprs) {
 		if((pExprs == null) || (pExprs.length == 0)) return null;
-		return this.getEngine().getInstruction(Inst_RunOnce.Name).newExprSubs_Coordinate(null, null, pExprs);
+		return this.getEngine().getInstruction(Inst_RunOnce.Name).newExprSubs_Coordinate((Coordinate)null, null, pExprs);
 	}
 	/** Create a run once expression */
 	public Expression newRunOnce(int[] pCR, Expression ... pExprs) {
@@ -238,11 +260,15 @@ public class MExecutable extends EnginePart {
 	
 	/** Create a stack expression */
 	public Expression newStack(Expression ... pExprs) {
-		return this.newStack(null, pExprs);
+		return this.newStack((Coordinate)null, pExprs);
 	}
 	/** Create a stack expression */
 	public Expression newStack(int[] pCR, Expression ... pExprs) {
 		return this.newStack(pCR, null, pExprs);
+	}
+	/** Create a stack expression */
+	public Expression newStack(Coordinate pCR, Expression ... pExprs) {
+		return this.newStack(Coordinate.colOf(pCR), Coordinate.rowOf(pCR), null, pExprs);
 	}
 	/** Create a stack expression */
 	public Expression newStack(int pCol, int pRow, Expression ... pExprs) {
@@ -252,7 +278,11 @@ public class MExecutable extends EnginePart {
 	/** Create a stack expression */
 	public Expression newStack(Object pName, Expression ... pExprs) {
 		if((pExprs == null) || (pExprs.length == 0)) return null;
-		return this.getEngine().getInstruction(Inst_Stack.Name).newExprSubs_Coordinate(null, new Object[] { pName }, pExprs);
+		return this.getEngine().getInstruction(Inst_Stack.Name).newExprSubs_Coordinate((Coordinate)null, new Object[] { pName }, pExprs);
+	}
+	/** Create a stack expression */
+	public Expression newStack(Coordinate pCR, Object pName, Expression ... pExprs) {
+		return newStack(Coordinate.colOf(pCR), Coordinate.rowOf(pCR), pName, pExprs);
 	}
 	/** Create a stack expression */
 	public Expression newStack(int[] pCR, Object pName, Expression ... pExprs) {

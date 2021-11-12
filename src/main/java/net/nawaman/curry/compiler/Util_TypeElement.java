@@ -51,8 +51,8 @@ public class Util_TypeElement {
 		Vector<FileCompileResult.TypeElement<?>> Elements = new Vector<FileCompileResult.TypeElement<?>>();
 			
 		// Collect all the methods -------------------------------------------------------------------------------------
-		ParseResult[] CPRs = $Result.subsOf(  enCONSTRUCTOR);
-		Object[]      Cs   = $Result.valuesOf(enCONSTRUCTOR, $TPackage, $CProduct);
+		ParseResult[] CPRs = $Result.subResultsOf(enCONSTRUCTOR);
+		Object[]      Cs   = $Result.valuesOf    (enCONSTRUCTOR, $TPackage, $CProduct);
 		
 		for(int i = 0; i < ((Cs == null) ? 0 : Cs.length); i++) {
 			Object C = Cs[i];
@@ -65,8 +65,8 @@ public class Util_TypeElement {
 		}
 			
 		// Collect all the methods -------------------------------------------------------------------------------------
-		ParseResult[] MPRs = $Result.subsOf(  enMETHOD);
-		Object[]      Ms   = $Result.valuesOf(enMETHOD, $TPackage, $CProduct);
+		ParseResult[] MPRs = $Result.subResultsOf(enMETHOD);
+		Object[]      Ms   = $Result.valuesOf    (enMETHOD, $TPackage, $CProduct);
 		
 		for(int i = 0; i < ((Ms == null) ? 0 : Ms.length); i++) {
 			Object M = Ms[i];
@@ -79,8 +79,8 @@ public class Util_TypeElement {
 		}
 		
 		// Collect all the attribute -----------------------------------------------------------------------------------
-		ParseResult[] FPRs = $Result.subsOf(  enFIELD);
-		Object[]      Fs   = $Result.valuesOf(enFIELD, $TPackage, $CProduct);
+		ParseResult[] FPRs = $Result.subResultsOf(enFIELD);
+		Object[]      Fs   = $Result.valuesOf    (enFIELD, $TPackage, $CProduct);
 		
 		for(int i = 0; i < ((Fs == null) ? 0 : Fs.length); i++) {
 			Object F = Fs[i];
@@ -140,26 +140,26 @@ public class Util_TypeElement {
 		boolean HasBody      = HasCurryBody || HasJavaBody;
 		
 		if(IsAbstract && IsStatic) {
-			$CProduct.reportError("Static method cannot be abstrct <Util_TypeElement:99>.", null, $Result.posOf(Util_Element.enSTATIC));
+			$CProduct.reportError("Static method cannot be abstrct <Util_TypeElement:99>.", null, $Result.startPositionOf(Util_Element.enSTATIC));
 			return null;
 		}
 		
 		// Abstract method cannot be dynamic, delegate or have a body
 		if(IsAbstract) {
-			if(HasBody)    { $CProduct.reportError("Abstract method cannot have the body "+"<Util_TypeElement:105>.", null, $Result.posOf(Util_Element.enSTARTBODY)); return null; }
-			if(IsDynamic)  { $CProduct.reportError("Abstract method cannot be dynamic "   +"<Util_TypeElement:106>.", null, $Result.posOf(Util_Element.enDYNAMIC));   return null; }
-			if(IsDelegate) { $CProduct.reportError("Abstract method cannot be delegate "  +"<Util_TypeElement:107>.", null, $Result.posOf(Util_Element.enDELEGATE));  return null; }
+			if(HasBody)    { $CProduct.reportError("Abstract method cannot have the body "+"<Util_TypeElement:105>.", null, $Result.startPositionOf(Util_Element.enSTARTBODY)); return null; }
+			if(IsDynamic)  { $CProduct.reportError("Abstract method cannot be dynamic "   +"<Util_TypeElement:106>.", null, $Result.startPositionOf(Util_Element.enDYNAMIC));   return null; }
+			if(IsDelegate) { $CProduct.reportError("Abstract method cannot be delegate "  +"<Util_TypeElement:107>.", null, $Result.startPositionOf(Util_Element.enDELEGATE));  return null; }
 		}
 
 		// Cannot be more than one of these kind
 		if((IsDynamic && HasBody) || (IsDelegate && HasBody) || (IsDynamic && IsDelegate)) {
-			$CProduct.reportError("Method with body cannot be dynamic or delegate <Util_Element:105>.", null, $Result.posOf(0));
+			$CProduct.reportError("Method with body cannot be dynamic or delegate <Util_Element:105>.", null, $Result.startPositionOf(0));
 			return null;
 		}
 
 		// Unless it is for interface, the method needs to be one of these
 		if(!IsAbstract && !IsDynamic && !IsDelegate && !HasBody && !IsInterface) {
-			$CProduct.reportError("Missing method body <Util_Element:111>.", null, $Result.posOf(0));
+			$CProduct.reportError("Missing method body <Util_Element:111>.", null, $Result.startPositionOf(0));
 			return null;
 		}
 
@@ -224,12 +224,12 @@ public class Util_TypeElement {
 			
 		} else if(HasBody) {		
 			if(Language != null) {
-				int EIndex = $Result.lastIndexFor(Util_Element.enLANGCODE);
+				int EIndex = $Result.indexOf(Util_Element.enLANGCODE);
 				// Create the resolver
 				Resolver = Util_ElementResolver.newOperResolver(IsStatic, Signature, EKind, $Result, EIndex, Language, $TPackage, $CProduct);
 				
 			} else {
-				int EIndex = $Result.lastIndexFor(Util_Element.enCURRYBODY);
+				int EIndex = $Result.indexOf(Util_Element.enCURRYBODY);
 				// Create the resolver
 				Resolver = Util_ElementResolver.newOperResolver(IsStatic, Signature, EKind, $Result, EIndex, null, $TPackage, $CProduct);
 				
@@ -241,7 +241,7 @@ public class Util_TypeElement {
 		} else {
 			$CProduct.reportError(
 					"Internal Error: An impossible statuc for TypeMethod compilation is found. Please report this to " +
-					"the developer of Curry. <Util_TypeElement:191>", null, $Result.posOf(0));
+					"the developer of Curry. <Util_TypeElement:191>", null, $Result.startPositionOf(0));
 			return null;
 		}
         
@@ -310,7 +310,7 @@ public class Util_TypeElement {
 		boolean       NonNull  = ($Result.textOf(Util_Element.enNOTNULL)    != null);
 		boolean       Writable = ($Result.textOf(Util_Element.enUNWRITABLE) == null);
 		
-		ParseResult   DValue =          $Result.subOf(  Util_Element.enDEFAULTVALUE);
+		ParseResult   DValue =          $Result.subResultOf(  Util_Element.enDEFAULTVALUE);
 		boolean       IsNull = (DValue == null) || "null".equals($Result.textOf(Util_Element.enDEFAULTVALUE));
 
 		boolean IsSDlg = ($Result.textOf(enSTATIC_DELEGATEE)  != null);
@@ -318,19 +318,19 @@ public class Util_TypeElement {
 		
 		if(!Writable && (WAccess != null)) {
 			$CProduct.reportError("A constant is not writable <Util_TypeElement:238>", null,
-					$Result.posOf(Util_Element.enWRITEACCESS));
+					$Result.startPositionOf(Util_Element.enWRITEACCESS));
 			return null;
 		}
 		if(IsSDlg || IsDDlg) {
 			if(IsSDlg) NonNull = true;
 			if(IsStatic) {
 				$CProduct.reportError("A static field cannot must not be a delegatee <Util_TypeElement:293>", null,
-						$Result.posOf(Util_Element.enSTATIC));
+						$Result.startPositionOf(Util_Element.enSTATIC));
 				return null;
 			}
 			if(IsSDlg && IsNull) {
 				$CProduct.reportError("A static-delegatee field is automatically a \"NonNull\" field and it cannot null <Util_TypeElement:298>", null,
-						$Result.posOf(enSTATIC_DELEGATEE));
+						$Result.startPositionOf(enSTATIC_DELEGATEE));
 				return null;
 			}
 			
@@ -345,13 +345,13 @@ public class Util_TypeElement {
 		}
 		if(NonNull && IsNull) {
 			$CProduct.reportError("The field must not be null <Util_TypeElement:284>", null,
-					(DValue == null)?$Result.posOf(Util_Element.enNAME):$Result.posOf(Util_Element.enDEFAULTVALUE));
+					(DValue == null)?$Result.startPositionOf(Util_Element.enNAME):$Result.startPositionOf(Util_Element.enDEFAULTVALUE));
 			return null;
 		}
 		
 		int EIndex = -1;
 		for(int i = $Result.entryCount(); --i >= 0; ) {
-			if(DValue != $Result.subResultAt(i)) continue;
+			if(DValue != $Result.subResultOf(i)) continue;
 			EIndex = i;
 			break;
 		}
@@ -391,7 +391,7 @@ public class Util_TypeElement {
 		String Language = $Result.textOf(Util_Element.enLANGNAME);
 		if(Language != null) {
 			$CProduct.reportError("Constructor must be in Curry language. <Util_TypeElement:375>", null,
-					$Result.posOf(Util_Element.enLANGNAME));
+					$Result.startPositionOf(Util_Element.enLANGNAME));
 			return null;
 		}
 
@@ -415,7 +415,7 @@ public class Util_TypeElement {
 		ExecSignature Signature = ExecSignature.newSignature(   "new", ITRefs, INames, Interface.isVarArgs(), TKJava.TVoid.getTypeRef(), Location, null);
 		MoreData      MData     = MoreData.newMoreDataFromArray($Result.valuesOf(Util_Element.enMOREDATA, $TPackage, $CProduct), true);
 		
-		int             EIndex   = $Result.lastIndexFor(Util_Element.enCURRYBODY);
+		int             EIndex   = $Result.indexOf(Util_Element.enCURRYBODY);
 		ElementResolver Resolver = Util_ElementResolver.newConstructorResolver(Signature, $Result, EIndex, $TPackage, $CProduct);
 		
 		StackOwnerAppender SOA = StackOwnerAppender.Util.newConstructor($CProduct, $TPackage, $Result, Access, Signature, MData, Resolver, Document);

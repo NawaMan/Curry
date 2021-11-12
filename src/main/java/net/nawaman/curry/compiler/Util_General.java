@@ -76,8 +76,8 @@ public class Util_General {
 			HasProblem = true;
 			
 			if(!ToReportErrorNoWarning)
-				   $CProduct.reportWarning(Message, null, $Result.locationCROf(PropertyName)[1]);
-			else { $CProduct.reportError(  Message, null, $Result.locationCROf(PropertyName)[1]); return false; }
+				   $CProduct.reportWarning(Message, null, $Result.coordinateOf(PropertyName).row());
+			else { $CProduct.reportError(  Message, null, $Result.coordinateOf(PropertyName).row()); return false; }
 		}
 		 
 		return HasProblem;

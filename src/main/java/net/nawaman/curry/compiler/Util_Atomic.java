@@ -45,6 +45,7 @@ import net.nawaman.curry.TKExecutable.TExecutable;
 import net.nawaman.curry.compiler.CompileProduct.CompileTimeChecking;
 import net.nawaman.curry.util.MoreData;
 import net.nawaman.regparser.PType;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
@@ -63,7 +64,7 @@ public class Util_Atomic {
 		MType       MT       = $Engine.getTypeManager();
 		MExecutable ME       = $Engine.getExecutableManager();
 		boolean     HasElse  = $UseDefault ||($OrElse != null);
-		int[]       Location = $Result.locationCROf(0);
+		Coordinate  Location = $Result.coordinateOf(0);
 		
 		// TypeRef -> Type
 		Object Type = ME.newType(Location, $Cast);
@@ -161,15 +162,15 @@ public class Util_Atomic {
 			public Object compileEachParamerter(int Index, ParseResult $Result, PTypePackage $TPackage,
 					CompileProduct $CProduct) {
 				
-				ParseResult ParamList = $Result.subOf("#Params");
+				ParseResult ParamList = $Result.subResultOf("#Params");
 				if(ParamList == null) return null;
 				
-				ParseResult[] Params = ParamList.subsOf("#Param");
+				ParseResult[] Params = ParamList.subResultsOf("#Param");
 				if(Params == null)         return null;
 				if(Index >= Params.length) return null;
 				
 				ParseResult Param = Params[Index];
-				PType PT = $TPackage.getType(Param.typeNameAt(0));
+				PType PT = $TPackage.getType(Param.typeNameOf(0));
 				if(PT == null) return Param.text();
 				
 				return PT.compile(Param, null, $CProduct, $TPackage);
@@ -177,7 +178,7 @@ public class Util_Atomic {
 		}
 	}
 	
-	/** A class that is responsible to compile the parmeter list. */
+	/** A class that is responsible to compile the parameter list. */
 	public interface ParamsCompiler {
 		
 		/** Compiles the parameter list */
@@ -250,8 +251,8 @@ public class Util_Atomic {
 		CompileTimeChecking CheckingFlag = $CProduct.getCompileTimeChecking();
 		
 		// Position and Location
-		int   Pos = $Result.posOf(0);
-		int[] Loc = $Result.locationCROf(0);
+		int        Pos = $Result.startPositionOf(0);
+		Coordinate Loc = $Result.coordinateOf(0);
 			
 		Expression Expr = null;
 		try {
@@ -439,7 +440,7 @@ public class Util_Atomic {
 
 				if(IsGoodForNewThrowable)	// The parameters are good for NewThrowable
 					return $Engine.getExecutableManager().newExpr(
-								$Result.locationCROf(0), "newThrowable",
+								$Result.coordinateOf(0), "newThrowable",
 								(IndexMessage != -1) ? $Params[IndexMessage] : null,
 								CT,
 								(IndexCause   != -1) ? $Params[IndexCause  ] : null);
@@ -449,7 +450,7 @@ public class Util_Atomic {
 
 		// The type is not a throwable, so just go on normally -------------------------------------------------------------
 		MExecutable ME   = $Engine.getExecutableManager();
-		Object      Type = ME.newType($Result.locationCROf(0), $TRef);
+		Object      Type = ME.newType($Result.coordinateOf(0), $TRef);
 
 		// Get the typerefs of the parameters
 		TypeRef[] TRs = TypeRef.EmptyTypeRefArray;
@@ -462,7 +463,7 @@ public class Util_Atomic {
 		// Check if the constructor exist
 		if(!IsTypeValid || ($CProduct.isCompileTimeCheckingFull() && ($Type.getTypeInfo().searchConstructor($Engine, TRs) == null))) {
 			String ErrMsg = String.format("Unable to find the constructor new %s(%s)", $TRef, UArray.toString(TRs, "", "", ","));
-			$CProduct.reportError(ErrMsg, null, $Result.posOf(0));
+			$CProduct.reportError(ErrMsg, null, $Result.startPositionOf(0));
 		}
 
 		// Prepare the parameter, construct the expression and return it
@@ -470,7 +471,7 @@ public class Util_Atomic {
 		Os[0] = Type;
 		Os[1] = TRs;
 		if($Params != null) System.arraycopy($Params, 0, Os, 2, $Params.length);
-		Expression Expr = ME.newExpr($Result.locationCROf(0), "newInstanceByTypeRefs", (Object[])Os);
+		Expression Expr = ME.newExpr($Result.coordinateOf(0), "newInstanceByTypeRefs", (Object[])Os);
 		if(!Expr.ensureParamCorrect($CProduct))
 			return null;
 		return Expr;
@@ -491,8 +492,8 @@ public class Util_Atomic {
 		final boolean IsAccess_this_AsVar = (EEL != null) && EEL.isStackOwnerVariableShouldBeTreatedAsVariable;
 
 		// Sure to be used
-		int[]      Location  = $Result.locationCROf(0);
-		int        Position  = $Result.posOf(0);
+		Coordinate Location  = $Result.coordinateOf(0);
+		int        Position  = $Result.startPositionOf(0);
 		TypeRef[]  PTRefs    = null;
 		int        PCount    = (Params == null) ? 0 : Params.length;
 		Expression Expr      = null;
@@ -938,11 +939,11 @@ public class Util_Atomic {
 		MExecutable $ME     = $Engine.getExecutableManager();
 
 		// Get the type
-		int[]    Location = $Result.locationCROf("$Access");
-		String[] Names    = $Result.textsOf("$Name");
-		String   AccName  = $Result.textOf("$AccName");
-		boolean  IsExec   = ($Result.textOf("$IsExec") != null);
-		Object[] Params   = (Object[])$Result.valueOf("#Params", $TPackage, $CProduct);
+		Coordinate Location = $Result.coordinateOf("$Access");
+		String[]   Names    = $Result.textsOf("$Name");
+		String     AccName  = $Result.textOf("$AccName");
+		boolean    IsExec   = ($Result.textOf("$IsExec") != null);
+		Object[]   Params   = (Object[])$Result.valueOf("#Params", $TPackage, $CProduct);
 		
 		StringBuilder Name = new StringBuilder();
 		for(int i = 0; i < Names.length; i++)
@@ -1006,14 +1007,14 @@ public class Util_Atomic {
 	
 	/** Compile an access to local element */
 	static public Expression CompileAtomicArray(TypeRef TypeRef, Object Dimension, boolean WithElement,
-			Object[] Elements, ParseResult[] PRSubDimensions, int[] pTypeRefLocation, ParseResult $Result,
+			Object[] Elements, ParseResult[] PRSubDimensions, Coordinate pTypeRefLocation, ParseResult $Result,
 			PTypePackage $TPackage, CompileProduct $CProduct) {
 
 		// Get the engine
 		Engine      $Engine  = $CProduct.getEngine();
 		MExecutable $ME      = $Engine.getExecutableManager();
-		int[]       Location = $Result.locationCROf(0);
-		int         Position = $Result.posOf(0);
+		Coordinate  Location = $Result.coordinateOf(0);
+		int         Position = $Result.startPositionOf(0);
 
 		Object[]      SubDimensions   = null;
 		for(int i = ((PRSubDimensions == null)?0:PRSubDimensions.length); --i >= 0; ) {
@@ -1024,8 +1025,8 @@ public class Util_Atomic {
 		}
 
 		// Process the array
-		int   Count     = ((PRSubDimensions == null)?0:PRSubDimensions.length);
-		int[] Locations = null;
+		int        Count     = ((PRSubDimensions == null)?0:PRSubDimensions.length);
+		Coordinate Locations = null;
 		for(int i = Count; --i >= 0; ) {
 			Object D = SubDimensions[i];
 			if((D instanceof Integer) || (D instanceof Byte) || (D instanceof Long) || (D instanceof Short)) D = ((Number)D).intValue();
@@ -1033,11 +1034,11 @@ public class Util_Atomic {
 				if($CProduct.isCompileTimeCheckingFull()) {
 					TypeRef DTRef = $CProduct.getReturnTypeRefOf(D);
 					if(!$Engine.getTypeManager().mayTypeRefBeCastedTo(TKJava.TNumber.getTypeRef(), DTRef)) {
-						if(Locations == null) Locations = PRSubDimensions[i].locationCROf(0);
+						if(Locations == null) Locations = PRSubDimensions[i].coordinateOf(0);
 
 						String Err = "Invalid array literal declaration: "+
 									 "Array dimension must be an integer number (`"+$Engine.toDetail(D)+"`).";
-						$CProduct.reportError(Err, null, Locations[i]);
+						$CProduct.reportError(Err, null, Locations);
 					}
 				}
 				D = -1;
@@ -1125,7 +1126,7 @@ public class Util_Atomic {
 	/** Compile an access to local element */
 	static public Expression CompileAtomicStackVariable(
 			boolean     IsCheckFull, String       PreDefineStackName, String         StackName,       String VarName,
-			int         ParentCount, int[]        VarNameLocation,    int            VarNamePosition,
+			int         ParentCount, Coordinate   VarNameLocation,    int            VarNamePosition,
 			ParseResult $Result,     PTypePackage $TPackage,          CompileProduct $CProduct) {
 
 		// Get the engine
@@ -1174,15 +1175,15 @@ public class Util_Atomic {
 					return null;
 				}
 			}
-			Expr = $ME.newExpr($Result.locationCROf(0), "getParentVarValueByStackName", StackName, VarName);
+			Expr = $ME.newExpr($Result.coordinateOf(0), "getParentVarValueByStackName", StackName, VarName);
 	
 		} else {
 			// Parent stack ------------------------------------------------------------------------------------------------
 			if(!$CProduct.isParentVariableExist(ParentCount, VarName)) {
-				$CProduct.reportError("Parent variable does not exist ("+$Result.text()+") <Util_Atomic:934>", null, $Result.posOf(0));
+				$CProduct.reportError("Parent variable does not exist ("+$Result.text()+") <Util_Atomic:934>", null, $Result.startPositionOf(0));
 				return null;
 			}
-			Expr = $ME.newExpr($Result.locationCROf(0), "getParentVarValue", ParentCount, VarName);
+			Expr = $ME.newExpr($Result.coordinateOf(0), "getParentVarValue", ParentCount, VarName);
 		}
 	
 		return Expr;

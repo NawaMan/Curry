@@ -5,6 +5,7 @@ import java.io.Serializable;
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.ExternalContext;
 import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 
 /**	Process a text - Implementation of this class must have a default constructor */
@@ -22,6 +23,12 @@ public interface TextProcessor extends Serializable {
 	/** Returns an expression for the text which can all be done at compile time */
 	public Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
 			int[] LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider);
+	
+	/** Returns an expression for the text which can all be done at compile time */
+	public default Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
+			Coordinate LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider) {
+		return processStaticTextProcessor(Text, Params, $Result, BodyParseEntryName, LocationRC.toArray(), Pos, CProduct, $TProvider);
+	}
 	
 	/** Process the text at runtime */
 	public Object processRuntimeTextProcessor(String Text, Object Body, ExternalContext EC, Object[] Parameters);

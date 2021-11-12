@@ -119,7 +119,7 @@ public class Util_File {
 		String ID = "ID"+Random.nextInt();
 		
 		// Extract the imports
-		String[] $Imports = Util_File.ExtractImports($PackageName, $Result.subsOf("#Import"), $Result, $TPackage, $CProduct);			
+		String[] $Imports = Util_File.ExtractImports($PackageName, $Result.subResultsOf("#Import"), $Result, $TPackage, $CProduct);			
 		FileCompileResult.TypeRegistration TReg = new FileCompileResult.TypeRegistration($PackageName, $Imports, ID);
 
 		// Add the imports
@@ -137,9 +137,9 @@ public class Util_File {
 					String TName;
 					if((TName = $Result.textOf(Util_TypeDef.enTYPE_NAME)) == null) {
 						ParseResult PR;
-						if((PR = $Result.subOf(i)) != null) {
+						if((PR = $Result.subResultOf(i)) != null) {
 							TName = PR.textOf(Util_TypeDef.enTYPE_NAME);
-							if((TName == null) && ((PR = PR.subOf(enTYPEDEF)) != null))
+							if((TName == null) && ((PR = PR.subResultOf(enTYPEDEF)) != null))
 								TName = PR.textOf(Util_TypeDef.enTYPE_NAME);
 						}
 					}
@@ -155,7 +155,7 @@ public class Util_File {
 						
 					if(!(Type instanceof FileCompileResult.TypeSpecification)) {
 						if(Type == null) continue;
-						ReportResultProblem($CProduct, "Type", "TypeSpecification", "registering/refining type", $Result.posOf(i));
+						ReportResultProblem($CProduct, "Type", "TypeSpecification", "registering/refining type", $Result.startPositionOf(i));
 						return null;
 					}
 						
@@ -219,7 +219,7 @@ public class Util_File {
 							if(Funct == null) continue;
 		
 							ReportResultProblem($CProduct, "Package Function", "PackageFunction", "registering package function",
-									$Result.posOf(i));
+									$Result.startPositionOf(i));
 							return null;
 						}
 						
@@ -247,7 +247,7 @@ public class Util_File {
 						
 						if(!(Var instanceof FileCompileResult.PackageVariable)) {
 							if(Var == null) continue;
-							ReportResultProblem($CProduct, "Package Variable", "PackageVariable", "registering package variable", $Result.posOf(i));
+							ReportResultProblem($CProduct, "Package Variable", "PackageVariable", "registering package variable", $Result.startPositionOf(i));
 							return null;
 						}
 	
@@ -268,9 +268,9 @@ public class Util_File {
 						String TName;
 						if((TName = $Result.textOf(Util_TypeDef.enTYPE_NAME)) == null) {
 							ParseResult PR;
-							if((PR = $Result.subOf(i)) != null) {
+							if((PR = $Result.subResultOf(i)) != null) {
 								TName = PR.textOf(Util_TypeDef.enTYPE_NAME);
-								if((TName == null) && ((PR = PR.subOf(enTYPEDEF)) != null))
+								if((TName == null) && ((PR = PR.subResultOf(enTYPEDEF)) != null))
 									TName = PR.textOf(Util_TypeDef.enTYPE_NAME);
 							}
 						}
@@ -288,7 +288,7 @@ public class Util_File {
 						if(!(Type instanceof FileCompileResult.TypeWithElements)) {
 							// Complex Type
 							if(Type == null) continue;
-							ReportResultProblem($CProduct, "Type", "TypeWithElements", "registering type structure", $Result.posOf(i));
+							ReportResultProblem($CProduct, "Type", "TypeWithElements", "registering type structure", $Result.startPositionOf(i));
 							return null;
 						}
 		

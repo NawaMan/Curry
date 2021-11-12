@@ -4,6 +4,7 @@ import net.nawaman.curry.Engine;
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.MExecutable;
 import net.nawaman.curry.TKJava;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
@@ -19,8 +20,8 @@ public class Util_Operator {
 		Engine      $Engine = $CProduct.getEngine();
 		MExecutable $ME     = $Engine.getExecutableManager();
 
-		String[] Ss   = $Result.textsOf(      "$Operator");
-		int[][]  LRCs = $Result.locationCRsOf("$Operator");
+		String[]     Ss   = $Result.textsOf(      "$Operator");
+		Coordinate[] LRCs = $Result.coordinatesOf("$Operator");
 		boolean  HasMinus  = false;
 		boolean  HasString = TKJava.TString.getTypeRef().equals($CProduct.getReturnTypeRefOf(Os[0]));
 		
@@ -28,7 +29,7 @@ public class Util_Operator {
 			if(Ss[i].charAt(0) == '-') {
 				HasMinus = true;
 
-				int[] Location = LRCs[i];
+				Coordinate Location = LRCs[i];
 				Expression Expr = $ME.newExpr(Location, "neg", Os[i+1]);
 				Os[i+1] = Expr;
 				if(!Expr.ensureParamCorrect($CProduct)) return null;
@@ -39,14 +40,14 @@ public class Util_Operator {
 
 		if(!HasMinus && HasString) {
 			// String Concat
-			int[] Location = LRCs[0];
+			Coordinate Location = LRCs[0];
 			Expression Expr = $ME.newExpr(Location, "concat", (Object[])Os);
 
 			if(!Expr.ensureParamCorrect($CProduct)) return null;
 			return Expr;
 		}
 
-		int[] Location = LRCs[0];
+		Coordinate Location = LRCs[0];
 		Expression Expr = $ME.newExpr(Location, "plus", (Object[])Os);
 
 		if(!Expr.ensureParamCorrect($CProduct)) return null;

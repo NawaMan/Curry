@@ -75,6 +75,7 @@ import net.nawaman.curry.TLBasedOnType.TRBasedOnType;
 import net.nawaman.curry.compiler.CompileProduct.CompileTimeChecking;
 import net.nawaman.regparser.PType;
 import net.nawaman.regparser.RegParser;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
@@ -101,7 +102,7 @@ public class Util_Term_Component {
 
 	/** Compile a new instance expression */
 	static public Expression CompileTerm(Object Operand, String TName, String $OperandStr, String $Before, String $After,
-			boolean[] IsDefaults, String[] $Prefixes, int[][]  $Locations, int $BeforePos, int $OperandPos, int $AfterPos,
+			boolean[] IsDefaults, String[] $Prefixes, Coordinate[]  $Locations, int $BeforePos, int $OperandPos, int $AfterPos,
 			ParseResult $Result, PTypePackage $TPackage, CompileProduct $CProduct) {
 		
 		// Get the engine
@@ -140,7 +141,7 @@ public class Util_Term_Component {
 	
 				OperatorProvider OP = InstAssign.getOperatorProvider(OperNameHash);
 				if(OP == null) {
-					$CProduct.reportFatalError("Unknown operator <Util_Term_Component:72>", null, $Result.posOf(0));
+					$CProduct.reportFatalError("Unknown operator <Util_Term_Component:72>", null, $Result.startPositionOf(0));
 					return null;
 				}
 	
@@ -168,13 +169,13 @@ public class Util_Term_Component {
 			for(int i = 0; i < IsDefaults.length; i++) {
 				if(IsDefaults[i]) {
 					Expr = $ME.newExpr(
-						$Result.locationCROf(0),
+						$Result.coordinateOf(0),
 						Inst_TryNoNull.Name,
 						Expr,
 						$ME.newType($CProduct.getReturnTypeRefOf(Expr)));
 				} else {
 					Expr = $ME.newExpr(
-						$Result.locationCROf(0),
+						$Result.coordinateOf(0),
 						Inst_ToString.Name,
 						Expr);
 				}
@@ -230,14 +231,14 @@ public class Util_Term_Component {
 	
 	/** Do Creator */
 	static abstract class DoCreator {
-		abstract Expression createDo(MExecutable $ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3);
+		abstract Expression createDo(MExecutable $ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3);
 	}
 	
 	/** Do Creator */
 	static class DCSimple extends DoCreator {
 		DCSimple(String pInstName) { this.InstName = pInstName; }
 		String InstName;
-		@Override Expression createDo(MExecutable $ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
+		@Override Expression createDo(MExecutable $ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
 			return $ME.newExpr(LocationCR, InstName, Host);
 		}
 	}
@@ -245,7 +246,7 @@ public class Util_Term_Component {
 	/** Do Creator */
 	static class DCDynamic extends DoCreator {
 		DCDynamic() {}
-		@Override Expression createDo(MExecutable $ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
+		@Override Expression createDo(MExecutable $ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
 			if(((Integer)P0).intValue() == 0) return $ME.newExpr(LocationCR, (String)P1, Host);
 			if(((Integer)P0).intValue() == 1) return $ME.newExpr(LocationCR, (String)P1, Host, P2);
 			if(((Integer)P0).intValue() == 2) return $ME.newExpr(LocationCR, (String)P1, Host, P2, P3);
@@ -255,7 +256,7 @@ public class Util_Term_Component {
 	/** Do Creator */
 	static class DCVarArgs extends DoCreator {
 		DCVarArgs() {}
-		@Override Expression createDo(MExecutable $ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
+		@Override Expression createDo(MExecutable $ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
 			// Replace with host
 			int I = ((Integer)P2).intValue();
 			if(I != -1) {
@@ -271,14 +272,14 @@ public class Util_Term_Component {
 	static public final DoCreator dcVARARGS = new DCVarArgs();
 	
 	static public final DoCreator dcGETCLASS = new DoCreator() {
-		@Override Expression createDo(MExecutable $ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
+		@Override Expression createDo(MExecutable $ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
 			return $ME.newExpr(LocationCR, Inst_GetTypeInfo.Name,
 					$ME.newExpr(LocationCR, Inst_getTypeOf.Name, Host), Inst_GetTypeInfo.DataClass);
 		}
 	};
 	
 	static public final DoCreator dcCHARAT = new DoCreator() {
-		@Override Expression createDo(MExecutable ME, int[] LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
+		@Override Expression createDo(MExecutable ME, Coordinate LocationCR, Object Host, Object P0, Object P1, Object P2, Object P3) {
 			if(Boolean.TRUE.equals(P0)) return ME.newExpr(LocationCR, InstCharAt.Name, Host,                                 P1);
 			else                        return ME.newExpr(LocationCR, InstCharAt.Name, Host, ME.newExpr(LocationCR, "toInt", P1));
 		}
@@ -286,27 +287,27 @@ public class Util_Term_Component {
 
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareAccess(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, DoCreator DC, int[] Location, Object Operand) {
+			boolean IsAccessNA, DoCreator DC, Coordinate Location, Object Operand) {
 		return CreateNullAwareAccess($CProduct, $ME, IsAccessNA, DC, Location, Operand, null, null, null, null);
 	}
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareAccess(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, DoCreator DC, int[] Location, Object Operand, Object P0) {
+			boolean IsAccessNA, DoCreator DC, Coordinate Location, Object Operand, Object P0) {
 		return CreateNullAwareAccess($CProduct, $ME, IsAccessNA, DC, Location, Operand, P0, null, null, null);
 	}
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareAccess(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, DoCreator DC, int[] Location, Object Operand, Object P0, Object P1) {
+			boolean IsAccessNA, DoCreator DC, Coordinate Location, Object Operand, Object P0, Object P1) {
 		return CreateNullAwareAccess($CProduct, $ME, IsAccessNA, DC, Location, Operand, P0, P1, null, null);
 	}
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareAccess(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, DoCreator DC, int[] Location, Object Operand, Object P0, Object P1, Object P2) {
+			boolean IsAccessNA, DoCreator DC, Coordinate Location, Object Operand, Object P0, Object P1, Object P2) {
 		return CreateNullAwareAccess($CProduct, $ME, IsAccessNA, DC, Location, Operand, P0, P1, P2, null);
 	}
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareAccess(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, DoCreator DC, int[] Location, Object Operand, Object P0, Object P1, Object P2, Object P3) {
+			boolean IsAccessNA, DoCreator DC, Coordinate Location, Object Operand, Object P0, Object P1, Object P2, Object P3) {
 		// No access NA
 		if(!IsAccessNA) return DC.createDo($ME, Location, Operand, P0, P1, P2, P3);
 		
@@ -348,7 +349,7 @@ public class Util_Term_Component {
 
 	/** Create Null aware access */
 	static public final Expression CreateNullAwareIndex(CompileProduct $CProduct, MExecutable $ME,
-			boolean IsAccessNA, int[] Location, Object Operand, Object Index) {
+			boolean IsAccessNA, Coordinate Location, Object Operand, Object Index) {
 		// No access NA
 		if(!IsAccessNA) return $ME.newExpr(Location, Inst_GetArrayElementAt.Name, Operand, Index);
 		
@@ -410,7 +411,7 @@ public class Util_Term_Component {
 		final boolean HasAccName  = (AccName != null);
 		      boolean HasParams   = ($Result.textOf(enHAS_PARAMS)        != null);
 		final boolean IsAccessNA  = ($Result.textOf(enNULL_AWARE_ACCESS) != null);
-		final int     Position    =  $Result.posOf(0);
+		final int     Position    =  $Result.startPositionOf(0);
 		
 		EE_Language EEL = (EE_Language)$Engine.getExtension(EE_Language.Name);
 		boolean IsAccess_this_AsVar = (EEL != null) && EEL.isStackOwnerVariableShouldBeTreatedAsVariable; 
@@ -445,9 +446,9 @@ public class Util_Term_Component {
 				IsGetExpr = true;
 
 				if(HasIndexed) { // Process indexes
-					final String[]  NAIndexes = $Result.textsOf(      enNULL_AWARE_INDEX); 
-					final Object[]  Indexes   = $Result.valuesOf(     enINDEX, $TPackage, $CProduct);
-					final int[][]   Locations = $Result.locationCRsOf(enINDEX);
+					final String[]     NAIndexes = $Result.textsOf(      enNULL_AWARE_INDEX); 
+					final Object[]     Indexes   = $Result.valuesOf(     enINDEX, $TPackage, $CProduct);
+					final Coordinate[] Locations = $Result.coordinatesOf(enINDEX);
 
 					// Loop all the index from the first to the last
 					for(int i = 0; i < Indexes.length; i++) {
@@ -462,7 +463,7 @@ public class Util_Term_Component {
 				}
 
 				// Get the location
-				final int[] Location = $Result.locationCROf(enACCESS);
+				final Coordinate Location = $Result.coordinateOf(enACCESS);
 
 				// Operand
 				String  $Operand = $Result.textOf(enOPERAND); if($Operand == null) $Operand = "";
@@ -575,7 +576,7 @@ public class Util_Term_Component {
 						$CProduct.reportFatalError(
 							"In order to use access or invocation either or both StackOwner or/and Java engine extension "+
 							"must be part of the engine <Component:538>",
-							null, $Result.posOf(0)
+							null, $Result.startPositionOf(0)
 						);
 						return null;
 					}
@@ -644,7 +645,7 @@ public class Util_Term_Component {
 						if((TRef == null) && ($Prefix == '@')) {
 							$CProduct.reportError(
 								String.format("Unavailable type variable '%s' <Component:569>",$Operand),
-								null, $Result.posOf(enOPERAND)
+								null, $Result.startPositionOf(enOPERAND)
 							);
 							return null;
 						}
@@ -655,7 +656,7 @@ public class Util_Term_Component {
 							IsType   = true;
 							IsStatic = true;
 
-							int[] OPERANDCR = $Result.locationCROf(enOPERAND);
+							Coordinate OPERANDCR = $Result.coordinateOf(enOPERAND);
 							Operand = (TRef != null)
 							               ? $ME.newType(OPERANDCR, TRef)
 							               : $ME.newExpr(OPERANDCR, Inst_GetContextInfo.Name, "StackOwner_As_Type");
@@ -669,7 +670,7 @@ public class Util_Term_Component {
 							if(PB == null) {
 								$CProduct.reportError(
 									String.format("Unavailable package variable '%s' <Component:583>", $Operand),
-									null, $Result.posOf(enOPERAND)
+									null, $Result.startPositionOf(enOPERAND)
 								);
 								return null;
 							}
@@ -686,7 +687,7 @@ public class Util_Term_Component {
 							if(Inst == null) {
 								$CProduct.reportError(
 									String.format("Unavailable package variable '%s' <Component:613>.", $Operand),
-									null, $Result.posOf(enOPERAND)
+									null, $Result.startPositionOf(enOPERAND)
 								);
 								return null;
 							}
@@ -857,7 +858,7 @@ public class Util_Term_Component {
 
 					// Ensure the identify -----------------------------------------------------------------------
 					if(IsCheckFull && (ErrMsg != null)) {
-						$CProduct.reportError(ErrMsg, Excp, ErrPos ? $Result.posOf(enOPERAND) : -1);
+						$CProduct.reportError(ErrMsg, Excp, ErrPos ? $Result.startPositionOf(enOPERAND) : -1);
 						return null;
 					}
 
@@ -946,7 +947,7 @@ public class Util_Term_Component {
 								System.arraycopy(Params, 0, ConfigParams, OPCount + 1, Params.length);
 	
 								// Create the expression
-								Expr = $ME.newExpr($Result.locationCROf(enACCESS), Pre + "config" + Mid + Post, ConfigParams);
+								Expr = $ME.newExpr($Result.coordinateOf(enACCESS), Pre + "config" + Mid + Post, ConfigParams);
 								
 							} else {	// GetMoreInfo
 								int      OPCount           = OperExpr.getParamCount();
@@ -957,7 +958,7 @@ public class Util_Term_Component {
 								GetMoreInfoParams[OPCount] = AccName;
 	
 								// Create the expression
-								Expr = $ME.newExpr($Result.locationCROf(enACCESS), Pre + "get" + Mid + "MoreInfo" + Post, GetMoreInfoParams);
+								Expr = $ME.newExpr($Result.coordinateOf(enACCESS), Pre + "get" + Mid + "MoreInfo" + Post, GetMoreInfoParams);
 							}
 						}
 						
@@ -1031,7 +1032,7 @@ public class Util_Term_Component {
 										ErrMsg,
 										$Result.textOf(enACCESS) + AccName + UArray.toString(PTRefs, "(", ")", ",")
 									),
-									null, $Result.posOf(enACCESS));
+									null, $Result.startPositionOf(enACCESS));
 							return null;
 						}
 						ErrMsg = null;

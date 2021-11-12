@@ -22,6 +22,7 @@ import net.nawaman.curry.Instructions_Core.Inst_Group;
 import net.nawaman.curry.Instructions_Executable.Inst_NewClosure;
 import net.nawaman.curry.Instructions_Executable.Inst_ReCreate;
 import net.nawaman.curry.Instructions_Executable.Inst_Run_Unsafe;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
@@ -56,7 +57,7 @@ public class Util_Executable {
 			if((FName == null) || !Pattern.matches("[a-zA-Z$_][a-zA-Z0-9$_]*", FName)) {
 				$CProduct.reportError(
 						"Invalid frozen variable name '"+FName+"' <Util_Executable:52>",
-						null, $Result.possOf("$FrozenVariable")[i]
+						null, $Result.startPositionsOf("$FrozenVariable")[i]
 					);
 			}
 			
@@ -64,7 +65,7 @@ public class Util_Executable {
 			if(FVNameSet.contains(FName)) {
 				$CProduct.reportError(
 					"Repeat frozen variable name '"+FName+"' <Util_Executable:60>",
-					null, $Result.possOf("$FrozenVariable")[i]
+					null, $Result.startPositionsOf("$FrozenVariable")[i]
 				);
 				return null;
 			}
@@ -76,7 +77,7 @@ public class Util_Executable {
 				// The variable is unknown
 				$CProduct.reportError(
 					"Unknown variable '"+FName+"' for frozen variable <Util_Executable:72>",
-					null, $Result.possOf("$FrozenVariable")[i]
+					null, $Result.startPositionsOf("$FrozenVariable")[i]
 				);
 				return null;
 			}
@@ -131,7 +132,7 @@ public class Util_Executable {
 			return null;
 		}
 
-		int[] $LocationCR = $Result.locationCROf(0);
+		Coordinate $LocationCR = $Result.coordinateOf(0);
 
 		String ConstName  = Signature.getName();
 		Object ConstType  = $Engine.getExecutableManager().newType($LocationCR, TRef);
@@ -187,12 +188,12 @@ public class Util_Executable {
 		Engine        $Engine = $CProduct.getEngine();
 		TKExecutable  TKExec  = (TKExecutable)$Engine.getTypeManager().getTypeKind(TKExecutable.KindName);
 		
-		String   ELang   = ($Result == null) ? null               : $Result.textOf(ENLanguage);
-		int[]    $LocCR  = ($Result == null) ? new int[] {-1, -1} : $Result.locationCROf(0);
-		int      ZeroPos = ($Result == null) ? 0                  : $Result.posOf(ENKind);
-		int      Offset  =    0;
-		String   ECode   = null;
-		ExecKind EKind   = null;	
+		String     ELang   = ($Result == null) ? null                   : $Result.textOf(ENLanguage);
+		Coordinate $LocCR  = ($Result == null) ? new Coordinate(-1, -1) : $Result.coordinateOf(0);
+		int        ZeroPos = ($Result == null) ? 0                      : $Result.startPositionOf(ENKind);
+		int        Offset  =    0;
+		String     ECode   = null;
+		ExecKind   EKind   = null;	
 		
 		// Prepare the executable kind
 		switch($Kind) {
@@ -323,10 +324,10 @@ public class Util_Executable {
 				
 				if((ELang == null) || CL.getName().equals(ELang)) {
 					ECode  = ($Result == null) ? "" : $Result.textOf(ENBody);
-					Offset = ($Result == null) ? 0  : $Result.posOf( ENBody);
+					Offset = ($Result == null) ? 0  : $Result.startPositionOf( ENBody);
 				} else  {
 					ECode  = ($Result == null) ? "" : $Result.textOf(ENCode);
-					Offset = ($Result == null) ? 0  : $Result.posOf( ENCode);
+					Offset = ($Result == null) ? 0  : $Result.startPositionOf( ENCode);
 				}
 				
 				Options.setCodeFeederName($CProduct.getCurrentFeederName());
@@ -340,7 +341,7 @@ public class Util_Executable {
 
 				if((ELang == null) || CL.getName().equals(ELang)) {
 
-					String OCode = $Result.originalString();
+					String OCode = $Result.originalText();
 					String EName = $CProduct.getCurrentCodeName();
 					if(EName == null) EName = "";
 					EName += "::" + (($Kind == 'g') ? "group()" : $Signature.toString());
@@ -377,7 +378,7 @@ public class Util_Executable {
 				if(EC == null) {
 					$CProduct.reportError(
 						String.format("Sub Language '%s' is not supported <Util_Executable:270>", ELang),
-						null, $Result.posOf(ENLanguage)
+						null, $Result.startPositionOf(ENLanguage)
 					);
 					return null;
 				}
@@ -385,9 +386,9 @@ public class Util_Executable {
 				// Prepare the adjusted code ----------------------------------------------------------
 				// Adjust the code so it can be compiled by the ExecutableCreator with the same test layout
 				ECode  = $Result.textOf(ENCode);
-				Offset = $Result.posOf( ENCode);
+				Offset = $Result.startPositionOf( ENCode);
 	
-				String OrgTxt = $Result.originalString();
+				String OrgTxt = $Result.originalText();
 				int    EndPos = Offset + ECode.length();
 				StringBuilder SB = new StringBuilder();
 				for(int i = 0; i < OrgTxt.length(); i++) {	
@@ -432,7 +433,7 @@ public class Util_Executable {
 							$CProduct.reportError(
 									"To support, sub-language 'group' an instruction called '"+Inst_Run_Unsafe.Name+"'" +
 									" is required <Util_Executable:403>", null,
-									$Result.posOf(ENLanguage));
+									$Result.startPositionOf(ENLanguage));
 							return null;
 						}
 						Exec = Inst.newExpression_Coordinate($LocCR, Exec);

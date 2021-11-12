@@ -37,7 +37,7 @@ public class Util_StmLoop {
 		// Before ----------------------------------------------------------------------------------------------------------
 		Instruction Inst = $Engine.getInstruction("forEach");
 		// Manipulate the context - Before
-		Inst.manipulateCompileContextStart($CProduct, $Result.posOf(0));
+		Inst.manipulateCompileContextStart($CProduct, $Result.startPositionOf(0));
 
 		// Parameters (check ourself for better error report) --------------------------------------------------------------
 		String  Label      =          $Result.textOf("$Label");
@@ -45,13 +45,13 @@ public class Util_StmLoop {
 		TypeRef TRef       = (TypeRef)$Result.valueOf("#TypeRef",    $TPackage, $CProduct);
 		Object  Collection =          $Result.valueOf("#Collection", $TPackage, $CProduct);
 
-		Object[] Params = new Object[] { Label, Name, $ME.newType($Result.locationCROf("#TypeRef"), TRef), Collection };
+		Object[] Params = new Object[] { Label, Name, $ME.newType($Result.coordinateOf("#TypeRef"), TRef), Collection };
 		// Manipulate the context before sub
-		Inst.manipulateCompileContextBeforeSub(Params, $CProduct, $Result.posOf(0));
+		Inst.manipulateCompileContextBeforeSub(Params, $CProduct, $Result.startPositionOf(0));
 
 		// Body ------------------------------------------------------------------------------------------------------------
 		Expression Body = ExtractBody($Engine, $ME, Expression.toExpr($Result.valueOf("#Body", $TPackage, $CProduct)));
-		Expression Expr = $ME.newExprSub($Result.locationCROf("$Command"), "forEach", Params, Body);
+		Expression Expr = $ME.newExprSub($Result.coordinateOf("$Command"), "forEach", Params, Body);
 		if(!Expr.ensureParamCorrect($CProduct) || !Expr.manipulateCompileContextFinish($CProduct)) return null;
 
 		return Expr;

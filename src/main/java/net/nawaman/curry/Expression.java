@@ -10,6 +10,7 @@ import net.nawaman.curry.Instructions_Package.Inst_GetPackage;
 import net.nawaman.curry.compiler.CompileProduct;
 import net.nawaman.curry.TLType.TypeTypeRef;
 import net.nawaman.curry.util.Objectable_Curry;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.util.UObject;
 import net.nawaman.util.UString;
 
@@ -182,6 +183,15 @@ abstract public class Expression implements Serializable, Objectable_Curry, Exec
 		int Coordinate = Location.getCoordinate(pCol, pRow);
 		if(Coordinate == -1) return new Expr_Expr(pExpr);
 		return new Expr_Expr_Coordinate(Coordinate, pExpr);
+	}
+	/** Create a new data with location info of an expression value */
+	static public Expression newExpr(Coordinate coordinate, Expression pExpr) {
+		if (coordinate == null) return newExpr(-1, -1, pExpr);
+		else {
+			int col = (coordinate.col() < -1) ? -1 : coordinate.col();
+			int row = (coordinate.row() < -1) ? -1 : coordinate.row();
+			return newExpr(col, row, pExpr);
+		}
 	}
 	/** Create a new data with location info of an expression value */
 	static public Expression newExpr(int[] pCR, Expression pExpr) {

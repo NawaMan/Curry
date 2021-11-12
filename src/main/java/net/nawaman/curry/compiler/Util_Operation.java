@@ -79,7 +79,7 @@ public class Util_Operation {
 				}
 			}
 				
-			$CProduct.reportFatalError("Unassignable <Util_Operation:63>.", null, $Result.posOf(0));
+			$CProduct.reportFatalError("Unassignable <Util_Operation:63>.", null, $Result.startPositionOf(0));
 			return null;
 		}
 

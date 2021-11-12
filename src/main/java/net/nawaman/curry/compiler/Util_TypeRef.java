@@ -26,7 +26,7 @@ public class Util_TypeRef {
 		if(TR == null) {
 			// If this is not in the type registration phrase, the type is unknown.
 			if(!$CProduct.getCompilationState().isTypeRegistration())
-				$CProduct.reportError("Unknown type: `"+$TName+"` <Util_TypeRef:24>", null, $Result.posOf(0));
+				$CProduct.reportError("Unknown type: `"+$TName+"` <Util_TypeRef:24>", null, $Result.startPositionOf(0));
 			
 			if($TName.contains("=>")) return null;
 			
@@ -87,7 +87,7 @@ public class Util_TypeRef {
 				catch (CurryError CE) {
 					String Msg = CE.getMessage();
 					if(Msg.startsWith("Invalid type parameteization")) {
-						$CProduct.reportError(Msg, CE, $Result.posOf(0));
+						$CProduct.reportError(Msg, CE, $Result.startPositionOf(0));
 						return null;
 					}
 				}

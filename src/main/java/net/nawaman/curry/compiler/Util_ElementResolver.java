@@ -39,8 +39,8 @@ public class Util_ElementResolver {
 			public void resolveElement(CompileProduct $CProduct, StackOwnerBuilder SOB) {
 				if($ThisResult == null) return;
 				
-				ParseResult $Result = $ThisResult.subResultAt(pEIndex);
-				PType       Type    = $TProvider.getType($ThisResult.typeNameAt(pEIndex));
+				ParseResult $Result = $ThisResult.subResultOf(pEIndex);
+				PType       Type    = $TProvider.getType($ThisResult.typeNameOf(pEIndex));
 				// Just ignored this part
 				if((Type == null) || ($Result == null)) {
 					$CProduct.reportError(
@@ -78,7 +78,7 @@ public class Util_ElementResolver {
 						DoesSuperHaveDefaultConstructor);
 				if(Imports != null) $CProduct.addImport(Imports);
 				
-				ParameterizedTypeInfo PTInfo = ThisT.getTypeSpec().getParameterizedTypeInfo();				
+				ParameterizedTypeInfo PTInfo = ThisT.getTypeSpec().getParameterizedTypeInfo();
 				if(PTInfo != null) $CProduct.useParameterizedTypeInfos(PTInfo);
 				
 				Object O = Type.compile($ThisResult, pEIndex, null, $CProduct, $TProvider);
@@ -94,7 +94,7 @@ public class Util_ElementResolver {
 				MExecutable ME = $CProduct.getEngine().getExecutableManager();
 				
 				if(O instanceof Expression[])
-					 O = ME.newGroup($ThisResult.locationCROf(pEIndex), (Expression[])O);
+					 O = ME.newGroup($ThisResult.coordinateOf(pEIndex), (Expression[])O);
 				else O = Expression.toExpr(O);
 				
 				boolean IsToAddDefaultConstructorRevokation = $CProduct.isToAddDefaultConstructorRevocation();
@@ -104,14 +104,14 @@ public class Util_ElementResolver {
 							if(SuperTRef.searchConstructor($CProduct.getEngine(), TypeRef.EmptyTypeRefArray) == null) {
 								$CProduct.reportError(
 									"The super type `"+SuperTRef+"` does not have a default constructor <Util_ElementResolver:88>",
-									null, $ThisResult.posOf(pEIndex));
+									null, $ThisResult.startPositionOf(pEIndex));
 								return;
 							}
 							
-							O = ME.newGroup($ThisResult.locationCROf(pEIndex), 
+							O = ME.newGroup($ThisResult.coordinateOf(pEIndex), 
 								new Expression[] {
 									ME.newExpr(
-										$ThisResult.locationCROf(pEIndex),
+										$ThisResult.coordinateOf(pEIndex),
 										Instructions_Initializer.Inst_InvokeSuperInitializer_ByPTRefs.Name,
 										(Object)TypeRef.EmptyTypeRefArray),
 									(Expression)O
@@ -163,8 +163,8 @@ public class Util_ElementResolver {
 				null, null, null, false);
 		if(Imports != null) $CProduct.addImport(Imports);
 		
-		ParseResult $Result = $ThisResult.subResultAt(EIndex);
-		PType       Type    = $TProvider.getType($ThisResult.typeNameAt(EIndex));
+		ParseResult $Result = $ThisResult.subResultOf(EIndex);
+		PType       Type    = $TProvider.getType($ThisResult.typeNameOf(EIndex));
 		// Just ignored this part
 		if((Type == null) || ($Result == null)) {
 			$CProduct.reportError(
@@ -268,7 +268,7 @@ public class Util_ElementResolver {
 			
 			/**{@inheritDoc}*/ @Override
 			public int getDefaultValuePosition() {
-				return $ThisResult.subResultAt(EIndex).startPosition();
+				return $ThisResult.subResultOf(EIndex).startPosition();
 			}
 			/**{@inheritDoc}*/ @Override
 			public Serializable getDefaultValue(CompileProduct $CProduct, StackOwnerBuilder SOB) {
@@ -379,7 +379,7 @@ public class Util_ElementResolver {
 								String.format(
 									"Only type operation can be static: (`{%s}.{%s}`)",
 									SOB, pSignature
-								), null, $ThisResult.posOf(pEIndex));
+								), null, $ThisResult.startPositionOf(pEIndex));
 							return;
 						}
 						((TypeBuilder)SOB).resolveStaticTempOper(pSignature, $CProduct.CCompiler.TheID, Exec);
@@ -401,7 +401,7 @@ public class Util_ElementResolver {
 							String.format(
 								"Only type operation can be static: (`{%s}.{%s}`)",
 								SOB, pSignature
-							), null, $ThisResult.posOf(pEIndex));
+							), null, $ThisResult.startPositionOf(pEIndex));
 						return;
 					}
 					((TypeBuilder)SOB).resolveStaticTempOper(pSignature, $CProduct.CCompiler.TheID, Body);

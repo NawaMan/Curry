@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.nawaman.curry.compiler.CompileProduct;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.curry.Instructions_Core.Inst_Doc;
 import net.nawaman.curry.TLType.TypeTypeRef;
 import net.nawaman.util.Objectable;
@@ -287,9 +288,19 @@ abstract public class Instruction implements Objectable {
 		int pRow = ((pCR == null) || (pCR.length < 2))?-1:pCR[1];
 		return this.newExpression_Coordinate(pCol, pRow, pParams);
 	}
+	public Expression newExpression_Coordinate(Coordinate coordinate, Object ... pParams) {
+		int pCol = (coordinate == null) ? -1 : coordinate.col();
+		int pRow = (coordinate == null) ? -1 : coordinate.row();
+		return this.newExpression_Coordinate(pCol, pRow, pParams);
+	}
 	
 	public Expression newExprSubs(Object[] pParameters, Expression[] pSubExpressions) {
 		return this.newExprSubs_Coordinate(-1, -1, pParameters, pSubExpressions);
+	}
+	public Expression newExprSubs_Coordinate(Coordinate pCR, Object[] pParameters, Expression[] pSubExpressions) {
+		int pCol = Coordinate.colOf(pCR);
+		int pRow = Coordinate.rowOf(pCR);
+		return this.newExprSubs_Coordinate(pCol, pRow, pParameters, pSubExpressions);
 	}
 	public Expression newExprSubs_Coordinate(int[] pCR, Object[] pParameters, Expression[] pSubExpressions) {
 		int pCol = ((pCR == null) || (pCR.length < 2))?-1:pCR[0];

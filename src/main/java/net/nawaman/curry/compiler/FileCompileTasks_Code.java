@@ -74,7 +74,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 		
 		// Get parse result from the input or create one if this is the first time parsing is run
 		ParseResult $ThisResult = (ParseResult)pIns[0];
-		ParseResult $Result     = ($ThisResult == null)?null:$ThisResult.subOf(0);
+		ParseResult $Result     = ($ThisResult == null)?null:$ThisResult.subResultOf(0);
 		// If the parse result is still null, report error and mark the code as invalid
 		if($Result == null) {
 			$CProduct.reportError(

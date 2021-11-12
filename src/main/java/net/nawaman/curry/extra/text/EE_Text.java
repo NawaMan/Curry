@@ -96,15 +96,15 @@ public class EE_Text extends EngineExtension {
 		
 		// SimpleText --------------------------------------------------------------------------------------------------
 		if($Result.textOf("$IsSimpleText") != null)
-			return $ME.newExpr($Result.locationCROf(0), Inst_NewText.Name, $Result.valueOf("#String", $TProvider, $CProduct));
+			return $ME.newExpr($Result.coordinateOf(0), Inst_NewText.Name, $Result.valueOf("#String", $TProvider, $CProduct));
 
 		// SimpleExpressionString --------------------------------------------------------------------------------------
 		if($Result.textOf("#StrExpr") != null)
 			return $ME.newExpr(
-					$Result.locationCROf(0),
+					$Result.coordinateOf(0),
 					Inst_NewText.Name,
 					$ME.newExpr(
-						$Result.locationCROf(0),
+						$Result.coordinateOf(0),
 						Inst_ToString.Name,
 						$Result.valueOf("#StrExpr", $TProvider, $CProduct)
 					)
@@ -114,7 +114,7 @@ public class EE_Text extends EngineExtension {
 
 		// Manipulate Before
 		Instruction CreateText = $CProduct.getEngine().getInstruction(Inst_CreateText.Name);
-		CreateText.manipulateCompileContextStart($CProduct, $Result.posOf(0));
+		CreateText.manipulateCompileContextStart($CProduct, $Result.startPositionOf(0));
 		
 		StringBuilder  LastStr = new StringBuilder();
 		int            Count   = $Result.entryCount();
@@ -141,14 +141,14 @@ public class EE_Text extends EngineExtension {
 				
 				Expression Expr;
 				if(IsExpr)
-					Expr = Expression.newExpr($Result.locationCROf(i), Expression.toExpr($Result.valueOf(i, $TProvider, $CProduct)));
+					Expr = Expression.newExpr($Result.coordinateOf(i), Expression.toExpr($Result.valueOf(i, $TProvider, $CProduct)));
 				else { 
 					Expression[] Exprs = (Expression[])$Result.valueOf(i, $TProvider, $CProduct);
 					if(Exprs == null) continue;
 					
 					Expression[] NewExprs = new Expression[Exprs.length + 1];
 					System.arraycopy(Exprs, 0, NewExprs, 0, NewExprs.length - 1);
-					Expr = Expression.newExpr($Result.locationCROf(i), $ME.newGroup($Result.locationCROf(i), NewExprs));
+					Expr = Expression.newExpr($Result.coordinateOf(i), $ME.newGroup($Result.coordinateOf(i), NewExprs));
 				}
 				Objs.add(Expr);
 			}
@@ -156,11 +156,11 @@ public class EE_Text extends EngineExtension {
 		if(LastStr.length() != 0) Objs.add(LastStr.toString());
 		
 		Object[] Params = Objs.toArray(new Object[Objs.size()]);
-		CreateText.manipulateCompileContextBeforeSub(Params, $CProduct, $Result.posOf(0));
+		CreateText.manipulateCompileContextBeforeSub(Params, $CProduct, $Result.startPositionOf(0));
 		
 		// Creates the Expr
 		Expression Expr = $ME.newExpr(
-				$Result.locationCROf(0),
+				$Result.coordinateOf(0),
 				Inst_CreateText.Name,
 				(Object[])Params
 			);

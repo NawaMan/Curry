@@ -17,6 +17,7 @@ import net.nawaman.curry.Instructions_Context.Inst_NewVariable;
 import net.nawaman.curry.Instructions_Core.Inst_Group;
 import net.nawaman.curry.Instructions_Core.Inst_RunOnce;
 import net.nawaman.curry.Instructions_Core.Inst_Stack;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
@@ -47,7 +48,7 @@ public class Util_Statments {
 				:$ME.newGroup(  Expr.getColumn() , Expr.getLineNumber(), Subs);
 	}
 	/** Creates a new wrapping stack */
-	static public Expression NewWrappingStack(Engine $Engine, MExecutable $ME, CompileProduct $CProduct, int[] Location, Expression Expr) {
+	static public Expression NewWrappingStack(Engine $Engine, MExecutable $ME, CompileProduct $CProduct, Coordinate Location, Expression Expr) {
 		Expr = ExtractBody($Engine, $ME, Expr);
 
 		if(!Expr.isInstruction($Engine, Inst_NewVariable.Name)         && !Expr.isInstruction($Engine, Inst_NewConstant.Name) &&
@@ -77,7 +78,7 @@ public class Util_Statments {
 	/** Returns the default value */
 	static public Object GetDefaultValue(TypeRef TRef, ParseResult $Result, PTypePackage $TPackage, CompileProduct $CProduct) {
 		if($Result.textOf("$New") != null) {
-			ParseResult New = $Result.subOf("#New");
+			ParseResult New = $Result.subResultOf("#New");
 			// New object
 			return Util_Atomic.CompileNew(
 						TRef,
@@ -91,13 +92,13 @@ public class Util_Statments {
 	}
 	
 	/** Compile a NewVar Statement */
-	static public Expression ParseCompileNewVar(TypeRef TRef, Object Type, String VarName, int VNamePos, int[] TypeRC,
+	static public Expression ParseCompileNewVar(TypeRef TRef, Object Type, String VarName, int VNamePos, Coordinate TypeRC,
 			int CLength, int GLength, int BLength, ParseResult $Result, PTypePackage $TPackage, CompileProduct $CProduct) {
 		
 		// Get the engine
 		Engine      $Engine = $CProduct.getEngine();
 		MExecutable $ME     = $Engine.getExecutableManager();
-		int         ZeroPos = $Result.posOf(0);
+		int         ZeroPos = $Result.startPositionOf(0);
 
 		if("type".equals(VarName)) {
 			$CProduct.reportFatalError("A variable must not be named 'type' <NewVar:76>",      null, VNamePos);
@@ -202,7 +203,7 @@ public class Util_Statments {
 	}
 
 	/** Compile a NewVar Statement */
-	static public Expression ParseCompileReturnQuit(int[] Location, String Command, Object RValue, Expression Expr,
+	static public Expression ParseCompileReturnQuit(Coordinate Location, String Command, Object RValue, Expression Expr,
 			int RValuePos, ParseResult $Result, PTypePackage $TPackage, CompileProduct $CProduct) {
 		
 		// If the return value is null, just return it.

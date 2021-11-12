@@ -21,6 +21,7 @@ import net.nawaman.curry.compiler.FileCompileResult;
 import net.nawaman.curry.compiler.StackOwnerAppender;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
+import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UArray;
@@ -82,7 +83,7 @@ public class CompilerUtil {
 				}
 				
 				if(IsGoodForNewThrowable)	// The parameters are good for NewThrowable
-					return MT.newExpr($Result.locationCROf(0), Inst_NewThrowable.Name,
+					return MT.newExpr($Result.coordinateOf(0), Inst_NewThrowable.Name,
 								(IndexMessage != -1)?$Params[IndexMessage]:null,
 								CT,
 								(IndexCause   != -1)?$Params[IndexCause  ]:null
@@ -92,7 +93,7 @@ public class CompilerUtil {
 		}
 		
 		// The type is not a throwable, so just go on normally ---------------------------------------------------------
-		Object Type = $Engine.getExecutableManager().newType($Result.locationCROf(0), $TypeRef);
+		Object Type = $Engine.getExecutableManager().newType($Result.coordinateOf(0), $TypeRef);
 		
 		// Get the typerefs of the parameters
 		TypeRef[] TRs = TypeRef.EmptyTypeRefArray;
@@ -106,7 +107,7 @@ public class CompilerUtil {
 			String ErrMsg = String.format(
 			                    "Unable to find the constructor new %s(%s)",
 			                    $TypeRef, UArray.toString(TRs, "", "", ",")); 
-			$CProduct.reportError(ErrMsg, null, $Result.posOf(0));
+			$CProduct.reportError(ErrMsg, null, $Result.startPositionOf(0));
 		}
 		
 		// Prepare the parameter, construct the expression and return it
@@ -116,7 +117,7 @@ public class CompilerUtil {
 		if($Params != null) System.arraycopy($Params, 0, Os, 2, $Params.length);
 
 		// Create the expression
-		Expression Expr = MT.newExpr($Result.locationCROf(0), Inst_NewInstanceByTypeRefs.Name, (Object[])Os);
+		Expression Expr = MT.newExpr($Result.coordinateOf(0), Inst_NewInstanceByTypeRefs.Name, (Object[])Os);
 		if(!Expr.ensureParamCorrect($CProduct)) return null;
 		return Expr;
 	}
@@ -129,9 +130,9 @@ public class CompilerUtil {
 		
 		// StructuralRegistration
 		
-		String VarName = $Result.textOf("$VarName");
-		int    VarPos  = $Result.startPosition();
-		int[]  VarLoc  = $Result.locationCROf(0);
+		String     VarName = $Result.textOf("$VarName");
+		int        VarPos  = $Result.startPosition();
+		Coordinate VarLoc  = $Result.coordinateOf(0);
 		
 		String   PName;
 		String[] Strs;
@@ -144,7 +145,7 @@ public class CompilerUtil {
 		    (((PName = "Static")       != null) && ((Strs = $Result.textsOf("$IsStatic"))     != null) && (Strs.length > 1))
 		  ) {
 		  $CProduct.reportError("Multiple type-field property `"+PName+"` of `"+VarName+"` <CompilerUtil:1098>", null,
-				  $Result.possOf(PName)[1]);
+				  $Result.startPositionsOf(PName)[1]);
 		  return null;
 		}
 		
@@ -158,7 +159,7 @@ public class CompilerUtil {
 		boolean       Writable     = ($Result.textOf("$UnWritable") == null);
 		TypeRef       TRef         = (TypeRef)$Result.valueOf("#TypeRef", $TPackage, $CProduct);
 		String        Name         = $Result.textOf( "$VarName");
-		ParseResult   DValue       = $Result.subOf(  "#Value");
+		ParseResult   DValue       = $Result.subResultOf(  "#Value");
 		boolean       IsNull       = (DValue == null) || "null".equals($Result.textOf("#Value"));
 		String        Flag         = ($Result.textOf("#Abstract") != null)?"Abstract":($Result.textOf("#Dynamic") != null)?"Dynamic":null;
 		boolean       IsStatic     = ($Result.textOf("$IsStatic") != null);
@@ -181,7 +182,7 @@ public class CompilerUtil {
 				}
 				
 				int EIndex = -1;
-				for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultAt(i)) { EIndex = i; break; } }
+				for(int i = $Result.entryCount(); --i >= 0; ) { if(DValue == $Result.subResultOf(i)) { EIndex = i; break; } }
 				ElementResolver Resolver = null;
 				if(DValue != null) Resolver = Util_ElementResolver.newAttrResolver(IsStatic, Name, $Result, EIndex, $TPackage, $CProduct);
 

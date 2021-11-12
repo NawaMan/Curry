@@ -51,22 +51,22 @@ public class Util_TypeDef {
 		if(!(R instanceof TypeSpecCreator)) {
 			$CProduct.reportError(
 				"Invalid TypeDef result from `"+ $Result.nameOf(enTYPEDEF) +"` ("+R+") <Util_TypeDef:30>", null,
-				$Result.posOf(enTYPEDEF));
+				$Result.startPositionOf(enTYPEDEF));
 			return null;
 		}
 		
 		// Get the type name
 		String TName = $Result.textOf(enTYPE_NAME);
-		if(TName == null) TName = $Result.subOf(enTYPEDEF).textOf(enTYPE_NAME);
+		if(TName == null) TName = $Result.subResultOf(enTYPEDEF).textOf(enTYPE_NAME);
 
 		// Get the type accessibility
 		Accessibility      Access = (Accessibility)$Result                 .valueOf(Util_Element.enACCESS, $TPackage, $CProduct);
-		if(Access == null) Access = (Accessibility)$Result.subOf(enTYPEDEF).valueOf(Util_Element.enACCESS, $TPackage, $CProduct);
+		if(Access == null) Access = (Accessibility)$Result.subResultOf(enTYPEDEF).valueOf(Util_Element.enACCESS, $TPackage, $CProduct);
 		if(Access == null) Access = net.nawaman.curry.Package.Public;
 		
 		TypeSpecCreator TSCreator = (TypeSpecCreator)R;
 		Documentation   Document  = (Documentation)$CProduct.getCurrentCodeData(Util_Element.dnDOCUMENT_FOR_TYPE);
-		Location        Location  = $CProduct.getCurrentLocation($Result.locationCROf(0));
+		Location        Location  = $CProduct.getCurrentLocation($Result.coordinateOf(0));
 					
 		return new FileCompileResult.TypeSpecification(TName, Document, Access, false, Location, TSCreator);
 	}
@@ -82,7 +82,7 @@ public class Util_TypeDef {
 		Object  SecretID   = null;
 		
 		String TName = $Result.textOf(enTYPE_NAME);
-		if((TName == null) && ($Result.subOf(enTYPEDEF) != null)) TName = $Result.subOf(enTYPEDEF).textOf(enTYPE_NAME);
+		if((TName == null) && ($Result.subResultOf(enTYPEDEF) != null)) TName = $Result.subResultOf(enTYPEDEF).textOf(enTYPE_NAME);
 		
 		// Just in case
 		TypeRef               TRef   = $CProduct.OwnerTypeRef;
@@ -169,13 +169,13 @@ public class Util_TypeDef {
 		
 		TKArray TKA = (TKArray)$Engine.getTypeManager().getTypeKind(TKArray.KindName);
 		if(TKA == null) {
-			$CProduct.reportError("Array type is not supported in this engine! <Util_TypeDef:127>", null, $Result.posOf(0));
+			$CProduct.reportError("Array type is not supported in this engine! <Util_TypeDef:127>", null, $Result.startPositionOf(0));
 			return null;
 		}
 		
 		int Dim = ($Result.textOf(enARRAY_DIMENSION) == null)?-1:(Integer)$Result.valueOf(enARRAY_DIMENSION, $TPackage, $CProduct);
 		if(Dim < -1) {
-			$CProduct.reportError("Invalid array type dimension ("+Dim+"). <Util_TypeDef:133>", null, $Result.posOf(enARRAY_DIMENSION));
+			$CProduct.reportError("Invalid array type dimension ("+Dim+"). <Util_TypeDef:133>", null, $Result.startPositionOf(enARRAY_DIMENSION));
 			return null;
 		}
 		
@@ -233,7 +233,7 @@ public class Util_TypeDef {
 		
 		TKInterface TKI = (TKInterface)$Engine.getTypeManager().getTypeKind(TKInterface.KindName);
 		if(TKI == null) {
-			$CProduct.reportError("Interface type is not support", null, $Result.posOf(0));
+			$CProduct.reportError("Interface type is not support", null, $Result.startPositionOf(0));
 			return null;
 		}
 			
@@ -271,7 +271,7 @@ public class Util_TypeDef {
 		
 		TKClass TKC = (TKClass)$Engine.getTypeManager().getTypeKind(TKClass.KindName);
 		if(TKC == null) {
-			$CProduct.reportError("Class type is not support", null, $Result.posOf(0));
+			$CProduct.reportError("Class type is not support", null, $Result.startPositionOf(0));
 			return null;
 		}
 		

@@ -88,7 +88,7 @@ public class Util_TextProcessor {
 			}
 			
 			// Process the static text processor
-			return TP.processStaticTextProcessor($Text, $Params, $Result, BodyParseEntryName, $Result.locationCROf(0), $Result.posOf(0),
+			return TP.processStaticTextProcessor($Text, $Params, $Result, BodyParseEntryName, $Result.coordinateOf(0), $Result.startPositionOf(0),
 					$CProduct, $TPackage
 				);
 			
@@ -117,7 +117,7 @@ public class Util_TextProcessor {
 
 			// Process the runtime text processor
 			return $CProduct.getEngine().getExecutableManager().newExpr(
-					$Result.locationCROf(0),
+					$Result.coordinateOf(0),
 					Inst_Call.Name,
 					(Object[]) Ps
 				);
