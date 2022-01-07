@@ -13,8 +13,8 @@ import net.nawaman.curry.StackOwnerBuilder;
 import net.nawaman.curry.TKJava;
 import net.nawaman.curry.TypeBuilder;
 import net.nawaman.curry.TypeRef;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
@@ -30,7 +30,7 @@ public class Util_ElementResolver {
 	// Resolve a constructor -------------------------------------------------------------------------------------------
 	static public ElementResolver newConstructorResolver(final ExecSignature  pSignature,
 			final ParseResult   $ThisResult, final int            pEIndex,
-			final PTypeProvider $TProvider,  final CompileProduct pCProduct) {
+			final ParserTypeProvider $TProvider,  final CompileProduct pCProduct) {
 		
 		String[] Ims = pCProduct.getImports();
 		final String[] Imports = (Ims == null)?null:Ims.clone();
@@ -40,7 +40,7 @@ public class Util_ElementResolver {
 				if($ThisResult == null) return;
 				
 				ParseResult $Result = $ThisResult.subResultOf(pEIndex);
-				PType       Type    = $TProvider.getType($ThisResult.typeNameOf(pEIndex));
+				ParserType       Type    = $TProvider.type($ThisResult.typeNameOf(pEIndex));
 				// Just ignored this part
 				if((Type == null) || ($Result == null)) {
 					$CProduct.reportError(
@@ -144,7 +144,7 @@ public class Util_ElementResolver {
 	static public Object CompileAttrDValue(
 			final boolean        IsStatic,    final String            Name,
 			final ParseResult    $ThisResult, final int               EIndex,
-			final String[]       Imports,     final PTypeProvider     $TProvider,
+			final String[]       Imports,     final ParserTypeProvider     $TProvider,
 			final CompileProduct $CProduct,   final StackOwnerBuilder SOB) {
 		
 		if($ThisResult == null) return CompileResolvedHasProblem;
@@ -164,7 +164,7 @@ public class Util_ElementResolver {
 		if(Imports != null) $CProduct.addImport(Imports);
 		
 		ParseResult $Result = $ThisResult.subResultOf(EIndex);
-		PType       Type    = $TProvider.getType($ThisResult.typeNameOf(EIndex));
+		ParserType       Type    = $TProvider.type($ThisResult.typeNameOf(EIndex));
 		// Just ignored this part
 		if((Type == null) || ($Result == null)) {
 			$CProduct.reportError(
@@ -249,7 +249,7 @@ public class Util_ElementResolver {
 	static public ElementResolver newAttrResolver(
 			final boolean       IsStatic,    final String   Name,
 			final ParseResult   $ThisResult, final int      EIndex,
-			final PTypeProvider $TProvider,  CompileProduct CProduct) {
+			final ParserTypeProvider $TProvider,  CompileProduct CProduct) {
 		
 		String[] Ims = CProduct.getImports();
 		final String[] Imports = (Ims == null)?null:Ims.clone();
@@ -305,7 +305,7 @@ public class Util_ElementResolver {
 	static public ElementResolver newOperResolver(
 			final boolean       pIsStatic,   final ExecSignature  pSignature, final Executable.ExecKind pKind, 
 			final ParseResult   $ThisResult, final int            pEIndex,    final String              pLangName, 
-			final PTypeProvider $TProvider,  final CompileProduct pCProduct) {
+			final ParserTypeProvider $TProvider,  final CompileProduct pCProduct) {
 		
 		String[] Ims = pCProduct.getImports();
 		final String[] Imports = (Ims == null)?null:Ims.clone();

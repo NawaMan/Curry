@@ -73,7 +73,7 @@ import net.nawaman.curry.Instructions_StackOwner.Inst_typeInvoke;
 import net.nawaman.curry.TKVariant.TVariant;
 import net.nawaman.curry.TLBasedOnType.TRBasedOnType;
 import net.nawaman.curry.compiler.CompileProduct.CompileTimeChecking;
-import net.nawaman.regparser.PType;
+import net.nawaman.regparser.ParserType;
 import net.nawaman.regparser.RegParser;
 import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
@@ -395,7 +395,7 @@ public class Util_Term_Component {
 	}
 
 	/** RegPaser for parsing instruction */
-	static RegParser InstPattern = RegParser.newRegParser("($Pre:~(^get)*~)get($Mid:~(^Value)*~)Value($Post:~.*~)");
+	static RegParser InstPattern = RegParser.compile("($Pre:~(^get)*~)get($Mid:~(^Value)*~)Value($Post:~.*~)");
 	
 	/** Compile a new instance expression */
 	static public Object ParseCompileComponent(ParseResult $Result, PTypePackage $TPackage, CompileProduct $CProduct) {
@@ -709,7 +709,7 @@ public class Util_Term_Component {
 							try {
 								$CProduct.toStartTry();
 								ResetCompileTimeChecking($CProduct, CheckingFlag);	// Restore the compile-time checking setting TEMPORARILY
-								PType       PT = $TPackage.getType("TypeRef");
+								ParserType       PT = $TPackage.type("TypeRef");
 								ParseResult PR = PT.match($Operand, 0, $TPackage);
 								Operand        = null;
 								if(PR != null) { 

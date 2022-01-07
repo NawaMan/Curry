@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import net.nawaman.regparser.CompilationContext;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.util.UNumber;
 
@@ -15,7 +15,7 @@ public class Util_Literal {
 	
 	/** Compile a char escape */
 	static public Character CompileCharEscape(String $Text,
-			ParseResult $Result, PTypeProvider $TProvider, CompilationContext $CContext) {
+			ParseResult $Result, ParserTypeProvider $TProvider, CompilationContext $CContext) {
 		char F = $Text.toLowerCase().charAt(1);
 		switch(F) {
 			case  '0': return ($Text.length() == 2) ? '\0' : (char)Integer.parseInt($Text.substring(2),  8);
@@ -47,7 +47,7 @@ public class Util_Literal {
 	 **/
 	static public Number CompileNumberInteger(String $Sign, String $Power, String $DecMantissa, String $BinMantissa,
 			String $OctMantissa, String $HexMantissa, String $Size,
-			ParseResult $Result, PTypeProvider $TProvider, CompilationContext $CContext) {
+			ParseResult $Result, ParserTypeProvider $TProvider, CompilationContext $CContext) {
 		
 		char    SS    = (($Size == null) || ($Size.length() == 0))?'0':$Size.charAt(0);
 		boolean isNeg = (($Sign != null) && $Sign.equals("-"));
@@ -91,7 +91,7 @@ public class Util_Literal {
 	 * NOTE: $Size chooses the numeric return type [fdD] for float, double and big decimal. 
 	 **/
 	static public Number CompileNumberDecimal(String $Text, String $Size,
-			ParseResult $Result, PTypeProvider $TProvider, CompilationContext $CContext) {
+			ParseResult $Result, ParserTypeProvider $TProvider, CompilationContext $CContext) {
 		
 		BigDecimal D  = new BigDecimal($Text);
 		// Default size
@@ -120,7 +120,7 @@ public class Util_Literal {
 	 * 	#Escape		an escape character
 	 **/
 	static public String ParseCompileString(boolean $IsTrimed,
-			ParseResult $Result, PTypeProvider $TProvider, CompilationContext $CContext) {
+			ParseResult $Result, ParserTypeProvider $TProvider, CompilationContext $CContext) {
 		// Short string
 		StringBuffer SB = new StringBuffer();
 		int Count = $Result.entryCount();

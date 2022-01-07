@@ -6,7 +6,7 @@ import java.io.IOException;
 import net.nawaman.compiler.Code;
 import net.nawaman.compiler.CodeFeeder;
 import net.nawaman.compiler.CompilationException;
-import net.nawaman.regparser.Util;
+import net.nawaman.regparser.utils.Util;
 
 /** Code feeder out of a unit */
 public class CFUnit extends CodeFeeder {

@@ -13,8 +13,8 @@ import net.nawaman.curry.util.DataHolderFactory;
 import net.nawaman.curry.util.Objectable_Curry;
 import net.nawaman.curry.util.UCurry;
 import net.nawaman.regparser.CompilationContext;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.script.Function;
 import net.nawaman.script.ScriptManager;
@@ -95,7 +95,7 @@ final public class Engine {
 		
 		PTypePackage.EnsureEngineRegisted();
 		
-		PTypeProvider TPackage = null;
+		ParserTypeProvider TPackage = null;
 		try { 
 			Function F = (Function)ScriptManager.Use("EngineSpec");
 			TPackage = (PTypePackage)F.run();
@@ -132,7 +132,7 @@ final public class Engine {
 				}
 				
 				String     ESpec = UString.loadTextFile(ESFileName);
-				PType      PT    = TPackage.getType("EngineSpecFile");
+				ParserType      PT    = TPackage.type("EngineSpecFile");
 				EngineSpec ES    = (EngineSpec)PT.compile(ESpec, ESFileName, CC, TPackage);
 				
 				if(ES == null) {

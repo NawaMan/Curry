@@ -12,7 +12,7 @@ import net.nawaman.curry.DependencyInfo;
 import net.nawaman.curry.MUnit;
 import net.nawaman.javacompiler.JavaCompilerObjectInputStream;
 import net.nawaman.regparser.CompilationContext;
-import net.nawaman.regparser.PType;
+import net.nawaman.regparser.ParserType;
 import net.nawaman.regparser.RegParser;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
@@ -75,7 +75,7 @@ public class UnitDescription {
 		}
 		// Load the parser
 		PTypePackage TPackage = PTypePackage.Use("UnitDesc");
-		PType        PT       = TPackage.getType("UnitDescFile");
+		ParserType        PT       = TPackage.type("UnitDescFile");
 		ParseResult  Result   = PT.parse(Text);
 		// Checks for parsing error
 		if(!Result.ensureNoError(TPackage, new CompilationContext.Simple())) return null;
@@ -104,7 +104,7 @@ public class UnitDescription {
 			
 			RegParser Parser = null;
 			try {
-				Parser = RegParser.newRegParser(Patterns[p]);
+				Parser = RegParser.compile(Patterns[p]);
 			} catch (Exception PE) {}
 			
 			if(Parser == null) {

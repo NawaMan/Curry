@@ -5,7 +5,7 @@ import java.io.Serializable;
 import net.nawaman.curry.*;
 import net.nawaman.curry.util.DataHolderInfo;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 
 public interface StackOwnerAppender {
@@ -72,7 +72,7 @@ public interface StackOwnerAppender {
 		// Constructor -------------------------------------------------------------------------------------------------
 		
 		static public StackOwnerAppender newConstructor(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPAccess, final ExecSignature pSignature, final MoreData pMoreData,
 				final Object pTempData, final Documentation pDoc) {
 			
@@ -118,7 +118,7 @@ public interface StackOwnerAppender {
 		// Generic ------------------------------------------------------------
 		
 		static public StackOwnerAppender newAttrDynamic(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final TypeRef pTRef, final MoreData pMoreData, final Documentation pDoc) {
 			
@@ -135,7 +135,7 @@ public interface StackOwnerAppender {
 		}
 		
 		static public StackOwnerAppender newOperDynamic(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPAccess, final ExecSignature pSignature, final MoreData pMoreData,
 				final Documentation pDoc) {
 			
@@ -154,14 +154,14 @@ public interface StackOwnerAppender {
 		// Non-Static ---------------------------------------------------------
 		
 		static public StackOwnerAppender newAttrDynamic(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final TypeRef pTRef, final MoreData pMoreData, final Documentation pDoc) {
 			return newAttrDynamic(false, pCProduct, $TPackage, $Result, pPARead, pPAWrite, pPAConfig, pAName, pTRef, pMoreData, pDoc);
 		}
 		
 		static public StackOwnerAppender newOperDynamic(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPAccess, final ExecSignature pSignature, final MoreData pMoreData,
 				final Documentation pDoc) {
 			return newOperDynamic(false, pCProduct, $TPackage, $Result, pPAccess, pSignature, pMoreData, pDoc); 
@@ -170,14 +170,14 @@ public interface StackOwnerAppender {
 		// Static -------------------------------------------------------------
 		
 		static public StackOwnerAppender newStaticAttrDynamic(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final TypeRef pTRef, final MoreData pMoreData, final Documentation pDoc) {
 			return newAttrDynamic(true, pCProduct, $TPackage, $Result, pPARead, pPAWrite, pPAConfig, pAName, pTRef, pMoreData, pDoc);
 		}
 		
 		static public StackOwnerAppender newStaticOperDynamic(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPAccess, final ExecSignature pSignature, final MoreData pMoreData,
 				final Documentation pDoc) {
 			return newOperDynamic(true, pCProduct, $TPackage, $Result, pPAccess, pSignature, pMoreData, pDoc); 
@@ -188,7 +188,7 @@ public interface StackOwnerAppender {
 		// Generic ------------------------------------------------------------
 		
 		static public StackOwnerAppender newAttrDlgAttr(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final String pTName, final MoreData pMoreData,
 				final Documentation pDoc) {
@@ -206,7 +206,7 @@ public interface StackOwnerAppender {
 		}
 		
 		static public StackOwnerAppender newOperDlgAttr(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final ExecSignature pSignature, final String pTName, final MoreData pMoreData,
 				final Documentation pDoc) {
 			
@@ -225,7 +225,7 @@ public interface StackOwnerAppender {
 		// Non-Static ---------------------------------------------------------
 		
 		static public StackOwnerAppender newAttrDlgAttr(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final String pTName, final MoreData pMoreData,
 				final Documentation pDoc) {			
@@ -233,7 +233,7 @@ public interface StackOwnerAppender {
 		}
 		
 		static public StackOwnerAppender newOperDlgAttr(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final ExecSignature pSignature, final String pTName, final MoreData pMoreData,
 				final Documentation pDoc) {
 			return newOperDlgAttr(false, pCProduct, $TPackage, $Result, pPAccess, pSignature, pTName, pMoreData, pDoc);
@@ -242,14 +242,14 @@ public interface StackOwnerAppender {
 		// Static -------------------------------------------------------------
 		
 		static public StackOwnerAppender newStaticAttrDlgAttr(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final String pTName, final MoreData pMoreData, final Documentation pDoc) {
 			return newAttrDlgAttr(true, pCProduct, $TPackage, $Result, pPARead, pPAWrite, pPAConfig, pAName, pTName, pMoreData, pDoc);
 		}
 		
 		static public StackOwnerAppender newStaticOperDlgAttr(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final ExecSignature pSignature, final String pTName, final MoreData pMoreData,
 				final Documentation pDoc) {
 			return newOperDlgAttr(true, pCProduct, $TPackage, $Result, pPAccess, pSignature, pTName, pMoreData, pDoc);
@@ -262,7 +262,7 @@ public interface StackOwnerAppender {
 		// Generic ------------------------------------------------------------
 
 		static public StackOwnerAppender newAttrConst(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final Serializable pValue, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Documentation pDoc) {
 			
@@ -279,7 +279,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAttrDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final Serializable pValue,
 				final boolean IsValueExpr, final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData,
 				final Documentation pDoc) {
@@ -297,7 +297,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAttrDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Documentation pDoc) {
@@ -315,7 +315,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newOperDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final Executable pExec, final MoreData pMoreData, final Documentation pDoc) {
 			
 			return new OperAppender() {
@@ -333,14 +333,14 @@ public interface StackOwnerAppender {
 		// Non-Static ---------------------------------------------------------
 
 		static public StackOwnerAppender newAttrConst(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final Serializable pValue, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Documentation pDoc) {			
 			return newAttrConst(false, pCProduct, $TPackage, $Result, pAName, pIsNotNull, pValue, IsValueExpr, pMoreInfo, pLocation, pMoreData, pDoc);
 		}
 
 		static public StackOwnerAppender newAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final Serializable pValue,
 				final boolean IsValueExpr, final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData,
 				final Documentation pDoc) {			
@@ -348,7 +348,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Documentation pDoc) {			
@@ -356,7 +356,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newOperDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final Executable pExec, final MoreData pMoreData, final Documentation pDoc) {
 			return newOperDirect(false, pCProduct, $TPackage, $Result, pPAccess, pExec, pMoreData, pDoc);
 		}
@@ -364,14 +364,14 @@ public interface StackOwnerAppender {
 		// Static -------------------------------------------------------------
 
 		static public StackOwnerAppender newStaticAttrConst(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final Serializable pValue, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Documentation pDoc) {			
 			return newAttrConst(true, pCProduct, $TPackage, $Result, pAName, pIsNotNull, pValue, IsValueExpr, pMoreInfo, pLocation, pMoreData, pDoc);
 		}
 
 		static public StackOwnerAppender newStaticAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final Serializable pValue,
 				final boolean IsValueExpr, final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData,
 				final Documentation pDoc) {			
@@ -379,7 +379,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newStaticAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Documentation pDoc) {			
@@ -387,7 +387,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newStaticOperDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final Executable pExec, final MoreData pMoreData, final Documentation pDoc) {
 			return newOperDirect(true, pCProduct, $TPackage, $Result, pPAccess, pExec, pMoreData, pDoc);
 		}
@@ -395,7 +395,7 @@ public interface StackOwnerAppender {
 		// Abstract ----------------------------------------------------------------------
 
 		static public StackOwnerAppender newAbstractAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final MoreData pMoreInfo,
 				final Location pLocation, final MoreData pMoreData, final Documentation pDoc) {
 			
@@ -408,7 +408,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAbstractAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility Access, final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Documentation pDoc) {
 			
@@ -421,7 +421,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAbstractAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Documentation pDoc) {
@@ -435,7 +435,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newAbstractOperDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final ExecSignature pSignature, final Executable.ExecKind pKind,
 				final MoreData pMoreData, final Documentation pDoc) {
 			
@@ -452,7 +452,7 @@ public interface StackOwnerAppender {
 		// Generic ------------------------------------------------------------
 
 		static public StackOwnerAppender newTempAttrConst(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result,
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result,
 				final Accessibility Access, final String pAName, final boolean pIsNotNull, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -474,7 +474,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempAttrDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -492,7 +492,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempAttrDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Object pTempData, final Documentation pDoc) {
@@ -510,7 +510,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempOperDirect(final boolean pIsStatic,
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pAccess, final Executable pExec, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
 			
@@ -538,7 +538,7 @@ public interface StackOwnerAppender {
 		// Non-Static ---------------------------------------------------------
 
 		static public StackOwnerAppender newTempAttrConst(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pAccess, final String pAName, final boolean pIsNotNull, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -547,7 +547,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -556,7 +556,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Object pTempData, final Documentation pDoc) {
@@ -565,7 +565,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempOperDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final Executable pExec, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
 			return newTempOperDirect(false, pCProduct, $TPackage, $Result, pPAccess, pExec, pMoreData, pTempData, pDoc);
@@ -574,7 +574,7 @@ public interface StackOwnerAppender {
 		// Static -------------------------------------------------------------
 
 		static public StackOwnerAppender newTempStaticAttrConst(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pAccess, final String pAName, final boolean pIsNotNull, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -583,7 +583,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempStaticAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final String pAName, final boolean pIsNotNull, final TypeRef pTypeRef, final boolean IsValueExpr,
 				final MoreData pMoreInfo, final Location pLocation, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
@@ -592,7 +592,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempStaticAttrDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPARead, final Accessibility pPAWrite, final Accessibility pPAConfig,
 				final String pAName, final boolean pIsNotNull, final DataHolderInfo pDHI, final Location pLocation,
 				final MoreData pMoreData, final Object pTempData, final Documentation pDoc) {
@@ -601,7 +601,7 @@ public interface StackOwnerAppender {
 		}
 
 		static public StackOwnerAppender newTempStaticOperDirect(
-				final CompileProduct pCProduct, final PTypeProvider $TPackage, final ParseResult $Result, 
+				final CompileProduct pCProduct, final ParserTypeProvider $TPackage, final ParseResult $Result, 
 				final Accessibility pPAccess, final Executable pExec, final MoreData pMoreData, final Object pTempData,
 				final Documentation pDoc) {
 			return newTempOperDirect(true, pCProduct, $TPackage, $Result, pPAccess, pExec, pMoreData, pTempData, pDoc);

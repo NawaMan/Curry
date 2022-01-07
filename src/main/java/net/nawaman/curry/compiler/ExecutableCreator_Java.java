@@ -18,8 +18,8 @@ import net.nawaman.curry.TypeRef;
 import net.nawaman.curry.Executable.ExecKind;
 import net.nawaman.curry.JavaExecutable.JavaSubRoutine_Simple;
 import net.nawaman.javacompiler.JavaCompiler;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.util.UObject;
 
@@ -117,7 +117,7 @@ public class ExecutableCreator_Java implements ExecutableCreator {
 	
 	static final Random Random = new Random();
 	
-	static private PTypeProvider PTProvider = null;
+	static private ParserTypeProvider PTProvider = null;
 	
 	static public int[] getSection(String pCode) {
 		if(PTProvider == null) {
@@ -128,7 +128,7 @@ public class ExecutableCreator_Java implements ExecutableCreator {
 						E);
 			}
 		}
-		PType PT = PTProvider.getType("JavaSections");
+		ParserType PT = PTProvider.type("JavaSections");
 		if(PT == null) {
 			throw new RuntimeException(
 					"Invalid parser data for 'JavaSectionExtractor.tpt' (no 'JavaSections' type) <ExecutableCreator:68>.");
@@ -251,7 +251,7 @@ public class ExecutableCreator_Java implements ExecutableCreator {
 				String FVName = pFVNames[i];
 				if(FVName == null) continue;
 				else {
-					PType PT = PTProvider.getType("Identifier");
+					ParserType PT = PTProvider.type("Identifier");
 					if((PT != null) && (PT.match(FVName) == null)) continue;
 					if(Context.isStackOwnerVariableNames(FVName))  continue;
 				}

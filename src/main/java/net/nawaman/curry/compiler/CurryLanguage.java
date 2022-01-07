@@ -12,8 +12,8 @@ import net.nawaman.curry.Executable;
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.Scope;
 import net.nawaman.regparser.CompilationContext;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.typepackage.PTypePackage;
 import net.nawaman.script.Function;
 import net.nawaman.script.ScriptManager;
@@ -151,7 +151,7 @@ public interface CurryLanguage {
 					};
 					
 			} else {
-				PTypeProvider TPackage = null;
+				ParserTypeProvider TPackage = null;
 				try { 
 					Function F = (Function)ScriptManager.Use("LanguageSpec");
 					TPackage = (PTypePackage)F.run();
@@ -179,7 +179,7 @@ public interface CurryLanguage {
 					}
 					
 					String ESpec = UString.loadTextFile(LSFileName);
-					PType PT = TPackage.getType("LanguageSpecFile");
+					ParserType PT = TPackage.type("LanguageSpecFile");
 					GetCurryLanguage = (GetCurryLanguage)PT.compile(ESpec, LSFileName, CC, TPackage);
 
 					

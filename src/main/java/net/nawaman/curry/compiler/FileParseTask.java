@@ -1,11 +1,12 @@
 package net.nawaman.curry.compiler;
 
+import static net.nawaman.regparser.RegParser.newRegParser;
+
 import net.nawaman.compiler.CompileProduct;
 import net.nawaman.compiler.ParseTask;
 import net.nawaman.compiler.TaskEntry;
-import net.nawaman.regparser.PTypeProvider;
-import net.nawaman.regparser.PTypeRef;
-import net.nawaman.regparser.RegParser;
+import net.nawaman.regparser.ParserTypeProvider;
+import net.nawaman.regparser.ParserTypeRef;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
@@ -14,7 +15,7 @@ public class FileParseTask extends ParseTask {
     private static final long serialVersionUID = 8605071645446256069L;
     
 	/** Constructs a ParseTask */
-	protected FileParseTask(String pName, PTypeProvider pTProvider) {
+	protected FileParseTask(String pName, ParserTypeProvider pTProvider) {
 		super(pName);
 		this.setTypeProvider(pTProvider);
 	}
@@ -24,11 +25,9 @@ public class FileParseTask extends ParseTask {
 		if(pIns[0] == null) return null;
 		CharSequence Source = (pIns[0] instanceof CharSequence)?(CharSequence)pIns[0]:(pIns[0] == null)?"":pIns[0].toString();
 		
-		RegParser Parser = RegParser.newRegParser(
+		var Parser = newRegParser(
 								"#File",	// Need and extra group to parse properly
-								RegParser.newRegParser(
-									new PTypeRef.Simple(this.getName(), pContext.getCurrentCodeName())
-								)
+								ParserTypeRef.of(this.getName(), pContext.getCurrentCodeName()).asRegParser()
 							);
 		ParseResult PR = Parser.parse(Source, this.getTypeProvider());
 		if(PR == null) {

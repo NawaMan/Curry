@@ -4,7 +4,7 @@ import net.nawaman.curry.Expression;
 import net.nawaman.curry.ExternalContext;
 import net.nawaman.curry.Instructions_Operations.InstFormat;
 import net.nawaman.curry.util.FormattableAdaptor;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 
 /** TextProcessor for String format */
@@ -40,7 +40,7 @@ public class TextProcessor_StringFormat implements TextProcessor {
 
 	/**{@inheritDoc}*/ @Override
 	public Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
-			int[] LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider) {
+			int[] LocationRC, int Pos, CompileProduct CProduct, ParserTypeProvider $TProvider) {
 		
 		// If the body is not proccessed
 		if($Result.textOf(BodyParseEntryName) != null) {

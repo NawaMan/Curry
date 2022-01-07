@@ -92,7 +92,7 @@ public class MUnit extends EnginePart {
 	HashSet<String> AlreadyDicoveredUP = new HashSet<String>();
 	boolean         IsBeingDiscovering = false;
 	
-	static final FileExtFilenameFilter CUFFilter = new FileExtFilenameFilter.Simple(new FileExtFilter.FEFExtList("cuf"));
+	static final FileExtFilenameFilter CUFFilter = new FileExtFilenameFilter.Simple(new FileExtFilter.ExtListFileFilter("cuf"));
 	
 	public String[] discoverUsepath(File UPDir) {
 		if((UPDir == null) || !UPDir.isDirectory() || !UPDir.exists() || !UPDir.canRead()) return UString.EmptyStringArray;
@@ -112,7 +112,7 @@ public class MUnit extends EnginePart {
 		try {
 			this.IsBeingDiscovering = true;
 			
-			String[] UPs = ScriptManager.Usepaths.getUsepaths();
+			String[] UPs = ScriptManager.Usepaths.usepaths().toArray(String[]::new);
 			if(UPs.length == this.AlreadyDicoveredUP.size()) return false;
 			
 			boolean HasLanguage = (this.getEngine().getExtension(EE_Language.Name) instanceof EE_Language);

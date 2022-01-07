@@ -24,7 +24,7 @@ import net.nawaman.curry.compiler.ExecutableCreator_Java;
 import net.nawaman.curry.compiler.TextProcessor_Curry;
 import net.nawaman.curry.compiler.TextProcessor_StringFormat;
 import net.nawaman.curry.compiler.UnitBuilderCreator;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.typepackage.PTypePackage;
 
 public class AllTests extends net.nawaman.curry.test.AllTests {
@@ -364,7 +364,7 @@ public class AllTests extends net.nawaman.curry.test.AllTests {
 	}
 	
 	static public void PrepareLanguage(boolean IsQuite) {
-		PTypeProvider TPackage = null;
+		ParserTypeProvider TPackage = null;
 		try { TPackage = PTypePackage.Use("CurryCompiler"); }
 		catch(Exception E) {
 			System.err.println(E);

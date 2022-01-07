@@ -11,7 +11,7 @@ import net.nawaman.curry.TypeRef;
 import net.nawaman.curry.Instructions_Array.Inst_NewArrayLiteral;
 import net.nawaman.curry.Instructions_Context.Inst_NewConstant;
 import net.nawaman.curry.util.FormattableAdaptor;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 
 /** TextProcessor for curry code */
@@ -47,7 +47,7 @@ final public class TextProcessor_Curry implements TextProcessor {
 
 	/**{@inheritDoc}*/ @Override
 	public Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
-			int[] LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider) {
+			int[] LocationRC, int Pos, CompileProduct CProduct, ParserTypeProvider $TProvider) {
 		
 		// If the body is required 
 		if($Result.textOf(BodyParseEntryName) == null) {

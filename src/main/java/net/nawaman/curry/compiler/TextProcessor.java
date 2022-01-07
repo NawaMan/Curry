@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import net.nawaman.curry.Expression;
 import net.nawaman.curry.ExternalContext;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 
@@ -22,11 +22,11 @@ public interface TextProcessor extends Serializable {
 
 	/** Returns an expression for the text which can all be done at compile time */
 	public Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
-			int[] LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider);
+			int[] LocationRC, int Pos, CompileProduct CProduct, ParserTypeProvider $TProvider);
 	
 	/** Returns an expression for the text which can all be done at compile time */
 	public default Expression processStaticTextProcessor(String Text, Object[] Params, ParseResult $Result, String BodyParseEntryName,
-			Coordinate LocationRC, int Pos, CompileProduct CProduct, PTypeProvider $TProvider) {
+			Coordinate LocationRC, int Pos, CompileProduct CProduct, ParserTypeProvider $TProvider) {
 		return processStaticTextProcessor(Text, Params, $Result, BodyParseEntryName, LocationRC.toArray(), Pos, CProduct, $TProvider);
 	}
 	

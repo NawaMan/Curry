@@ -3,8 +3,8 @@ package net.nawaman.curry.compiler;
 import net.nawaman.compiler.TaskEntry;
 import net.nawaman.compiler.TaskForCodeUsingRegParser;
 import net.nawaman.curry.TKJava;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
@@ -14,7 +14,7 @@ public class CompileTokenTask  extends TaskForCodeUsingRegParser {
     private static final long serialVersionUID = 8605071645446256069L;
     
 	/** Constructs a CompileTask */
-	protected CompileTokenTask(String pName, PTypeProvider pTProvider) {
+	protected CompileTokenTask(String pName, ParserTypeProvider pTProvider) {
 		super(pName, new Class<?>[] { String.class, ParseResult.class }, null, new Class<?>[] { Object.class });
 		this.setTypeProvider(pTProvider);
 	}
@@ -26,7 +26,7 @@ public class CompileTokenTask  extends TaskForCodeUsingRegParser {
 		$CProduct.resetContextForFragment($CProduct.CCompiler.TheID, TKJava.TAny.getTypeRef(), false, null, null, null,
 				null, null, true);
 		// Compile
-		PType PT = this.getTypeProvider().getType(pIns[0].toString());
+		ParserType PT = this.getTypeProvider().type(pIns[0].toString());
 		return new Object[] { PT.compile((ParseResult) pIns[1], null, pContext, this.getTypeProvider()) };
 	}
 

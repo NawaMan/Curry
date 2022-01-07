@@ -28,8 +28,8 @@ import net.nawaman.curry.compiler.FileCompileResult.TypeSpecification;
 import net.nawaman.curry.compiler.FileCompileResult.TypeWithElements;
 import net.nawaman.curry.extra.type_object.TBClass;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.task.TaskOptions;
 
@@ -42,12 +42,12 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 	static final Object[]   IODVs = new Object[]   { null, null, null };
 
 	/** Constructs a CompileTask */
-	protected FileCompileTasks_Code(String pName, PTypeProvider pTProvider) {
+	protected FileCompileTasks_Code(String pName, ParserTypeProvider pTProvider) {
 		super(pName, IOCls, IODVs, IOCls);
 		this.setTypeProvider(pTProvider);
 	}
 
-	abstract void doTask(PTypeProvider $TProvider, CompileProduct $CProduct,
+	abstract void doTask(ParserTypeProvider $TProvider, CompileProduct $CProduct,
 			int FeederIndex, String FeederName, String CodeName,
 			UnitBuilder UB, PackageBuilder PB, FCResult pFCResult);
 
@@ -60,7 +60,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 		String FeederName  = pContext.getCurrentFeederName();
 		String CodeName    = pContext.getCurrentCodeName();
 		
-		PTypeProvider  $TProvider = this.getTypeProvider();
+		ParserTypeProvider  $TProvider = this.getTypeProvider();
 		CompileProduct $CProduct  = (CompileProduct)pContext;
 		
 		// Ensure valid state
@@ -120,7 +120,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 		if(!$CProduct.getCompilationState().isFullCompilation() && !$CProduct.getCompilationState().isTypeValidation()) {
 		
 			// Get the parser type to compile the parse result
-			PType PTFile = $TProvider.getType(CLRegParser.ParserTypeName_File);
+			ParserType PTFile = $TProvider.type(CLRegParser.ParserTypeName_File);
 			if(PTFile == null) {
 				$CProduct.reportError(String.format(
 							"Unable to compile a file when the parser type '%s' does not exist",
@@ -199,7 +199,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected TypeRelated(String pName, PTypeProvider pTPackage) {
+		protected TypeRelated(String pName, ParserTypeProvider pTPackage) {
 			super(pName, pTPackage);
 		}
 
@@ -207,7 +207,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
 				Location TL);
 
 		/** Performs the task */ @Override
-		void doTask(PTypeProvider $TPackage, CompileProduct $CProduct,
+		void doTask(ParserTypeProvider $TPackage, CompileProduct $CProduct,
 				int FeederIndex, String FeederName, String CodeName,
 				UnitBuilder UB, PackageBuilder PB, FCRTypes pFCRTypes) {
 			
@@ -242,7 +242,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected TypeRegistration(PTypeProvider pTPackage) {
+		protected TypeRegistration(ParserTypeProvider pTPackage) {
 			super("TypeRegistration", pTPackage);
 		}
 
@@ -269,12 +269,12 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected StructureRegistration(PTypeProvider pTPackage) {
+		protected StructureRegistration(ParserTypeProvider pTPackage) {
 			super("Structure", pTPackage);
 		}
 
 		/** Performs the task */ @Override
-		void doTask(PTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
+		void doTask(ParserTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
 				String CodeName, UnitBuilder UB, PackageBuilder PB, FileCompileResult.StructuralRegistration Result) {
 
 			boolean isPBActive = PB.isActive();
@@ -460,7 +460,7 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected TypeRefinition(PTypeProvider pTPackage) {
+		protected TypeRefinition(ParserTypeProvider pTPackage) {
 			super("TypeRefinition", pTPackage);
 		}
 
@@ -492,12 +492,12 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected FullCompilation(PTypeProvider pTPackage) {
+		protected FullCompilation(ParserTypeProvider pTPackage) {
 			super("FullComilation", pTPackage);
 		}
 
 		/** Performs the task */ @Override
-		void doTask(PTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
+		void doTask(ParserTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
 				String CodeName, UnitBuilder UB, PackageBuilder PB, FileCompileResult Result) {
 				
 			// Resolve all Package Variable
@@ -670,12 +670,12 @@ abstract class FileCompileTasks_Code<FCResult extends FileCompileResult> extends
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileTask */
-		protected TypeValidation(PTypeProvider pTPackage) {
+		protected TypeValidation(ParserTypeProvider pTPackage) {
 			super("Validation", pTPackage);
 		}
 
 		/** Performs the task */ @Override
-		void doTask(PTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
+		void doTask(ParserTypeProvider $TPackage, CompileProduct $CProduct, int FeederIndex, String FeederName,
 				String CodeName, UnitBuilder UB, PackageBuilder PB, FileCompileResult.StructuralRegistration Result) {
 			Set<String> TBNames;
 			if((PB == null) || ((TBNames = PB.getTypeBuilderNames()) == null)) return;

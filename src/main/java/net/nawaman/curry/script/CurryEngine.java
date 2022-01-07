@@ -33,7 +33,7 @@ import net.nawaman.script.ScriptManager;
 import net.nawaman.script.Signature;
 import net.nawaman.script.Utils;
 import net.nawaman.usepath.FileExtFilter;
-import net.nawaman.usepath.UFFileExtFilter;
+import net.nawaman.usepath.FileExtUsableFilter;
 import net.nawaman.usepath.UsableFilter;
 import net.nawaman.util.UString;
 
@@ -200,9 +200,9 @@ public class CurryEngine implements ScriptEngine {
 	// Usable Filters (File filter) ------------------------------------------------------------------------------------
 
 	/** Filter for CURRYFile only */
-	static class CURRYFileFilter extends UFFileExtFilter {
+	static class CURRYFileFilter extends FileExtUsableFilter {
 		public CURRYFileFilter() {
-			super(new FileExtFilter.FEFExtList("curry"));
+			super(new FileExtFilter.ExtListFileFilter("curry"));
 		}
 	}
 	

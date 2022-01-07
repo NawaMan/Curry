@@ -33,7 +33,7 @@ import net.nawaman.curry.Instructions_StackOwner.Inst_Invoke_ByParams;
 import net.nawaman.curry.compiler.CompileProduct;
 import net.nawaman.curry.compiler.Util_Literal;
 import net.nawaman.curry.extra.type_object.EE_Object;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.text.FixedLengthText;
 import net.nawaman.text.StructureText;
@@ -91,7 +91,7 @@ public class EE_Text extends EngineExtension {
 	
 	// Compiler --------------------------------------------------------------------------------------------------------
 	
-	static public Object ParseCompileText(ParseResult $Result, PTypeProvider $TProvider, CompileProduct $CProduct) {
+	static public Object ParseCompileText(ParseResult $Result, ParserTypeProvider $TProvider, CompileProduct $CProduct) {
 		MExecutable $ME = $CProduct.getEngine().getExecutableManager();
 		
 		// SimpleText --------------------------------------------------------------------------------------------------

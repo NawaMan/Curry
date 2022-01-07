@@ -4,7 +4,7 @@ import net.nawaman.curry.ExecSignature;
 import net.nawaman.curry.Scope;
 import net.nawaman.curry.TKJava;
 import net.nawaman.curry.TypeRef;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserTypeProvider;
 
 public class ExecutableCompileTasks {
 
@@ -14,7 +14,7 @@ public class ExecutableCompileTasks {
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileFragmentTask */
-		protected CompileFragmentTask(String pName, PTypeProvider pTProvider) {
+		protected CompileFragmentTask(String pName, ParserTypeProvider pTProvider) {
 			super(pName, pTProvider);
 		}
 
@@ -46,7 +46,7 @@ public class ExecutableCompileTasks {
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileMacroTask */
-		protected CompileMacroTask(String pName, PTypeProvider pTProvider) {
+		protected CompileMacroTask(String pName, ParserTypeProvider pTProvider) {
 			super(pName, pTProvider);
 		}
 
@@ -80,7 +80,7 @@ public class ExecutableCompileTasks {
         private static final long serialVersionUID = 8605071645446256069L;
         
 		/** Constructs a CompileSubRoutineTask */
-		protected CompileSubRoutineTask(String pName, PTypeProvider pTProvider) {
+		protected CompileSubRoutineTask(String pName, ParserTypeProvider pTProvider) {
 			super(pName, pTProvider);
 		}
 

@@ -25,8 +25,8 @@ import net.nawaman.curry.Executable.Fragment;
 import net.nawaman.curry.compiler.CompileProduct.CompilationState;
 import net.nawaman.curry.compiler.ExecutableCompileTasks.*;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.PType;
-import net.nawaman.regparser.PTypeProvider;
+import net.nawaman.regparser.ParserType;
+import net.nawaman.regparser.ParserTypeProvider;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.util.UClass;
 
@@ -158,14 +158,14 @@ public class CLRegParser implements CurryLanguage {
 	static String[] OutputToken       = new String[] { "Token"  };
 	
 	/** Constructs the curry language that utilizes Regular Parser. **/
-	public CLRegParser(String pName, Engine pTargetEngine, PTypeProvider pTProvider) {
+	public CLRegParser(String pName, Engine pTargetEngine, ParserTypeProvider pTProvider) {
 		if(pTProvider == null) throw new NullPointerException();
 		this.Name         = pName;
 		this.TProvider    = pTProvider;
 		this.TargetEngine = pTargetEngine;
 		
-		if((pTProvider.getType(ParserTypeName_Expression) == null) ||
-		   (pTProvider.getType(ParserTypeName_Statements) == null))
+		if((pTProvider.type(ParserTypeName_Expression) == null) ||
+		   (pTProvider.type(ParserTypeName_Statements) == null))
 			throw new IllegalArgumentException(String.format(
 					"The parser type provide must contains the both '%s' and '%s' parser types.",
 					ParserTypeName_Expression, ParserTypeName_Statements));
@@ -191,7 +191,7 @@ public class CLRegParser implements CurryLanguage {
 			new TaskEntry(new PartialParseTask(     ParserTypeName_Statements, this.TProvider), PartialParseInput, ParseOutput),
 			new TaskEntry(new CompileSubRoutineTask(ParserTypeName_Statements, this.TProvider), ParseOutput,       OutputSubRoutine) });
 		
-		if(pTProvider.getType(ParserTypeName_Expression) != null) {
+		if(pTProvider.type(ParserTypeName_Expression) != null) {
 			this.$CodeFeederCompiler = new CurryCompiler(pName, this, this.TheSecretID,new TaskEntry[] {
 				// State 1: Type Registration
 				new TaskEntry(new FileParseTask(ParserTypeName_File, this.TProvider), ParseInput, ParseOutput),
@@ -232,15 +232,15 @@ public class CLRegParser implements CurryLanguage {
 		return this.TargetEngine;
 	}
 	// Parser -----------------------------------------------------------------------
-	final PTypeProvider TProvider;
+	final ParserTypeProvider TProvider;
 	/** Returns the Parser TypePackage */
-	final public PTypeProvider getTProvider() {
+	final public ParserTypeProvider getTProvider() {
 		return this.TProvider;
 	}
 	
 	/** Returns the ParserType with the name */
-	final public PType getParserType(String pName) {
-		return this.TProvider.getType(pName);
+	final public ParserType getParserType(String pName) {
+		return this.TProvider.type(pName);
 	}
 
 	// Executable Creator -----------------------------------------------------------

@@ -44,7 +44,7 @@ import net.nawaman.curry.Instructions_StackOwner.Inst_typeInvoke;
 import net.nawaman.curry.TKExecutable.TExecutable;
 import net.nawaman.curry.compiler.CompileProduct.CompileTimeChecking;
 import net.nawaman.curry.util.MoreData;
-import net.nawaman.regparser.PType;
+import net.nawaman.regparser.ParserType;
 import net.nawaman.regparser.result.Coordinate;
 import net.nawaman.regparser.result.ParseResult;
 import net.nawaman.regparser.typepackage.PTypePackage;
@@ -170,7 +170,7 @@ public class Util_Atomic {
 				if(Index >= Params.length) return null;
 				
 				ParseResult Param = Params[Index];
-				PType PT = $TPackage.getType(Param.typeNameOf(0));
+				ParserType PT = $TPackage.type(Param.typeNameOf(0));
 				if(PT == null) return Param.text();
 				
 				return PT.compile(Param, null, $CProduct, $TPackage);
